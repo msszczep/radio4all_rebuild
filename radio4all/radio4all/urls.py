@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
-from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView
+from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView, ProgramView
 
 router = routers.DefaultRouter()
 router.register(r'files', FilesViewSet)
@@ -32,6 +32,7 @@ urlpatterns = [
     path('about/', AboutPageView.as_view(), name='about'),
     path('contact/', ContactPageView.as_view(), name='contact'),
     path('news/', NewsPageView.as_view(), name='news'),
+    path('program/<int:pk>', ProgramView.as_view(), name='program-detail'),
     path('faq/', FaqPageView.as_view(), name='faq'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),

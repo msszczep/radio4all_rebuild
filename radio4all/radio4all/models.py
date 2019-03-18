@@ -6,6 +6,9 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
+from django.utils import timezone
 
 
 class Advisories(models.Model):
@@ -200,7 +203,7 @@ class Types(models.Model):
         db_table = 'types'
 
 
-class Users(models.Model):
+class Users(AbstractBaseUser, PermissionsMixin):
     uid = models.AutoField(primary_key=True)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=32)
@@ -213,6 +216,14 @@ class Users(models.Model):
     last_login = models.DateTimeField(blank=True, null=True)
     suspended = models.IntegerField()
     special = models.IntegerField()
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
 
     class Meta:
         managed = False
@@ -226,7 +237,7 @@ class Versions(models.Model):
     version_title = models.CharField(max_length=255, blank=True, null=True)
     version_description = models.CharField(max_length=255, blank=True, null=True)
     length = models.TimeField()
-    lang_id = models.ForeignKey('Lang', on_delete=models.PROTECT, related_name='+',default=1)
+    lang = models.ForeignKey('Lang', on_delete=models.PROTECT, related_name='+',default=1)
     date_recorded = models.DateField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     date_created = models.DateTimeField()

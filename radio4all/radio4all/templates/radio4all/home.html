@@ -7,7 +7,7 @@
                     <div id="content_title">Latest Programs</div>
                     {% for latest in latest_programs %}
                     <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program_id }}">
-                       <a href="/api/programs/{{ latest.program_id }}" class="result_info">
+                       <a href="/program/{{ latest.program_id }}" class="result_info">
                         <label class="result_series">{{ latest.program_title }}</label>
                             {{ latest.subtitle }}: {{ latest.subtitle }}
                             <span>{{ latest.program_title }}<br />

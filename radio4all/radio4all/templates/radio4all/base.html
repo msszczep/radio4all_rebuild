@@ -97,21 +97,16 @@ $(document).ready(function(){
             {{ get_categories }}
         </div>
         <hr/>
-        <?php
-        $loginurl = '/login/';
-        $logintext = 'Login';
-        if ($_COOKIE['RPLOGINSTATE'] == 1) {
-          $loginurl = '/login/logout';
-          $logintext = 'Logout';
-        }
-        ?>
-        <div class="navcontent"><a href="/accounts/login"><?php echo $logintext; ?></a></div>
-<?php if ($_COOKIE['RPLOGINSTATE'] == 1): ?>
+            {% if request.user.is_authenticated %}
+        <div class="navcontent"><a href="/accounts/logout">Log Out</a></div>
         <br />
         <div class="navcontent"><a href="/start.jsp">Add Program</a></div>
         <br />
         <div class="navcontent"><a href="/<?php echo $config['main_file']; ?>/program/my/">My Programs</a></div>
-<?php endif; ?>
+      {% else %}
+                <div class="navcontent"><a href="/accounts/login">Log In</a></div>
+      {% endif %}
+
         <hr/>
         <div><a href="/podcast.xml" title="Radio Project Front Page Podcast"><img src="/static/images/podcast.gif" height="16" alt="Radio Project Front Page Podcast" align="absmiddle" border="0" width="62"/></a></div>
         <div><a href="http://feeds.feedburner.com/RadioProjectFrontPagePodcast" title="Radio Project Front Page Podcast on FeedBurner"><img src="/static/images/feedburner.png" height="16" alt="Radio Project Front Page Podcast on FeedBurner" align="absmiddle" border="0" width="64"/></a></div><br />

@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 
 from django.views.generic.list import ListView
+from django.views.generic import DetailView
 
 class HomePageView(ListView):
     model = Programs
@@ -11,6 +12,14 @@ class HomePageView(ListView):
     queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
     template_name = "radio4all/home.html"
 
+class ProgramView(DetailView):
+    model = Files
+    template_name = 'radio4all/program.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProgramView, self).get_context_data(**kwargs)
+        context['object'] = Files.objects.filter(program__program_id=self.kwargs.get('pk'))
+        return context
 
 class AboutPageView(ListView):
     model = Programs
@@ -32,6 +41,7 @@ class NewsPageView(ListView):
     paginate_by = 30
     queryset = News.objects.all().order_by('-pub_date')  # Default: Model.objects.all()
     template_name = "radio4all/news.html"
+
 
 class ContactPageView(ListView):
     model = Programs
