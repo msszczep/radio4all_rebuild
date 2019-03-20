@@ -100,9 +100,9 @@ $(document).ready(function(){
             {% if request.user.is_authenticated %}
         <div class="navcontent"><a href="/accounts/logout">Log Out</a></div>
         <br />
-        <div class="navcontent"><a href="/start.jsp">Add Program</a></div>
+        <div class="navcontent"><a href="/program/add/">Add Program</a></div>
         <br />
-        <div class="navcontent"><a href="/<?php echo $config['main_file']; ?>/program/my/">My Programs</a></div>
+        <div class="navcontent"><a href="/program/my/">My Programs</a></div>
       {% else %}
                 <div class="navcontent"><a href="/accounts/login">Log In</a></div>
       {% endif %}

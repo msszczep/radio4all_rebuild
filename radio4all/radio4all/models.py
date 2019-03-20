@@ -206,7 +206,7 @@ class Types(models.Model):
 class Users(AbstractBaseUser, PermissionsMixin):
     uid = models.AutoField(primary_key=True)
     email = models.CharField(max_length=255)
-    password = models.CharField(max_length=32)
+    password = models.CharField(max_length=255)
     user_level = models.IntegerField()
     full_name = models.CharField(max_length=255, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
