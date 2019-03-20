@@ -1,0 +1,44 @@
+{% extends "radio4all/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  <table class="content" border="0" width="370" align="left">
+    <tbody>
+      <tr>
+        <th colspan="2">Create an Account</th>
+      </tr>
+    {{ form.as_table }}
+      <tr>
+        <td height="22"><label>Name of Person or Group (recommended): </label></td>
+        <td><input name="full_name" size="25" maxlength="255" type="text" /></td>
+      </tr>
+      <tr>
+        <td><label>Website (optional): </label></td>
+        <td><input name="website" size="25" maxlength="255" value="http://" type="text" /></td>
+      </tr>
+      <tr>
+        <td><label>Bio (optional): </label></td>
+        <td><textarea name="bio" cols=30 rows=10></textarea></td>
+      </tr>
+      <tr><td colspan="2">$capform</td></tr>
+      <tr>
+        <td colspan="2">
+             {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+            <button name="Login" value="Sign Up" type="submit">{% trans "Sign Up" %} &raquo;</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+{% endblock %}
