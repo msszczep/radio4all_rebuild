@@ -1,7 +1,7 @@
 from .models import Files, Locations, Programs, News, Faq
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 
@@ -11,6 +11,16 @@ class HomePageView(ListView):
     paginate_by = 30
     queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
     template_name = "radio4all/home.html"
+
+class DashboardView(LoginRequiredMixin,ListView):
+    model = Programs
+    context_object_name = 'latest_programs'  # Default: object_list
+    paginate_by = 30
+#    queryset =
+    template_name = "radio4all/dashboard.html"
+
+    def get_queryset(self):
+        return Programs.objects.filter(uid=self.request.user).order_by('-date_created')  # Default: Model.objects.all()
 
 class ProgramView(DetailView):
     model = Files

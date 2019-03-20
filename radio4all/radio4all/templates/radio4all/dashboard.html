@@ -1,0 +1,61 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+                <span id="content">
+                <div id="result_set">
+                    <div id="content_title">Latest Programs</div>
+                    {% for latest in latest_programs %}
+                    <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program_id }}">
+                       <a href="/program/{{ latest.program_id }}" class="result_info">
+                        <label class="result_series">{{ latest.program_title |safe }}</label>
+                            : {{ latest.subtitle |safe }}
+                            <span>{{ latest.program_title |safe }}<br />
+                                <b>Date: </b>{{ latest.date_created }}<br />
+                                <b>Length: </b>{{ latest.length }}<br />
+                                <b>Contributor: </b>{{ latest.speaker }}</span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+      {% if is_paginated %}
+            <script type="text/javascript">
+$(document).ready(function(){
+        $(".control_link").click(function(){
+                document.getElementById('loadmsg').innerHTML = "Loading...";
+                $("#content").load($(this).attr("href"));
+                return false;
+         });
+        $("#browsecontrol").change(function() {
+                window.location.href = $(this).val();
+        });
+});
+</script>
+<!-- START: Browsing Controls -->
+<table border="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+<form><select id="browsecontrol">
+        {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <option value="?page={{ i }}">{{ i }}1</option>
+      {% else %}
+        <option value="?page={{ i }}">{{ i }}1</option>
+      {% endif %}
+    {% endfor %}
+{% endif %}
+    </select></form>
+</td>
+      <td>&nbsp;<a href=""><b>&gt;</b></a></td>
+      <td>&nbsp;<span id="loadmsg">Records 0-30 of total: {{ paginator.count }}</span></td>
+    </tr>
+  </tbody>
+</table>
+<!-- END: Browsing Controls --></div>
+&nbsp;
+                </span>
+            {% endblock %}
+
+
