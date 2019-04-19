@@ -19,26 +19,26 @@
 -- Table structure for table `django_session`
 --
 
-DROP TABLE IF EXISTS `django_session`;
+DROP TABLE IF EXISTS django_session;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `django_session` (
-  `session_key` varchar(40) NOT NULL,
-  `session_data` longtext NOT NULL,
-  `expire_date` datetime(6) NOT NULL,
-  PRIMARY KEY (`session_key`),
-  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+CREATE TABLE django_session (
+  session_key varchar(40) NOT NULL,
+  session_data longtext NOT NULL,
+  expire_date datetime(6) NOT NULL,
+  PRIMARY KEY (session_key),
+  KEY django_session_expire_date_a5c62663 (expire_date)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `django_session`
+-- Dumping data for table django_session
 --
 
-LOCK TABLES `django_session` WRITE;
-/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('pl2ry1bb1zwl475eluwthvlveqs2sl7p','ZWM4MmYwM2ViNDVlNGVkNTVlYTc4MWUzZTdhNjAwYWVjMTA5MWU2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiJjMmQ5MzZlYTg4MGI2NzU2ZmU5YTY0NDFlZTNiODIyOTU0ZTg5OWEzIn0=','2018-12-19 01:05:04.733406');
-/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+LOCK TABLES django_session WRITE;
+/*!40000 ALTER TABLE django_session DISABLE KEYS */;
+INSERT INTO django_session VALUES ('pl2ry1bb1zwl475eluwthvlveqs2sl7p','ZWM4MmYwM2ViNDVlNGVkNTVlYTc4MWUzZTdhNjAwYWVjMTA5MWU2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiJjMmQ5MzZlYTg4MGI2NzU2ZmU5YTY0NDFlZTNiODIyOTU0ZTg5OWEzIn0=','2018-12-19 01:05:04.733406');
+/*!40000 ALTER TABLE django_session ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
