@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `openid_openidnonce`
+-- Table structure for table openid_openidnonce
 --
 
-DROP TABLE IF EXISTS `openid_openidnonce`;
+DROP TABLE IF EXISTS openid_openidnonce;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `openid_openidnonce` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `server_url` varchar(255) NOT NULL,
-  `timestamp` int(11) NOT NULL,
-  `salt` varchar(255) NOT NULL,
-  `date_created` datetime(6) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE openid_openidnonce (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  server_url varchar(255) NOT NULL,
+  timestamp int(11) NOT NULL,
+  salt varchar(255) NOT NULL,
+  date_created datetime NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `openid_openidnonce`
+-- Dumping data for table openid_openidnonce
 --
 
-LOCK TABLES `openid_openidnonce` WRITE;
-/*!40000 ALTER TABLE `openid_openidnonce` DISABLE KEYS */;
-/*!40000 ALTER TABLE `openid_openidnonce` ENABLE KEYS */;
+LOCK TABLES openid_openidnonce WRITE;
+/*!40000 ALTER TABLE openid_openidnonce DISABLE KEYS */;
+/*!40000 ALTER TABLE openid_openidnonce ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

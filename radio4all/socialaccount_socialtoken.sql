@@ -16,34 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `socialaccount_socialtoken`
+-- Table structure for table socialaccount_socialtoken
 --
 
-DROP TABLE IF EXISTS `socialaccount_socialtoken`;
+DROP TABLE IF EXISTS socialaccount_socialtoken;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `socialaccount_socialtoken` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `token` longtext NOT NULL,
-  `token_secret` longtext NOT NULL,
-  `expires_at` datetime(6) DEFAULT NULL,
-  `account_id` int(11) NOT NULL,
-  `app_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq` (`app_id`,`account_id`),
-  KEY `socialaccount_social_account_id_951f210e_fk_socialacc` (`account_id`),
-  CONSTRAINT `socialaccount_social_account_id_951f210e_fk_socialacc` FOREIGN KEY (`account_id`) REFERENCES `socialaccount_socialaccount` (`id`),
-  CONSTRAINT `socialaccount_social_app_id_636a42d7_fk_socialacc` FOREIGN KEY (`app_id`) REFERENCES `socialaccount_socialapp` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE socialaccount_socialtoken (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  token longtext NOT NULL,
+  token_secret longtext NOT NULL,
+  expires_at datetime DEFAULT NULL,
+  account_id int(11) NOT NULL,
+  app_id int(11) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq (app_id,account_id),
+  KEY socialaccount_social_account_id_951f210e_fk_socialacc (account_id),
+  CONSTRAINT socialaccount_social_account_id_951f210e_fk_socialacc FOREIGN KEY (account_id) REFERENCES socialaccount_socialaccount (id),
+  CONSTRAINT socialaccount_social_app_id_636a42d7_fk_socialacc FOREIGN KEY (app_id) REFERENCES socialaccount_socialapp (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `socialaccount_socialtoken`
+-- Dumping data for table socialaccount_socialtoken
 --
 
-LOCK TABLES `socialaccount_socialtoken` WRITE;
-/*!40000 ALTER TABLE `socialaccount_socialtoken` DISABLE KEYS */;
-/*!40000 ALTER TABLE `socialaccount_socialtoken` ENABLE KEYS */;
+LOCK TABLES socialaccount_socialtoken WRITE;
+/*!40000 ALTER TABLE socialaccount_socialtoken DISABLE KEYS */;
+/*!40000 ALTER TABLE socialaccount_socialtoken ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
