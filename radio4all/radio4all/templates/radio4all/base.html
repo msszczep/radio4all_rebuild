@@ -113,14 +113,14 @@ $(document).ready(function(){
         <span class="textHeading">Translate</span><br />
         <div class="navcontent">
           <?php $transurl = $config['site_url'] . join('/', $req); $transurl = urlencode($transurl); ?>
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cde&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Deutsch</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Ces&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Español</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cfr&amp;hl=en&amp;ie=UTF-8&amp;prev=/language_tools" target="_blank">Français</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cit&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Italiano</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cja&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">日本語</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cpl&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Polski</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cpt&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Português</a><br />
-          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cru&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Русский</a> </div>
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cde&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Deutsch</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Ces&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Español</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cfr&amp;hl=en&amp;ie=UTF-8&amp;prev=/language_tools" target="_blank">Français</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cit&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Italiano</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cja&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">日本語</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cpl&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Polski</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cpt&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Português</a><br />
+          <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cru&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Русский</a> </div>
       </div>
     </div>
   </td></tr></tbody></table>
