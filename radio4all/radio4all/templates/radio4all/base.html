@@ -111,8 +111,9 @@ $(document).ready(function(){
         <div><a href="/podcast.xml" title="Radio Project Front Page Podcast"><img src="/static/images/podcast.gif" height="16" alt="Radio Project Front Page Podcast" align="absmiddle" border="0" width="62"/></a></div>
         <div><a href="http://feeds.feedburner.com/RadioProjectFrontPagePodcast" title="Radio Project Front Page Podcast on FeedBurner"><img src="/static/images/feedburner.png" height="16" alt="Radio Project Front Page Podcast on FeedBurner" align="absmiddle" border="0" width="64"/></a></div><br />
         <span class="textHeading">Translate</span><br />
+
+
         <div class="navcontent">
-          <?php $transurl = $config['site_url'] . join('/', $req); $transurl = urlencode($transurl); ?>
           <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cde&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Deutsch</a><br />
           <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Ces&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Español</a><br />
           <a href="http://translate.google.com/translate?u=http://{{ request.META.HTTP_HOST }}{{ request.path }}&amp;langpair=en%7Cfr&amp;hl=en&amp;ie=UTF-8&amp;prev=/language_tools" target="_blank">Français</a><br />
