@@ -4,11 +4,8 @@ from django.utils.datastructures import SortedDict
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import ugettext_noop as _
 
- class MySQLOldPasswordHasher:
-    "" "
-    Class to encrypt the passwords using the function model old_password of mysql 4.x
-    Class to encrypt the passwords using the model of mysql 4.x old_password function
-    "" "
+class MySQLOldPasswordHasher:
+
     algorithm =" mysql_old_password "
 
     def salt (self):
