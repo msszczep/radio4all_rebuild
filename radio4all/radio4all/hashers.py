@@ -1,6 +1,7 @@
 from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 
-from django.utils.datastructures import SortedDict
+from collections import OrderedDict as SortedDict
+
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import ugettext_noop as _
 
@@ -17,7 +18,7 @@ class MySQLOldPasswordHasher:
         nr2 = 0x12345671
 
         for c in (ord (x) for x in password if x not in ('', '\ t')):
-            nr ^ = (((nr & 63) + add) & 0xFFFFFFFF
+            nr ^= (((nr & 63) + add) * c) + (nr << 8) & 0xFFFFFFFF
             nr2 = (nr2 + ((nr2 << 8) ^ nr)) & 0xFFFFFFFF
             add = (add + c) & 0xFFFFFFFF
 
