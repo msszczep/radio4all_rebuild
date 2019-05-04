@@ -84,7 +84,6 @@ $(document).ready(function(){
             {% endblock %}
                 </span>
         &nbsp;</div>
-
   <div id="nav">
         <?php if ($req[2] != 'search') { ?>
         <div>
@@ -94,9 +93,9 @@ $(document).ready(function(){
         </div>
         <?php } ?>
         <div>
-            {{ get_categories }}
+{% include "radio4all/browsenav.html" %}
         </div>
-        <hr/>
+        <hr>
             {% if request.user.is_authenticated %}
         <div class="navcontent"><a href="/accounts/logout">Log Out</a></div>
         <br />
@@ -106,8 +105,7 @@ $(document).ready(function(){
       {% else %}
                 <div class="navcontent"><a href="/accounts/login">Log In</a></div>
       {% endif %}
-
-        <hr/>
+        <hr>
         <div><a href="/podcast.xml" title="Radio Project Front Page Podcast"><img src="/static/images/podcast.gif" height="16" alt="Radio Project Front Page Podcast" align="absmiddle" border="0" width="62"/></a></div>
         <div><a href="http://feeds.feedburner.com/RadioProjectFrontPagePodcast" title="Radio Project Front Page Podcast on FeedBurner"><img src="/static/images/feedburner.png" height="16" alt="Radio Project Front Page Podcast on FeedBurner" align="absmiddle" border="0" width="64"/></a></div><br />
         <span class="textHeading">Translate</span><br />

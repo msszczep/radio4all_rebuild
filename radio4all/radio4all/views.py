@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq
+from .models import Files, Locations, Programs, News, Faq, Types, License
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin

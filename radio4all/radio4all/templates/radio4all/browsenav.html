@@ -61,7 +61,7 @@
             </li>
             <li class="tvic"><a href="/filter/license/">by License</a>
               <ul>
-                <li class="tvil"><a href="/filter/license/legacy" title="Radio Project Legacy Ad Hoc Licenses"><img src="/images/icons/rp-legacy.png" alt="Radio Project Legacy Ad Hoc Licenses" /></a>
+                <li class="tvil"><a href="/filter/license/legacy" title="Radio Project Legacy Ad Hoc Licenses"><img src="/static/images/icons/rp-legacy.png" alt="Radio Project Legacy Ad Hoc Licenses" /></a>
                 <ul>
                   <li><a href="/filter/license/legacy/np" title="Ad Hoc License: For non-profit use only.">Non-Profit Only</a></li>
                   <li><a href="/filter/license/legacy/ne" title="Ad Hoc License: No excerpting/modifying without permission.">No Excerpting</a></li>
@@ -71,8 +71,8 @@
                 </li>
                   {%  for license in licenses %}
                   <li class="tvil">
-                  <a href="filter/license/{{ license.cc_abrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/images/icons/{{ license.cc_abrev }}.png" /></a>&nbsp;
-                <a href="{{ license.cc_url }}" title="View License: {{ license.cc_name }}" target="_blank"><img src="/images/icons/info-icon.png" alt="View license: {{ license.cc_name }} /></a>
+                  <a href="filter/license/{{ license.cc_abrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/static/images/icons/{{ license.cc_abbrev }}.png" /></a>&nbsp;
+                <a href="{{ license.cc_url }}" title="View License: {{ license.cc_name }}" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: {{ license.cc_name }}" /></a>
                 </li>
                 {% endfor %}
               </ul>

@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
 from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView, ProgramView, DashboardView
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'files', FilesViewSet)
@@ -52,4 +53,4 @@ if settings.DEBUG:
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
 
-    ] + urlpatterns
+    ] + urlpatterns+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
