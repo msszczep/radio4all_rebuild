@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
-from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView, ProgramView, DashboardView
+from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView, ProgramView, DashboardView, download
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -38,6 +38,7 @@ urlpatterns = [
     path('faq/', FaqPageView.as_view(), name='faq'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('download/<int:program>/<int:version>/<int:file>/', download),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

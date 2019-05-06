@@ -1,5 +1,5 @@
 {% extends 'radio4all/base.html' %}
-{% load static %}
+{% load static radio4all %}
 {% block content %}
 <style>
 .proginfo {
@@ -69,7 +69,7 @@
     <td colspan="3"><label>Description: </label>{{  object.0.version.version_description }}</td>
   </tr>
   <tr class="row_b">
-    <td width="35%"><label>Length (hh:mm:ss): </label>{{ object.0.version.length }}</td>
+    <td width="35%"><label>Length (hh:mm:ss): </label>{{ object.0.version.length | date:'H:i:s' }}</td>
     <td width="25%"><label>Language: </label>{{ object.0.version.lang_id }}</td>
     <td width="40%"><label>Date Recorded: </label> {{ object.0.version.date_recorded }}</td>
   </tr>
@@ -97,10 +97,11 @@
   <tr valign="top">
     <td class="seg">{{ file.segment }}&nbsp;</td>
     <td class="file_label">{{ file.program.title }}</td>
-    <td>&nbsp;{{ file.length }}&nbsp;</td>
-    <td>{{ file.program.format }}</td>
+    <td>&nbsp;{{ file.length | date:'H:i:s' }}&nbsp;</td>
+    <td> {{ file.bitrate }}Kbps {{ file.format.format_ext }}
+        <BR>({{ file.file_size }}) {{ file.stereo }}</td>
     <td>{{ file.downloads }}</td>
-    <td align="center"><a href="/download/{{ file.program.program_id }}//{{ file.file_id }}/?url={{ file.location }}" title="Download File..."><img src="/static/images/download-button.png" border="0" alt="Download File..."></a>
+    <td align="center"><a href="/download/{{ file.program.program_id }}/{{ file.version.version_id }}/{{ file.file_id }}/?url={{ file.location }}" title="Download File..."><img src="/static/images/download-button.png" border="0" alt="Download File..."></a>
     </td>
   </tr>
   {% endfor %}</tbody></table>

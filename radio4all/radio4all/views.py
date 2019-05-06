@@ -4,6 +4,10 @@ from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
 
 class HomePageView(ListView):
     model = Programs
@@ -82,3 +86,20 @@ class LocationViewSet(viewsets.ModelViewSet):
     """
     queryset = Locations.objects.all().order_by('file__program__date_created')
     serializer_class = LocationSerializer
+
+
+def download(request, program, version,file):
+    path="e"
+    try:
+        target = Files.objects.get(program_id=program, version_id=version, file_id=file)
+    except Files.DoesNotExist:
+        return HttpResponse('<h1>No Page Here</h1>')
+    try:
+        location = Locations.objects.get(file=target)
+    except Locations.DoesNotExist:
+        path="http://www.radio4all.net/files/"
+    if path != "e":
+        file_path = "http://www.radio4all.net/files/"+target.program.uid.email+"/"+target.filename
+    else:
+        file_path = location.file_location
+    return redirect(file_path)

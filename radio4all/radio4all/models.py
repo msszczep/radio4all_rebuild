@@ -51,7 +51,6 @@ class Faq(models.Model):
         managed = False
         db_table = 'faq'
 
-
 class Files(models.Model):
     file_id = models.AutoField(primary_key=True)
     program = models.ForeignKey('Programs', on_delete=models.PROTECT, related_name='files',default=1)
