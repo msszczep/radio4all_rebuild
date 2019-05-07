@@ -71,7 +71,7 @@
                 </li>
                   {%  for license in licenses %}
                   <li class="tvil">
-                  <a href="filter/license/{{ license.cc_abrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/static/images/icons/{{ license.cc_abbrev }}.png" /></a>&nbsp;
+                  <a href="/filter/license/{{ license.cc_abbrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/static/images/icons/{{ license.cc_abbrev }}.png" /></a>&nbsp;
                 <a href="{{ license.cc_url }}" title="View License: {{ license.cc_name }}" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: {{ license.cc_name }}" /></a>
                 </li>
                 {% endfor %}

@@ -89,6 +89,20 @@ class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
 
 
+def filter_license(request, abbrev):
+    try:
+        license = License.objects.get(cc_abbrev=abbrev)
+    except License.DoesNotExist:
+        return HttpResponse('<h1>No License Here</h1>')
+    try:
+        target = Programs.objects.filter(license=license)
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/dashboard.html', {
+        'latest_programs': target,
+    },)
+
+
 
 def filter_type(request, pk):
     try:
