@@ -7,7 +7,8 @@ from django.views.generic import DetailView
 import os
 from django.conf import settings
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+
 
 class HomePageView(ListView):
     model = Programs
@@ -88,6 +89,20 @@ class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
 
 
+
+def filter_type(request, pk):
+    try:
+        typer = Types.objects.get(pk=int(pk))
+    except Types.DoesNotExist:
+        return HttpResponse('<h1>No Type Here</h1>')
+    try:
+        target = Programs.objects.filter(type=typer.type)
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/dashboard.html', {
+        'latest_programs': target,
+    },)
+
 def download(request, program, version,file):
     path="e"
     try:
@@ -102,4 +117,6 @@ def download(request, program, version,file):
         file_path = "http://www.radio4all.net/files/"+target.program.uid.email+"/"+target.filename
     else:
         file_path = location.file_location
+    target.downloads=target.downloads+1
+    target.save()
     return redirect(file_path)

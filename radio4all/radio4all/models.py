@@ -71,6 +71,14 @@ class Files(models.Model):
         managed = False
         db_table = 'files'
 
+class Types(models.Model):
+    type_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'types'
+
 
 class Formats(models.Model):
     format_id = models.AutoField(primary_key=True)
@@ -194,14 +202,6 @@ class Topics(models.Model):
         managed = False
         db_table = 'topics'
 
-
-class Types(models.Model):
-    type_id = models.AutoField(primary_key=True)
-    type = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'types'
 
 
 class Users(AbstractBaseUser, PermissionsMixin):
