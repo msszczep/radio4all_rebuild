@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
-from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, filter_license
+from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView, NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, filter_license, filter_popular
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -41,6 +41,7 @@ urlpatterns = [
     path('download/<int:program>/<int:version>/<int:file>/', download),
     path('filter/type/<int:pk>', filter_type),
     path('filter/license/<slug:abbrev>', filter_license),
+    path('filter/popular/', filter_popular),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

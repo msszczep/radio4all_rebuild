@@ -1,0 +1,22 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+                <div id="result_set">
+                    <div id="content_title">Latest Programs</div>
+                    {% for latest in latest_programs %}
+                    <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program.program_id }}">
+                       <a href="/program/{{ latest.program.program_id }}" class="result_info">
+                        <label class="result_series">{{ latest.program.program_title |safe }}</label>
+                            : {{ latest.program.subtitle |safe }}
+                            <span>{{ latest.program.program_title |safe }}<br />
+                                <b>Date: </b>{{ latest.program.date_created }}<br />
+                                <b>Length: </b>{{ latest.program.length }}<br />
+                                <b>Contributor: </b>{{ latest.program.speaker }}</span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endblock %}
+
+

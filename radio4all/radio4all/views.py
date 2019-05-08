@@ -89,6 +89,16 @@ class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
 
 
+def filter_popular(request):
+    try:
+        target = Files.objects.all().order_by('-downloads')[:300]
+    except Files.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/popular.html', {
+        'latest_programs': target,
+    },)
+
+
 def filter_license(request, abbrev):
     try:
         license = License.objects.get(cc_abbrev=abbrev)
