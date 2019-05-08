@@ -1,0 +1,22 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+               <div id="result_set">
+                    <div id="content_title">Programs by License</div>
+                    <div class="result_row_a"><a href="/filter/license/legacy" title="Radio Project Legacy Ad Hoc Licenses"><img src="/static/images/icons/rp-legacy.png" alt="Radio Project Legacy Ad Hoc Licenses" /></a></div>
+                  <div class="result_row_b"><a href="/filter/license/legacy/np" title="Ad Hoc License: For non-profit use only.">Non-Profit Only</a></div>
+                  <div class="result_row_a"><a href="/filter/license/legacy/ne" title="Ad Hoc License: No excerpting/modifying without permission.">No Excerpting</a></div>
+                  <div class="result_row_b"><a href="/filter/license/legacy/cp" title="Ad Hoc License: Contact producer for permission to broadcast.">Contact Producer</a></div>
+                  <div class="result_row_a"><a href="/filter/license/legacy/sn" title="Ad Hoc License: See notes.">See Notes</a></div>
+                  {%  for license in licenses %}
+                      <div class="{% if forloop.counter|divisibleby:2 %}result_row_b{% else %}result_row_a{% endif %}" id="{{ license.license_id }}">
+                      <a href="/filter/license/{{ license.cc_abbrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/static/images/icons/{{ license.cc_abbrev }}.png" /></a>&nbsp;
+                      <a href="{{ license.cc_url }}" title="View License: {{ license.cc_name }}" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: {{ license.cc_name }}" /></a>
+                      Creative Commons {{ license.cc_name }}
+                </div>
+                {% endfor %}
+                </div>
+            {% endblock %}
+
+

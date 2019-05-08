@@ -1,0 +1,17 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+
+                <div id="result_set">
+                    <div id="content_title">Programs by Type</div>
+                    {% for category in categories %}
+                    <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program_id }}">
+                       <a href="/filter/type/{{ category.type_id }}">{{ category.type }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            {% endblock %}
+
+
