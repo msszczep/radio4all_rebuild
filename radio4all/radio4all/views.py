@@ -89,6 +89,16 @@ class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
 
 
+
+
+def advisory(request):
+    return render(request, 'radio4all/advisory.html')
+
+
+def length(request):
+    return render(request, 'radio4all/length.html')
+
+
 def type(request):
     return render(request, 'radio4all/type.html')
 

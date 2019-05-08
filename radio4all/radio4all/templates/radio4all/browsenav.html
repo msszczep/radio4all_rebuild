@@ -52,10 +52,11 @@
             </li>
             <li class="tvic"><a href="/filter/advisory/">by Advisory</a>
               <ul>
-                <li class="tvil"><a href="/filter/advisory/1">Unknown</a></li>
-                <li class="tvil"><a href="/filter/advisory/2">No Advisories</a></li>
-                <li class="tvil"><a href="/filter/advisory/3">Strong Language</a></li>
-                <li class="tvil"><a href="/filter/advisory/4">Safe Harbor Only</a></li>
+                  {% for ad in advisories %}
+              <li class="tvil">
+                  <a href="/filter/advisory/{{ advisory.ad_id }}">{{ ad.ad_abbrev }}</a>
+              </li>
+                {% endfor %}
               </ul>
               <div class="tvca"></div>
             </li>

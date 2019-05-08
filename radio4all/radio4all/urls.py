@@ -19,7 +19,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView,\
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
-    filter_license, filter_popular, type, license
+    filter_license, filter_popular, type, license, length, advisory
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -41,8 +41,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('download/<int:program>/<int:version>/<int:file>/', download),
+    path('filter/advisory/', advisory),
     path('filter/type/', type),
     path('filter/license/', license),
+    path('filter/length/', length),
     path('filter/type/<int:pk>', filter_type),
     path('filter/license/<slug:abbrev>', filter_license),
     path('filter/popular/', filter_popular),

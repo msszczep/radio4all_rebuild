@@ -1,0 +1,20 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+
+                <div id="result_set">
+                    <div id="content_title">Programs by Type</div>
+              <div class="result_row_a"><a href="/filter/length/00:00:01,00:01:00/">0-1 minute</a></div>
+                <div class="result_row_b"><a href="/filter/length/00:01:00,00:02:00/">1-2 minutes</a></div>
+                <div class="result_row_a"><a href="/filter/length/00:02:00,00:05:00/">2-5 minutes</a></div>
+                <div class="result_row_b"><a href="/filter/length/00:05:00,00:15:00/">5-15 minutes</a></div>
+                <div class="result_row_a"><a href="/filter/length/00:15:00,00:30:00/">15-30 minutes</a></div>
+                <div class="result_row_b"><a href="/filter/length/00:30:00,01:00:00/">30-60 minutes</a></div>
+                <div class="result_row_a"><a href="/filter/length/01:00:00,01:30:00/">60-90 minutes</a></div>
+                <div class="result_row_b"><a href="/filter/length/01:30:00,02:00:00/">90-120 minutes</a></div>
+                <div class="result_row_a"><a href="/filter/length/02:00:00,00:00:00/">over 120 minutes</a></div>                    </div>
+
+            {% endblock %}
+
+
