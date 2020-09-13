@@ -57,14 +57,12 @@ class NewsPageView(ListView):
     queryset = News.objects.all().order_by('-pub_date')  # Default: Model.objects.all()
     template_name = "radio4all/news.html"
 
-
 class ContactPageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
     queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
     template_name = "radio4all/contact.html"
-
 
 class ProgramsViewSet(viewsets.ModelViewSet):
     """
@@ -94,18 +92,17 @@ class LocationViewSet(viewsets.ModelViewSet):
 def advisory(request):
     return render(request, 'radio4all/advisory.html')
 
-
 def length(request):
     return render(request, 'radio4all/length.html')
-
 
 def type(request):
     return render(request, 'radio4all/type.html')
 
-
 def license(request):
     return render(request, 'radio4all/license.html')
 
+def series(request):
+    return render(request, 'radio4all/series.html')
 
 def filter_popular(request):
     try:
@@ -116,7 +113,19 @@ def filter_popular(request):
         'latest_programs': target,
     },)
 
-
+def filter_series(request, letter):
+    try:
+        if letter == "0-9":
+            programs_series = Programs.objects.filter(series__startswith='0') | Programs.objects.filter(series__startswith='1') | Programs.objects.filter(series__startswith ='2') | Programs.objects.filter(series__startswith='3') | Programs.objects.filter(series__startswith='4') | Programs.objects.filter(series__startswith='5') | Programs.objects.filter(series__startswith='6') | Programs.objects.filter(series__startswith='7') | Programs.objects.filter(series__startswith='8') | Programs.objects.filter(series__startswith='9')
+        else:
+            programs_series = Programs.objects.filter(series__startswith=letter.capitalize()) | Programs.objects.filter(series__startswith=letter)
+        target = programs_series.values('series').distinct()
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/programs_by_series.html', {
+        'all_series': target,
+        'letter': letter,
+    },)
 
 def filter_license(request, abbrev):
     try:
@@ -130,8 +139,6 @@ def filter_license(request, abbrev):
     return render(request, 'radio4all/dashboard.html', {
         'latest_programs': target,
     },)
-
-
 
 def filter_type(request, pk):
     try:
