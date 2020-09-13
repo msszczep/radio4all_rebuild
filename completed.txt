@@ -1,0 +1,6 @@
+2020-08-30	Added series.html to templates
+2020-08-30	Added series to views.py
+2020-08-30	Added series to urls.py
+2020-09-13	Added filter_series to views
+2020-09-13	Added filter_series to urls.py
+2020-09-13	Added programs_by_series.html to templates 
