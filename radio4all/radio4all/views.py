@@ -127,6 +127,16 @@ def filter_series(request, letter):
         'letter': letter,
     },)
 
+def get_series(request, series_name):
+    try:
+        target = Programs.objects.filter(series=series_name)
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/series_dashboard.html', {
+        'series': target,
+        'series_name': series_name,
+    },)
+
 def filter_license(request, abbrev):
     try:
         license = License.objects.get(cc_abbrev=abbrev)
