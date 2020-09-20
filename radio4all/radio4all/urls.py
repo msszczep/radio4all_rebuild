@@ -19,7 +19,8 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView,\
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
-    filter_license, filter_popular, type, license, length, advisory, series, filter_series, get_series
+    filter_license, filter_popular, type, license, length, advisory, series, filter_series, get_series, \
+    contributor_browse, filter_contributor, get_contributor
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -44,11 +45,14 @@ urlpatterns = [
     path('series/', series),
     path('series/<str:series_name>', get_series),
     path('filter/series/<slug:letter>', filter_series),
+    path('contributor/', contributor_browse),
+    path('contributor/<int:uid>', get_contributor),
     path('filter/advisory/', advisory),
     path('filter/type/', type),
     path('filter/license/', license),
     path('filter/length/', length),
     path('filter/type/<int:pk>', filter_type),
+    path('filter/contributor/<slug:letter>', filter_contributor),
     path('filter/license/<slug:abbrev>', filter_license),
     path('filter/popular/', filter_popular),
     url(r'^api/', include(router.urls)),

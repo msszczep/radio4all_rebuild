@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq, Types, License
+from .models import Files, Locations, Programs, News, Faq, Types, License, Users
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -104,6 +104,9 @@ def license(request):
 def series(request):
     return render(request, 'radio4all/series.html')
 
+def contributor_browse(request):
+    return render(request, 'radio4all/contributor_browse.html')
+
 def filter_popular(request):
     try:
         target = Files.objects.all().order_by('-downloads')[:300]
@@ -113,10 +116,11 @@ def filter_popular(request):
         'latest_programs': target,
     },)
 
+
 def filter_series(request, letter):
     try:
         if letter == "0-9":
-            programs_series = Programs.objects.filter(series__startswith='0') | Programs.objects.filter(series__startswith='1') | Programs.objects.filter(series__startswith ='2') | Programs.objects.filter(series__startswith='3') | Programs.objects.filter(series__startswith='4') | Programs.objects.filter(series__startswith='5') | Programs.objects.filter(series__startswith='6') | Programs.objects.filter(series__startswith='7') | Programs.objects.filter(series__startswith='8') | Programs.objects.filter(series__startswith='9')
+            programs_series = Programs.objects.filter(series__startswith='0') | Programs.objects.filter(series__startswith='1') | Programs.objects.filter(series__startswith='2') | Programs.objects.filter(series__startswith='3') | Programs.objects.filter(series__startswith='4') | Programs.objects.filter(series__startswith='5') | Programs.objects.filter(series__startswith='6') | Programs.objects.filter(series__startswith='7') | Programs.objects.filter(series__startswith='8') | Programs.objects.filter(series__startswith='9')
         else:
             programs_series = Programs.objects.filter(series__startswith=letter.capitalize()) | Programs.objects.filter(series__startswith=letter)
         target = programs_series.values('series').distinct()
@@ -125,6 +129,31 @@ def filter_series(request, letter):
     return render(request, 'radio4all/programs_by_series.html', {
         'all_series': target,
         'letter': letter,
+    },)
+
+def filter_contributor(request, letter):
+    try:
+        if letter == "0-9":
+            contributors = Users.objects.filter(full_name__startswith='0') | Users.objects.filter(full_name__startswith='1') | Users.objects.filter(full_name__startswith='2') | Users.objects.filter(full_name__startswith='3') | Users.objects.filter(full_name__startswith='4') | Users.objects.filter(full_name__startswith='5') | Users.objects.filter(full_name__startswith='6') | Users.objects.filter(full_name__startswith='7') | Users.objects.filter(full_name__startswith='8') | Users.objects.filter(full_name__startswith='9')
+        else:
+            contributors = Users.objects.filter(full_name__startswith=letter.capitalize()) | Users.objects.filter(full_name__startswith=letter)
+        target = contributors.values('full_name', 'uid').distinct().order_by('full_name')
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/programs_by_contributor.html', {
+        'all_contributors': target,
+        'letter': letter,
+    },)
+
+def get_contributor(request, uid):
+    try:
+        target = Programs.objects.filter(uid=uid).order_by('-date_created')
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    user_to_use = Users.objects.get(uid=uid)
+    return render(request, 'radio4all/programs_by_contributor_indiv.html', {
+        'series': target,
+        'user_to_use': user_to_use,
     },)
 
 def get_series(request, series_name):
@@ -149,6 +178,7 @@ def filter_license(request, abbrev):
     return render(request, 'radio4all/dashboard.html', {
         'latest_programs': target,
     },)
+
 
 def filter_type(request, pk):
     try:

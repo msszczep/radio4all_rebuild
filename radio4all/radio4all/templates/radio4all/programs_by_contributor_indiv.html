@@ -1,0 +1,28 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+                <table><tbody>
+                <tr><td><label>Contributor: </label></td><td>{{user_to_use.full_name}} &nbsp;</td><td>{{contact}}</td></tr>
+                <tr><td><label>Website: </label></td><td colspan="2">{{user_to_use.website}}</td></tr>
+                <tr></td><td colspan="3"><label>Bio:</label> {{user_to_use.bio}}</td></tr>
+                </tbody></table>
+
+                <div id="result_set">
+                    
+                    <div id="content_title">{{user_to_use.full_name}}'s Programs </div>
+                    {% for s in series %}
+                    <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}">
+                       <a href="/program/{{ s.program_id }}" class="result_info">
+                        <label class="result_series">{{ s.program_title |safe }}</label>
+                            : {{ s.subtitle |safe }}
+                            <span>{{ s.program_title |safe }}<br />
+                                <b>Date: </b>{{ s.date_created }}<br />
+                                <b>Length: </b>{{ s.length }}<br />
+                                <b>Contributor: </b>{{ s.speaker }}</span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endblock %}
+
