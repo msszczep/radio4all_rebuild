@@ -179,6 +179,16 @@ def filter_license(request, abbrev):
         'latest_programs': target,
     },)
 
+def filter_legacy_license(request, legacy_license):
+    restrictions = {'np': 1, 'ne': 2, 'cp': 3, 'sn': 4}
+    restriction_to_use = restrictions[legacy_license]
+    try:
+        target = Programs.objects.filter(restriction=restriction_to_use).order_by('-date_created')
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/dashboard.html', {
+        'latest_programs': target,
+    },)
 
 def filter_type(request, pk):
     try:
