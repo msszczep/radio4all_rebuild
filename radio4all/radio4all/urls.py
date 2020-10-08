@@ -19,8 +19,8 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView,\
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
-    filter_license, filter_popular, type, license, length, advisory, series, filter_series, get_series, \
-    contributor_browse, filter_contributor, get_contributor, filter_legacy_license
+    filter_license, filter_popular, type, license, length_page, advisory, series, filter_series, get_series, \
+    contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -47,11 +47,13 @@ urlpatterns = [
     path('filter/series/<slug:letter>', filter_series),
     path('contributor/', contributor_browse),
     path('contributor/<int:uid>', get_contributor),
+    path('topic/', topic_browse),
     path('filter/advisory/', advisory),
     path('filter/type/', type),
     path('filter/license/', license),
     path('filter/license/legacy/<slug:legacy_license>', filter_legacy_license),
-    path('filter/length/', length),
+    path('filter/length/', length_page),
+    path('filter/length/<str:length_to_use>/', filter_length),
     path('filter/type/<int:pk>', filter_type),
     path('filter/contributor/<slug:letter>', filter_contributor),
     path('filter/license/<slug:abbrev>', filter_license),

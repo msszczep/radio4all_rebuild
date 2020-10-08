@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq, Types, License, Users
+from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,7 +8,8 @@ import os
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-
+from django.db import connection
+from math import ceil
 
 class HomePageView(ListView):
     model = Programs
@@ -92,7 +93,7 @@ class LocationViewSet(viewsets.ModelViewSet):
 def advisory(request):
     return render(request, 'radio4all/advisory.html')
 
-def length(request):
+def length_page(request):
     return render(request, 'radio4all/length.html')
 
 def type(request):
@@ -107,6 +108,29 @@ def series(request):
 def contributor_browse(request):
     return render(request, 'radio4all/contributor_browse.html')
 
+def topic_browse(request):
+    try:
+        curs = connection.cursor()
+        curs.execute("SELECT count(t1.assign_id) as quantity, t1.topic_id as tag_id, t2.topic as tag FROM topic_assignment AS t1, topics AS t2 WHERE t1.topic_id = t2.topic_id AND t1.program_id NOT IN (SELECT program_id FROM programs WHERE hidden != 0) GROUP BY t1.topic_id ORDER BY t2.topic ASC")
+        raw_topic_data = curs.fetchall()
+        qtys = [x[0] for x in raw_topic_data]
+        max_qty = max(qtys)
+        min_qty = min(qtys)
+        max_size = 270
+        min_size = 110
+        spread = max_qty - min_qty
+        step = (max_size - min_size) / spread
+        topic_data = []
+        for r in raw_topic_data:
+            size = ceil(min_size + ((r[0] - min_qty) * step))
+            topic_data.append([size, r[0], r[1], r[2]])
+        target = topic_data
+    except Topics.DoesNotExist:
+        return HttpResponse('<h1>No Topics Found</h1>')
+    return render(request, 'radio4all/topic_cloud.html', {
+        'topic_data': target,
+    },)
+
 def filter_popular(request):
     try:
         target = Files.objects.all().order_by('-downloads')[:300]
@@ -115,7 +139,6 @@ def filter_popular(request):
     return render(request, 'radio4all/popular.html', {
         'latest_programs': target,
     },)
-
 
 def filter_series(request, letter):
     try:
@@ -187,6 +210,20 @@ def filter_legacy_license(request, legacy_license):
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/dashboard.html', {
+        'latest_programs': target,
+    },)
+
+def filter_length(request, length_to_use):
+    #start = length_to_use.split(',')[0]
+    #end = length_to_use.split(',')[1]
+    files_to_use = Files.objects.all()
+    #files_to_use = Files.objects.filter(length>=start).values('program_id') & Files.objects.filter(length<=end).values('program_id')
+    try:
+        target = files_to_use
+        # target = Programs.objects.filter(program_id__in=files_to_use).order_by('-date_created')
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/test.html', {
         'latest_programs': target,
     },)
 

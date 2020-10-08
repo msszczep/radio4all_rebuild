@@ -1,0 +1,13 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+            {% block content %}
+                <div id="result_set">
+                    <div id="content_title">Topic Directory</div>
+                    {% for t in topic_data %}
+                       <a href="/topic/{{t.2}}" style="font-size: {{t.0}}%" title="{{t.1}} programs tagged with {{t.3}}" alt="{{t.1}} programs tagged with {{t.3}}">{{t.3}}<
+/a> &nbsp; 
+                    {% endfor %}
+                </div>
+            {% endblock %}
+

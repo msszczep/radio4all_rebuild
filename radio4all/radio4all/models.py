@@ -58,7 +58,7 @@ class Files(models.Model):
     segment = models.IntegerField()
     filename = models.CharField(max_length=255)
     title = models.CharField(max_length=255, blank=True, null=True)
-#    length = models.TimeField()
+    length = models.CharField(max_length=255)
     format = models.ForeignKey('Formats', on_delete=models.PROTECT, related_name='+',default=1)
     bitrate = models.IntegerField(blank=True, null=True)
     file_size = models.CharField(max_length=50)
@@ -202,7 +202,6 @@ class Topics(models.Model):
     class Meta:
         managed = False
         db_table = 'topics'
-
 
 
 class Users(AbstractBaseUser, PermissionsMixin):
