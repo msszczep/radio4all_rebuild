@@ -20,7 +20,8 @@ from rest_framework import routers
 from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView,\
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
     filter_license, filter_popular, type, license, length_page, advisory, series, filter_series, get_series, \
-    contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse
+    contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse, \
+    filter_topic
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -48,6 +49,7 @@ urlpatterns = [
     path('contributor/', contributor_browse),
     path('contributor/<int:uid>', get_contributor),
     path('topic/', topic_browse),
+    path('topic/<int:topic_id>', filter_topic),
     path('filter/advisory/', advisory),
     path('filter/type/', type),
     path('filter/license/', license),

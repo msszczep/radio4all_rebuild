@@ -131,6 +131,22 @@ def topic_browse(request):
         'topic_data': target,
     },)
 
+def filter_topic(request, topic_id):
+    try:
+        topic = Topics.objects.get(topic_id=topic_id).topic
+        curs = connection.cursor()
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3, topic_assignment AS t4) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t4.topic_id = %s AND t1.program_id = t4.program_id AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (topic_id,))
+        filter_topic_data = []
+        for c in curs.fetchall():
+            filter_topic_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
+        target = filter_topic_data
+    except:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/programs_in_topic.html', {
+        'latest_programs': target,
+        'topic': topic,
+    },)
+
 def filter_popular(request):
     try:
         target = Files.objects.all().order_by('-downloads')[:300]
