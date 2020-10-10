@@ -230,17 +230,21 @@ def filter_legacy_license(request, legacy_license):
     },)
 
 def filter_length(request, length_to_use):
-    #start = length_to_use.split(',')[0]
-    #end = length_to_use.split(',')[1]
-    files_to_use = Files.objects.all()
-    #files_to_use = Files.objects.filter(length>=start).values('program_id') & Files.objects.filter(length<=end).values('program_id')
     try:
-        target = files_to_use
-        # target = Programs.objects.filter(program_id__in=files_to_use).order_by('-date_created')
+        programs_by_length_verbiage = {'00:00:01': '0-1 minute', '00:01:00': '1-2 minutes', '00:02:00':'2-5 minutes', '00:05:00':'5-15 minutes', '00:15:00':'15-30 minutes', '00:30:00':'30-60 minutes', '01:00:00':'60-90 minutes', '01:30:00':'90-120 minutes', '02:00:00':'over 120 minutes'}
+        start_time = length_to_use.split(',')[0]
+        end_time = length_to_use.split(',')[1]
+        curs = connection.cursor()
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.series, t1.date_created, t2.length, t3.full_name FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t2.length BETWEEN '%s' AND '%s' AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (start_time, end_time,))
+        filter_length_data = []
+        for c in curs.fetchall():
+            filter_length_data.append({'program_id': c[0], 'program_title': c[1], 'series': c[2], 'date_created': c[3], 'length': c[4], 'contributor': c[5]})
+        target = filter_length_data
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
-    return render(request, 'radio4all/test.html', {
+    return render(request, 'radio4all/programs_by_length.html', {
         'latest_programs': target,
+        'length_header': programs_by_length_verbiage[start_time],
     },)
 
 def filter_type(request, pk):
