@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.db import connection
+from django.utils import feedgenerator
 from math import ceil
 
 class HomePageView(ListView):
@@ -259,6 +260,28 @@ def filter_type(request, pk):
     return render(request, 'radio4all/dashboard.html', {
         'latest_programs': target,
     },)
+
+def podcast_front_page():
+    try:
+        queryset = Programs.objects.all().order_by('-date_created')[:30]
+    except:
+        queryset = []
+    f = feedgenerator.Rss201rev2Feed(title="Radio Project Front Page Podcast", link="http://www.radio4all.net", description="Radio Project Front Page Podcast",pubdate="Sat, 17 Oct 2020 23:00:37 PDT", docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
+    curs = connection.cursor()
+    for i in queryset:
+        fileset_tmp = Files.objects.filter(program_id = i.program_id)
+        for s in fileset_tmp:
+            title_to_use = i.series + ' - ' + i.program_title
+            link_to_use = 'http://www.radio4all.net/program/' + str(i.program_id)
+            desc_to_use = i.summary
+            guid_to_use = 'http://www.radio4all.net/program/' + str(i.program_id) + '&' + str(s.file_id)
+            date_to_use = i.date_created
+            author_to_use = Users.objects.get(uid=int(i.uid_id)).full_name + "(" + str(i.uid) + ")"
+            curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s', (i.program_id,))
+            for c in curs.fetchall():
+                enclosure_to_use = '<enclosure url="%s" length="%s" type="%s"/>' % (c[1], c[0], c[2])
+                f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author=author_to_use, guid=guid_to_use, enclosure=enclosure_to_use)
+    return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'))
 
 def download(request, program, version,file):
     path="e"

@@ -21,7 +21,7 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
     filter_license, filter_popular, type, license, length_page, advisory, series, filter_series, get_series, \
     contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse, \
-    filter_topic
+    filter_topic, podcast_front_page
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -60,6 +60,7 @@ urlpatterns = [
     path('filter/contributor/<slug:letter>', filter_contributor),
     path('filter/license/<slug:abbrev>', filter_license),
     path('filter/popular/', filter_popular),
+    path('podcast.xml', podcast_front_page),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
