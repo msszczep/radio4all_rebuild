@@ -3,7 +3,7 @@
 
             {% block content %}
                 <div id="result_set">
-                    <div id="content_title">Programs from series: {{series_name}} <a href="http://radio4all.net:8080/podcast/series/{{series_name}}" title="Download Podcast for Series: {{series_name}}"><img src="http://radio4all.net/images/podcast.gif" alt="Download Series Podcast" width="62" height="16" border="0" align="absmiddle"></div></div>
+                    <div id="content_title">Programs from series: {{series_name}} <a href="http://radio4all.net:8080/podcast.xml?series={{series_name}}" title="Download Podcast for Series: {{series_name}}"><img src="http://radio4all.net/images/podcast.gif" alt="Download Series Podcast" width="62" height="16" border="0" align="absmiddle"></div></div>
 
                     {% for s in series %}
                     <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ s.program_id }}">

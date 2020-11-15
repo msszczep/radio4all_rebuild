@@ -10,7 +10,7 @@
 
                 <div id="result_set">
                     
-                    <div id="content_title">{{user_to_use.full_name}}'s Programs <a href="http://radio4all.net:8080/podcast/contributor/{{user_to_use.uid}}" title="Download Podcast for Contributor: {{users_to_use.full_name}}"><img src="http://radio4all.net/images/podcast.gif" alt="Download Contributor Podcast" width="62" height="16" border="0" align="absmiddle"></div></div>
+                    <div id="content_title">{{user_to_use.full_name}}'s Programs <a href="http://radio4all.net:8080/podcast.xml?uid={{user_to_use.uid}}" title="Download Podcast for Contributor: {{users_to_use.full_name}}"><img src="http://radio4all.net/images/podcast.gif" alt="Download Contributor Podcast" width="62" height="16" border="0" align="absmiddle"></div></div>
                     {% for s in series %}
                     <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}">
                        <a href="/program/{{ s.program_id }}" class="result_info">

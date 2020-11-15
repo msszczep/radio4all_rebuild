@@ -46,7 +46,7 @@
     <td>&nbsp;<a href="/contributor/{{ object.0.program.uid.uid }}']}">{{ object.0.program.uid.full_name |safe }}</a>&nbsp;&nbsp;Contact Contributor</td>
   </tr>
   <tr>
-    <td colspan="2"><label>Summary:&nbsp;</label> {{ object.0.program.desc|safe}}</td>
+    <td colspan="2"><label>Summary:&nbsp;</label> {{ object.0.program.summary|safe}}</td>
   </tr>
   <tr>
     <td class="row_b" colspan="2"><label>Credits:&nbsp;</label>{{ object.0.program.credits | safe }}</td>
@@ -58,24 +58,23 @@
 
 <table border="0" cellspacing="0" width="100%">
   <tbody>
+  {% for file in object %}
   <tr>
-    <td colspan="3"><label>Version {{  object.0.version.version }}:</label> {{ object.0.version.version_title }}
-    <a href="/podcast/podcast.xml?program_id={{  object.0.program.program_id }}&amp;version_id={{ object.0.version.version_id }}&amp;version={{ object.0.version.version }}"
-    title="Download Podcast for Program: object.0.program.program_title; Version: {{ object.0.version.version }}"><img src="/static/images/podcast.gif"
-    height="16" alt="Download Program Podcast" align="absmiddle" border="0" width="62"></a>
+    <td colspan="3"><label>Version {{ file.version.version }}:</label> {{ file.version.version_title }}
+    <a href="/podcast/podcast.xml?program_id={{ file.program.program_id }}&amp;version_id={{ file.version.version_id }}&amp;version={{ file.version.version }}" title="Download Podcast for Program: file.program.program_title; Version: {{ file.version.version }}"><img src="/static/images/podcast.gif" height="16" alt="Download Program Podcast" align="absmiddle" border="0" width="62"></a>
     </td>
   </tr>
   <tr>
-    <td colspan="3"><label>Description: </label>{{  object.0.version.version_description }}</td>
+    <td colspan="3"><label>Description: </label>{{  file.version.version_description }}</td>
   </tr>
   <tr class="row_b">
-    <td width="35%"><label>Length (hh:mm:ss): </label>{{ object.0.version.length | date:'H:i:s' }}</td>
-    <td width="25%"><label>Language: </label>{{ object.0.version.lang_id }}</td>
-    <td width="40%"><label>Date Recorded: </label> {{ object.0.version.date_recorded }}</td>
+    <td width="35%"><label>Length (hh:mm:ss): </label>{{ file.version.length | date:'H:i:s' }}</td>
+    <td width="25%"><label>Language: </label>{{ file.version.lang_id }}</td>
+    <td width="40%"><label>Date Recorded: </label> {{ file.version.date_recorded }}</td>
   </tr>
   <tr>
     <td colspan=1 class="label_cell"><label>Location Recorded: </label></td>
-    <td colspan=2>{{ object.0.version.location }}</td>
+    <td colspan=2>{{ file.version.location }}</td>
   </tr>
   <tr>
     <td colspan=1><label>Announcer Script/Transcript: </label></td>
@@ -93,7 +92,6 @@
     <td class="dlstats"><label>Downloads</label></td>
     <td class="dlbutton">&nbsp;</td>
   </tr>
- {% for file in object %}
   <tr valign="top">
     <td class="seg">{{ file.segment }}&nbsp;</td>
     <td class="file_label">{{ file.program.title }}</td>
@@ -104,10 +102,10 @@
     <td align="center"><a href="/download/{{ file.program.program_id }}/{{ file.version.version_id }}/{{ file.file_id }}/?url={{ file.location }}" title="Download File..."><img src="/static/images/download-button.png" border="0" alt="Download File..."></a>
     </td>
   </tr>
+  </tbody></table>
   {% endfor %}</tbody></table>
     </td>
   </tr>
-</tbody></table>
   </tbody>
 </table>
     </div>

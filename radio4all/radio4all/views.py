@@ -261,13 +261,20 @@ def filter_type(request, pk):
         'latest_programs': target,
     },)
 
-def podcast_contributor(request, uid):
-    try:
-        queryset = Programs.objects.filter(uid=uid).order_by('-date_created')[:30]
-    except:
-        queryset = []
-    user_to_use = Users.objects.get(uid=uid)
-    f = feedgenerator.Rss201rev2Feed(title="Contributor Podcast: " + user_to_use.full_name, link="http://www.radio4all.net/contributor/" + str(uid), description="Contributor Podcast: " + user_to_use.full_name, pubdate="Sat, 17 Oct 2020 23:00:37 PDT", docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
+def podcast_view(request):
+    uid = request.GET.get('uid')
+    series_name = request.GET.get('series')
+    if uid != None:
+         queryset = Programs.objects.filter(uid=uid).order_by('-date_created')[:30]
+         user_to_use = Users.objects.get(uid=uid)
+         f = feedgenerator.Rss201rev2Feed(title="Contributor Podcast: " + user_to_use.full_name, link="http://www.radio4all.net/contributor/" + str(uid), description="Contributor Podcast: " + user_to_use.full_name, docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
+    elif uid == None and series_name != None:
+         queryset = Programs.objects.filter(series=series_name).order_by('-date_created')[:30]
+         f = feedgenerator.Rss201rev2Feed(title="Series Podcast: " + series_name, link="http://www.radio4all.net/series/" + str(series_name), description="Radio Project Ser
+ies: " + str(series_name), docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
+    else:
+         queryset = Programs.objects.all().order_by('-date_created')[:30]
+         f = feedgenerator.Rss201rev2Feed(title="Radio Project Front Page Podcast", link="http://www.radio4all.net", description="Radio Project Front Page Podcast", docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     curs = connection.cursor()
     for i in queryset:
         fileset_tmp = Files.objects.filter(program_id = i.program_id)
@@ -285,50 +292,26 @@ def podcast_contributor(request, uid):
                 f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
-def podcast_front_page(request):
-    try:
-        queryset = Programs.objects.all().order_by('-date_created')[:30]
-    except:
-        queryset = []
-    f = feedgenerator.Rss201rev2Feed(title="Radio Project Front Page Podcast", link="http://www.radio4all.net", description="Radio Project Front Page Podcast",pubdate="Sat, 17 Oct 2020 23:00:37 PDT", docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
+def podcast_program(request):
+    program_id = request.GET.get('program_id')
+    version_id = request.GET.get('version_id')
+    version = request.GET.get('version')
+    queryset = Programs.objects.get(program_id=program_id)
+    f = feedgenerator.Rss201rev2Feed(title="Program Podcast: " + str(queryset.program_title), link="http://www.radio4all.net/program/" + str(program_id), description="Podcast for Program: " + str(queryset.program_title), docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     curs = connection.cursor()
-    for i in queryset:
-        fileset_tmp = Files.objects.filter(program_id = i.program_id)
-        for s in fileset_tmp:
-            title_to_use = i.series + ' - ' + i.program_title
-            link_to_use = 'http://www.radio4all.net/program/' + str(i.program_id)
-            desc_to_use = i.summary
-            guid_to_use = 'http://www.radio4all.net/program/' + str(i.program_id) + '&' + str(s.file_id)
-            date_to_use = i.date_created
-            author_to_use = Users.objects.get(uid=str(i.uid_id)).full_name + "(" + str(i.uid) + ")"
-            curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s', (i.program_id,))
-            enclosures_to_use = []
-            for c in curs.fetchall():
-                enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
-                f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
-    return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
-
-def podcast_series(request, series_name):
-    try:
-        queryset = Programs.objects.filter(series=series_name).order_by('-date_created')[:30]
-    except:
-        queryset = []
-    f = feedgenerator.Rss201rev2Feed(title="Radio Project Front Page Podcast", link="http://www.radio4all.net/series/" + str(series_name), description="Radio Project Series: " + str(series_name),pubdate="Sat, 17 Oct 2020 23:00:37 PDT", docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
-    curs = connection.cursor()
-    for i in queryset:
-        fileset_tmp = Files.objects.filter(program_id = i.program_id)
-        for s in fileset_tmp:
-            title_to_use = i.series + ' - ' + i.program_title
-            link_to_use = 'http://www.radio4all.net/program/' + str(i.program_id)
-            desc_to_use = i.summary
-            guid_to_use = 'http://www.radio4all.net/program/' + str(i.program_id) + '&' + str(s.file_id)
-            date_to_use = i.date_created
-            author_to_use = Users.objects.get(uid=str(i.uid_id)).full_name + "(" + str(i.uid) + ")"
-            curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s', (i.program_id,))
-            enclosures_to_use = []
-            for c in curs.fetchall():
-                enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
-                f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
+    fileset_tmp = Files.objects.filter(program_id = program_id, version_id = version_id)
+    for s in fileset_tmp:
+        title_to_use = queryset.series + ' - ' + queryset.program_title
+        link_to_use = 'http://www.radio4all.net/program/' + str(queryset.program_id)
+        desc_to_use = queryset.summary
+        guid_to_use = 'http://www.radio4all.net/program/' + str(queryset.program_id) + '&' + str(s.file_id)
+        date_to_use = queryset.date_created
+        author_to_use = Users.objects.get(uid=str(queryset.uid_id)).full_name + "(" + str(queryset.uid) + ")"
+        curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s AND t1.version_id = %s', (queryset.program_id, version_id,))
+        enclosures_to_use = []
+        for c in curs.fetchall():
+            enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
+            f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
 def download(request, program, version,file):
