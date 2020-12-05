@@ -203,10 +203,13 @@ def get_contributor(request, uid):
 def get_series(request, series_name):
     try:
         target = Programs.objects.filter(series=series_name).order_by('-date_created')
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/series_dashboard.html', {
-        'series': target,
+        'page_obj': page_obj,
         'series_name': series_name,
     },)
 
