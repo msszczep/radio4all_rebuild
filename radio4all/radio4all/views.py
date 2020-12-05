@@ -142,10 +142,13 @@ def filter_topic(request, topic_id):
         for c in curs.fetchall():
             filter_topic_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
         target = filter_topic_data
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/programs_in_topic.html', {
-        'latest_programs': target,
+        'page_obj': page_obj,
         'topic': topic,
     },)
 
@@ -220,10 +223,13 @@ def filter_license(request, abbrev):
         return HttpResponse('<h1>No License Here</h1>')
     try:
         target = Programs.objects.filter(license=license)
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/dashboard.html', {
-        'latest_programs': target,
+        'page_obj': page_obj,
     },)
 
 def filter_legacy_license(request, legacy_license):
@@ -231,10 +237,13 @@ def filter_legacy_license(request, legacy_license):
     restriction_to_use = restrictions[legacy_license]
     try:
         target = Programs.objects.filter(restriction=restriction_to_use).order_by('-date_created')
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/dashboard.html', {
-        'latest_programs': target,
+        'page_obj': page_obj,
     },)
 
 def filter_length(request, length_to_use):
@@ -248,10 +257,13 @@ def filter_length(request, length_to_use):
         for c in curs.fetchall():
             filter_length_data.append({'program_id': c[0], 'program_title': c[1], 'series': c[2], 'date_created': c[3], 'length': c[4], 'contributor': c[5]})
         target = filter_length_data
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/programs_by_length.html', {
-        'latest_programs': target,
+        'page_obj': page_obj,
         'length_header': programs_by_length_verbiage[start_time],
     },)
 
@@ -262,10 +274,13 @@ def filter_type(request, pk):
         return HttpResponse('<h1>No Type Here</h1>')
     try:
         target = Programs.objects.filter(type=typer.type)
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/dashboard.html', {
-        'latest_programs': target,
+        'page_obj': page_obj,
     },)
 
 def podcast_view(request):
