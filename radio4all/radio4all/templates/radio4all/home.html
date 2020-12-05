@@ -40,9 +40,9 @@ $(document).ready(function(){
 <form><select id="browsecontrol">
         {% for i in paginator.page_range %}
       {% if page_obj.number == i %}
-        <option value="?page={{ i }}">{{ i }}1</option>
+        <option value="?page={{ i }}">{{ i }}</option>
       {% else %}
-        <option value="?page={{ i }}">{{ i }}1</option>
+        <option value="?page={{ i }}">{{ i }}</option>
       {% endif %}
     {% endfor %}
 {% endif %}
