@@ -246,6 +246,21 @@ def filter_legacy_license(request, legacy_license):
         'page_obj': page_obj,
     },)
 
+def filter_advisory(request, advisory_id):
+    advisory_strings = {1: 'Unknown - program has not been checked for content', 2: 'No Advisories - content screened and verified', 3: 'Warning: Program may contain strong or potentially offensive language, including possible FCC violations.', 4: 'Warning: Program content only suitable for FCC-designated safe harbor (10PM to 6AM).'}
+    advisory_to_use = advisory_strings[advisory_id]
+    try:
+        target = Programs.objects.filter(advisory=advisory_id).order_by('-date_created')
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/programs_by_advisory.html', {
+        'page_obj': page_obj,
+        'advisory_string': advisory_to_use
+    },)
+
 def filter_length(request, length_to_use):
     try:
         programs_by_length_verbiage = {'00:00:01': '0-1 minute', '00:01:00': '1-2 minutes', '00:02:00':'2-5 minutes', '00:05:00':'5-15 minutes', '00:15:00':'15-30 minutes', '00:30:00':'30-60 minutes', '01:00:00':'60-90 minutes', '01:30:00':'90-120 minutes', '02:00:00':'over 120 minutes'}

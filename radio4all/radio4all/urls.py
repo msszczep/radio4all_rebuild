@@ -21,7 +21,7 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
     filter_license, filter_popular, type, license, length_page, advisory, series, filter_series, get_series, \
     contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse, \
-    filter_topic, podcast_view, podcast_program
+    filter_topic, podcast_view, podcast_program, filter_advisory
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -51,6 +51,7 @@ urlpatterns = [
     path('topic/', topic_browse),
     path('topic/<int:topic_id>', filter_topic),
     path('filter/advisory/', advisory),
+    path('filter/advisory/<int:advisory_id>', filter_advisory),
     path('filter/type/', type),
     path('filter/license/', license),
     path('filter/license/legacy/<slug:legacy_license>', filter_legacy_license),

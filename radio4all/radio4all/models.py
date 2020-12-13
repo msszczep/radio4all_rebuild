@@ -150,7 +150,7 @@ class Programs(models.Model):
     license = models.ForeignKey('License',db_column='license',to_field='cc_id', on_delete=models.PROTECT, related_name='+',default=1)
     restriction = models.IntegerField()
 #    restriction = models.ForeignKey('Restrictions', on_delete=models.PROTECT, related_name='+',default=1)
-#    advisory = models.ForeignKey('Advisories' ,on_delete=models.PROTECT, related_name='+',default=1)
+    advisory = models.ForeignKey('Advisories',db_column='advisory',to_field='ad_id', on_delete=models.PROTECT, related_name='+',default=1)
     notes = models.TextField(blank=True, null=True)
     hidden = models.IntegerField()
     permanent = models.IntegerField()

@@ -6,10 +6,9 @@
                     <div id="content_title">Programs by Advisory</div>
                     {% for ad in advisories %}
                     <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ ad.ad_id }}">
-                  <a href="/filter/advisory/{{ advisory.ad_id }}">{{ ad.ad_desc }}</a>
+                  <a href="/filter/advisory/{{ ad.ad_id }}">{{ ad.ad_desc }}</a>
               </div>
                     {% endfor %}
                 </div>
             {% endblock %}
-
 
