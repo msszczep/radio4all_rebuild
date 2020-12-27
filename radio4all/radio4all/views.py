@@ -203,6 +203,13 @@ def get_contributor(request, uid):
         'user_to_use': user_to_use,
     },)
 
+def get_contributor_contact(request, uid):
+    target = Users.objects.get(uid=uid)
+    return render(request, 'radio4all/contributor_contact.html', {
+        'uid': uid,
+        'contributor': target,
+    },)
+
 def get_series(request, series_name):
     try:
         target = Programs.objects.filter(series=series_name).order_by('-date_created')

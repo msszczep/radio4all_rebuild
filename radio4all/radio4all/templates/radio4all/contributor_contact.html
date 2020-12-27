@@ -1,0 +1,33 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form accept-charset="UTF-8" action="/contributor/{{uid}}/contact" method="post">
+  <table class="content" border="0" width="370" align="left">
+    <tbody>
+      <tr>
+        <th colspan="2">Contact contributor: {{contributor.full_name}}</th>
+      </tr>
+      <tr>
+        <td><label>Your E-mail: </label></td>
+        <td><input name="email" size="43" maxlength="255" type="text" /></td>
+      </tr>
+      <tr>
+        <td><label>Subject:</label></td>
+        <td><input name="subject" size="43" maxlength="255" type="text" /></td>
+      </tr>
+      <tr>
+        <td height="22"><label>Message: </label></td>
+        <td><textarea name="message" cols=40 rows=10></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input name="Send" value="Send" type="submit" />&nbsp;&nbsp;&nbsp;&nbsp;&lt; <a href="/contributor/{{uid}}">Cancel</a> &gt;
+</td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+{% endblock %}
+

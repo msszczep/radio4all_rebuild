@@ -3,7 +3,7 @@
 
             {% block content %}
                 <table><tbody>
-                <tr><td><label>Contributor: </label></td><td>{{user_to_use.full_name}} &nbsp;</td><td>{{contact}}</td></tr>
+                <tr><td><label>Contributor: </label></td><td>{{user_to_use.full_name}} &nbsp;</td><td><label>[<a href="/contributor/{{uid}}/contact">Contact Contributor</a>]</label></td></tr>
                 <tr><td><label>Website: </label></td><td colspan="2">{{user_to_use.website}}</td></tr>
                 <tr></td><td colspan="3"><label>Bio:</label> {{user_to_use.bio}}</td></tr>
                 </tbody></table>
