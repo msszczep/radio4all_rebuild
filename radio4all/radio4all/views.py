@@ -5,9 +5,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 import os
+from .forms import ContactForm
+from django.core.mail import send_mail
 from django.conf import settings
 from django.core.paginator import Paginator
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, BadHeaderError
 from django.shortcuts import redirect, render
 from django.db import connection
 from django.utils import feedgenerator
@@ -205,10 +207,24 @@ def get_contributor(request, uid):
 
 def get_contributor_contact(request, uid):
     target = Users.objects.get(uid=uid)
-    return render(request, 'radio4all/contributor_contact.html', {
-        'uid': uid,
-        'contributor': target,
-    },)
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            to_email = target.email
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, 'info@radio4all.net', [to_email], fail_silently=False,)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return HttpResponse('<h1>Message sent!  Thank you.  <a href="http://radio4all.net">Return to Radio4All</a></h1>')
+    else:
+        return render(request, 'radio4all/contributor_contact.html', {
+            'uid': uid,
+            'form': ContactForm(),
+            'contributor': target,
+        },)
 
 def get_series(request, series_name):
     try:

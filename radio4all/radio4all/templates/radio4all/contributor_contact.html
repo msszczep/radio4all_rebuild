@@ -4,6 +4,7 @@
 {% block content %}
 
 <form accept-charset="UTF-8" action="/contributor/{{uid}}/contact" method="post">
+  {% csrf_token %}
   <table class="content" border="0" width="370" align="left">
     <tbody>
       <tr>
@@ -11,7 +12,7 @@
       </tr>
       <tr>
         <td><label>Your E-mail: </label></td>
-        <td><input name="email" size="43" maxlength="255" type="text" /></td>
+        <td><input name="from_email" size="43" maxlength="255" type="text" /></td>
       </tr>
       <tr>
         <td><label>Subject:</label></td>
