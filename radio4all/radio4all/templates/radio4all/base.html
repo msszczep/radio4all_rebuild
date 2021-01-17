@@ -88,6 +88,7 @@ $(document).ready(function(){
         <?php if ($req[2] != 'search') { ?>
         <div>
           <form action="/search/" accept-charset="UTF-8" method="post" name="quicksearch">
+            {% csrf_token %}
             <input type="text" size="18" maxlength="50" name="searchtext" value="search..."  onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" />
           </form>
         </div>
