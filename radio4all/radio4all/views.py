@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 import os
+import datetime
 from .forms import ContactForm
 from django.core.mail import send_mail
 from django.conf import settings
@@ -324,9 +325,18 @@ def filter_type(request, pk):
 def filter_search(request):
     try:
         search_terms = request.POST.get('searchtext')
-        # search_range = request.POST.get('search_range')
+        search_range = request.POST.get('range')
+        if search_range == 'today':
+            search_range_date = datetime.date.today()
+        elif search_range == 'week':
+            search_range_date = datetime.date.today() - datetime.timedelta(days=7)
+        elif search_range == 'month':
+            search_range_date = datetime.date.today() - datetime.timedelta(days=30)
+        else:
+            search_range_date = datetime.date(1996, 1, 1)
+        search_typeselect = request.POST.get('typeselect')
         search_results = Programs.objects.filter(program_title__icontains=search_terms) | Programs.objects.filter(subtitle__icontains=search_terms) | Programs.objects.filter(series__icontains=search_terms) | Programs.objects.filter(speaker__icontains=search_terms) | Programs.objects.filter(summary__icontains=search_terms) | Programs.objects.filter(keywords__icontains=search_terms) | Programs.objects.filter(credits__icontains=search_terms) | Programs.objects.filter(notes__icontains=search_terms)
-        paginator = Paginator(search_results.order_by('-date_created'), 30)
+        paginator = Paginator(search_results.filter(date_created__gte=search_range_date).order_by('-date_created'), 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
     except:

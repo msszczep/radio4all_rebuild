@@ -1,8 +1,60 @@
 {% extends 'radio4all/base.html' %}
 {% load static %}
-{% csrf_token %}
+{% block content %}
 
-            {% block content %}
+<div id="form_search">
+  <div id="content_title">Search</div>
+  <form name="search" accept-charset="UTF-8" method="post" action="/search/">
+    {% csrf_token %}
+    <table id="searchbox" border="0">
+      <tbody>
+        <tr>
+          <td><label>Search terms:</label>
+            &nbsp; </td>
+          <td><input name="searchtext" size="50" maxlength="255" type="text">
+            <input name="submit" id="searchbutton" value="submit" border="0" src="/images/search-button.png" align="absmiddle" type="image">
+          </td>
+        </tr>
+        <tr>
+          <td><label>Narrow Search Range: </label>
+            &nbsp; </td>
+          <td><input name="range" value="today" class="special" type="radio">
+            Today&nbsp;
+            <input name="range" value="week" class="special" type="radio">
+            Last 7 Days&nbsp;
+            <input name="range" value="month" class="special" type="radio">
+            Last 30 Days </td>
+        </tr>
+        <tr>
+          <td><label>Specialized Search: </label>
+            &nbsp; </td>
+          <td><select name="type" id="typeselect">
+              <option value="null" selected="selected">Type...</option>
+              <option value="Action/Event">Action/Event</option>
+              <option value="Actuality (Uncut Material)">Actuality (Uncut Material)</option>
+              <option value="Announcement">Announcement</option>
+              <option value="Commentary">Commentary</option>
+              <option value="Daily Program">Daily Program</option>
+              <option value="Documentary">Documentary</option>
+              <option value="Interview">Interview</option>
+              <option value="Music">Music</option>
+              <option value="News Report">News Report</option>
+              <option value="Regular Show">Regular Show</option>
+              <option value="Speech">Speech</option>
+              <option value="Unspecified">Unspecified</option>
+              <option value="Weekly Program">Weekly Program</option>
+            </select>
+            &nbsp;
+            <input name="special" class="special" value="contributor" type="radio">
+            &nbsp;Contributor&nbsp;
+            <input name="special" class="special" value="filename" type="radio">
+            &nbsp;Filename </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
                 <div id="result_set">
                     <div id="content_title">Search: {{search_terms}}</div>
                     {% for latest in page_obj %}
