@@ -337,13 +337,14 @@ def filter_search(request):
         search_typeselect = request.POST.get('typeselect')
         search_results = Programs.objects.filter(program_title__icontains=search_terms) | Programs.objects.filter(subtitle__icontains=search_terms) | Programs.objects.filter(series__icontains=search_terms) | Programs.objects.filter(speaker__icontains=search_terms) | Programs.objects.filter(summary__icontains=search_terms) | Programs.objects.filter(keywords__icontains=search_terms) | Programs.objects.filter(credits__icontains=search_terms) | Programs.objects.filter(notes__icontains=search_terms)
         paginator = Paginator(search_results.filter(date_created__gte=search_range_date).order_by('-date_created'), 30)
-        page_number = request.GET.get('page')
+        page_number = request.POST.get('page')
         page_obj = paginator.get_page(page_number)
     except:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/search.html', {
         'page_obj': page_obj,
         'search_terms': search_terms,
+        'search_typeselect': search_typeselect,
     },)
 
 def podcast_view(request):
