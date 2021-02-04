@@ -344,6 +344,7 @@ def filter_search(request):
     return render(request, 'radio4all/search.html', {
         'page_obj': page_obj,
         'search_terms': search_terms,
+        'search_range': search_range,
         'search_typeselect': search_typeselect,
     },)
 

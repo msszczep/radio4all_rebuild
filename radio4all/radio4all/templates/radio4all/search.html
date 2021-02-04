@@ -18,11 +18,24 @@
         <tr>
           <td><label>Narrow Search Range: </label>
             &nbsp; </td>
-          <td><input name="range" value="today" class="special" type="radio">
+          <td>
+            {% if search_range == 'today' %}
+            <input name="range" value="today" class="special" type="radio" checked="checked">
+            {% else %}
+            <input name="range" value="today" class="special" type="radio">
+            {% endif %}
             Today&nbsp;
+            {% if search_range == 'week' %}
+            <input name="range" value="week" class="special" type="radio" checked="checked">
+            {% else %}
             <input name="range" value="week" class="special" type="radio">
+            {% endif %}
             Last 7 Days&nbsp;
+            {% if search_range == 'month' %}
+            <input name="range" value="month" class="special" type="radio" checked="checked">
+            {% else %}
             <input name="range" value="month" class="special" type="radio">
+            {% endif %}
             Last 30 Days </td>
         </tr>
         <tr>
