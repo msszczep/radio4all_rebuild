@@ -42,20 +42,76 @@
           <td><label>Specialized Search: </label>
             &nbsp; </td>
           <td><select name="type" id="typeselect">
+              {% if search_typeselect == None %}
               <option value="null" selected="selected">Type...</option>
+              {% else %}
+              <option value="null">Type...</option>
+              {% endif %}
+              {% if search_typeselect == 'Action/Event' %}
+              <option value="Action/Event" selected="selected">Action/Event</option>
+              {% else %}
               <option value="Action/Event">Action/Event</option>
+              {% endif %}
+              {% if search_typeselect == 'Actuality (Uncut Material)' %}
+              <option value="Actuality (Uncut Material)" selected="selected">Actuality (Uncut Material)</option>
+              {% else %}
               <option value="Actuality (Uncut Material)">Actuality (Uncut Material)</option>
+              {% endif %}
+              {% if search_typeselect == 'Announcement' %}
+              <option value="Announcement" selected="selected">Announcement</option>
+              {% else %}
               <option value="Announcement">Announcement</option>
+              {% endif %}
+              {% if search_typeselect == 'Commentary' %}
+              <option value="Commentary" selected="selected">Commentary</option>
+              {% else %}
               <option value="Commentary">Commentary</option>
+              {% endif %}
+              {% if search_typeselect == 'Daily Program' %}
+              <option value="Daily Program" selected="selected">Daily Program</option>
+              {% else %}
               <option value="Daily Program">Daily Program</option>
+              {% endif %}
+              {% if search_typeselect == 'Documentary' %}
+              <option value="Documentary" selected="selected">Documentary</option>
+              {% else %}
               <option value="Documentary">Documentary</option>
+              {% endif %}
+              {% if search_typeselect == 'Interview' %}
+              <option value="Interview" selected="selected">Interview</option>
+              {% else %}
               <option value="Interview">Interview</option>
+              {% endif %}
+              {% if search_typeselect == 'Music' %}
+              <option value="Music" selected="selected">Music</option>
+              {% else %}
               <option value="Music">Music</option>
+              {% endif %}
+              {% if search_typeselect == 'News Report' %}
+              <option value="News Report" selected="selected">News Report</option>
+              {% else %}
               <option value="News Report">News Report</option>
+              {% endif %}
+              {% if search_typeselect == 'Regular Show' %}
+              <option value="Regular Show" selected="selected">Regular Show</option>
+              {% else %}
               <option value="Regular Show">Regular Show</option>
+              {% endif %}
+              {% if search_typeselect == 'Speech' %}
+              <option value="Speech" selected="selected">Speech</option>
+              {% else %}
               <option value="Speech">Speech</option>
+              {% endif %}
+              {% if search_typeselect == 'Unspecified' %}
+              <option value="Unspecified" selected="selected">Unspecified</option>
+              {% else %}
               <option value="Unspecified">Unspecified</option>
+              {% endif %}
+              {% if search_typeselect == 'Weekly Program' %}
+              <option value="Weekly Program" selected="selected">Weekly Program</option>
+              {% else %}
               <option value="Weekly Program">Weekly Program</option>
+              {% endif %}
             </select>
             &nbsp;
             <input name="special" class="special" value="contributor" type="radio">
