@@ -336,12 +336,16 @@ def filter_search(request):
             search_range_date = datetime.date(1996, 1, 1)
         search_typeselect = request.POST.get('type')
         search_contributor = request.POST.get('contributor')
+        search_filename = request.POST.get('filename')
         search_results = Programs.objects.filter(program_title__icontains=search_terms) | Programs.objects.filter(subtitle__icontains=search_terms) | Programs.objects.filter(series__icontains=search_terms) | Programs.objects.filter(speaker__icontains=search_terms) | Programs.objects.filter(summary__icontains=search_terms) | Programs.objects.filter(keywords__icontains=search_terms) | Programs.objects.filter(credits__icontains=search_terms) | Programs.objects.filter(notes__icontains=search_terms)
         if search_typeselect != 'null' and search_typeselect != None:
             search_results = search_results.filter(type__iexact=search_typeselect)
         if search_contributor == True:
             contributors_to_use = Users.objects.filter(full_name__icontains=search_terms)
             search_results = Programs.objects.filter(uid__in=contributors_to_use.values('uid'))
+        if search_filename == True:
+            filenames_to_use = Files.objects.filter(filename__icontains=search_terms)
+            search_results = Programs.objects.filter(program_id__in=filenames_to_use.values('program_id'))
         paginator = Paginator(search_results.filter(date_created__gte=search_range_date).order_by('-date_created'), 30)
         page_number = request.POST.get('page')
         page_obj = paginator.get_page(page_number)
