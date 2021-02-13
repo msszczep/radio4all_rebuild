@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 
+<form name="search" accept-charset="UTF-8" method="post" action="/search/">
 <div id="form_search">
   <div id="content_title">Search</div>
-  <form name="search" accept-charset="UTF-8" method="post" action="/search/">
     {% csrf_token %}
     <table id="searchbox" border="0">
       <tbody>
@@ -121,9 +121,7 @@
         </tr>
       </tbody>
     </table>
-  </form>
 </div>
-
                 <div id="result_set">
                     <div id="content_title">Search: {{search_terms}}</div>
                     {% for latest in page_obj %}
@@ -147,9 +145,6 @@ $(document).ready(function(){
                 $("#content").load($(this).attr("href"));
                 return false;
          });
-        $("#browsecontrol").change(function() {
-                window.location.href = $(this).val();
-        });
 });
 </script>
 <!-- START: Browsing Controls -->
@@ -158,18 +153,24 @@ $(document).ready(function(){
     <tr>
       <td>&nbsp;</td>
       <td>
-<form><select id="browsecontrol">
+    <select name="browsecontrol" id="browsecontrol">
         {% for i in page_obj.paginator.page_range %}
-          <option value="?page={{i}}">{{ i }}</option>
+          {% if page_obj.number == i %}
+          <option value="{{i}}" selected="selected">{{ i }}</option>
+          {% else %}
+          <option value="{{i}}">{{ i }}</option>
+          {% endif %}
         {% endfor %}
 {% endif %}
-    </select></form>
+    </select>
 </td>
-      <td>&nbsp;<a href=""><b>&gt;</b></a></td>
+      <td>&nbsp;<b>&gt;</b></td>
       <td>&nbsp;<span id="loadmsg">Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} - Total: {{ page_obj.paginator.count }}</span></td>
     </tr>
   </tbody>
-</table></div>
+</table>
+</div>
+</form>
 <!-- END: Browsing Controls -->
 &nbsp;
 

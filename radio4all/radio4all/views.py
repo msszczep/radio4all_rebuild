@@ -347,7 +347,7 @@ def filter_search(request):
             filenames_to_use = Files.objects.filter(filename__icontains=search_terms)
             search_results = Programs.objects.filter(program_id__in=filenames_to_use.values('program_id'))
         paginator = Paginator(search_results.filter(date_created__gte=search_range_date).order_by('-date_created'), 30)
-        page_number = request.POST.get('page')
+        page_number = request.POST.get('browsecontrol')
         page_obj = paginator.get_page(page_number)
     except:
         return HttpResponse('<h1>No Programs Here</h1>')
