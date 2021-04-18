@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment
+from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment, Restrictions, Advisories, Lang
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -92,9 +92,6 @@ class LocationViewSet(viewsets.ModelViewSet):
     queryset = Locations.objects.all().order_by('file__program__date_created')
     serializer_class = LocationSerializer
 
-
-
-
 def advisory(request):
     return render(request, 'radio4all/advisory.html')
 
@@ -112,6 +109,61 @@ def series(request):
 
 def contributor_browse(request):
     return render(request, 'radio4all/contributor_browse.html')
+
+def upload_content(request):
+    if request.method == 'POST':
+        p = Programs()
+        p.program_title = request.POST.get('program_title')
+        p.subtitle = request.POST.get('program_subtitle')
+        series = request.POST.get('program_series')
+        add_series = request.POST.get('program_add_series')
+        if series == '':
+            p.series = series
+        else:
+            p.series = add_series
+        p.speaker = request.POST.get('program_speaker')
+        p.summary = request.POST.get('program_summary')
+        p.credits = request.POST.get('program_credits')
+        p.license = request.POST.get('program_license')
+        p.restriction = request.POST.get('program_restriction')
+        p.notes = request.POST.get('program_notes')
+        p.advisory = request.POST.get('program_advisory')
+        p.keywords = request.POST.get('program_keywords')
+        p.save()
+        v = Versions()
+        v.program = p.program_id
+        v.version_title = request.POST.get('version_title')
+        v.version_description = request.POST.get('version_description')
+        v.lang = request.POST.get('version_lang')
+        v.date_recorded = request.POST.get('version_date_recorded')
+        v.location = request.POST.get('version_location')
+        v.script = request.POST.get('version_script')
+        v.save()
+        # TODO: where to get version ID
+        # TODO: where to get version length
+        
+        return HttpResponseRedirect('radio4all/home.html')
+    else:
+        types_to_use = Types.objects.all()
+        licenses_to_use = License.objects.all()
+        restrictions_to_use = Restrictions.objects.all()
+        advisories_to_use = Advisories.objects.all()
+        languages_to_use = Lang.objects.all().order_by('lang')
+        topics_to_use = Topics.objects.all().order_by('topic')
+        if request.user.is_authenticated:
+            uid = request.user.uid
+        else:
+            uid = 16
+        series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
+        return render(request, 'radio4all/upload_content.html', {
+            'types_to_use': types_to_use,
+            'license_list': licenses_to_use,
+            'broadcast_restrictions_list': restrictions_to_use,
+            'advisories_list': advisories_to_use,
+            'language_list': languages_to_use,
+            'series_list': series_to_use,
+            'topics_list': topics_to_use
+        },)
 
 def topic_browse(request):
     try:

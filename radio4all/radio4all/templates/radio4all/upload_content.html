@@ -1,0 +1,533 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+       
+     {% block content %}
+
+<form name="add_start" accept-charset="UTF-8" class="add_edit" action="/program/add/" method="post" enctype = "multipart/form-data">
+<table width="100%" border="0"><tbody>
+<tr>
+<td>
+  <label>How many files do you want to add? </label>
+    <select name="program_segments">
+      <option value="1" selected>1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+&nbsp;<a href="#" class="help_info"><img src="/images/icons/help-icon.png"><span>
+  If you have a long program or a program in stereo, or at high bitrates, you
+  may want to split up the program in segments and upload it as several smaller
+  files. If you have more than 10 files to upload, simply upload the first 10
+  and then add the rest later.
+</span></a>
+<br /><br />
+<label>How do you want to add these files?:</label>
+<ul>
+<li><input type="radio" name="how" value="upload" /> Upload files to this server.</li><br/>
+<li><input type="radio" name="how" value="link" /> Add links to files already located on an FTP/Web server.</li>
+</ul>
+    </td>
+</tr><tr>
+<td class="info_cell">
+<b>NOTICE:</b><br>
+Uploading unauthorized copyrighted material to
+this server is prohibited. The material you upload
+to this server must fall under one of the following
+categories: <b>a)</b> You hold the copyright to the
+material you are uploading; i.e. you are the (co-)creator
+or legal (co-)owner of the material. <b>b)</b> You have explicit
+permission to upload the material from the copyright
+holder of said material. <b>c)</b> The material is in the
+public domain or is licensed under an open content
+license. <b>d)</b> You are making not-for-profit Fair Use
+of copyrighted music or other copyrighted audio content
+as part of a larger program (for example, a music program).
+
+EVERYONE who uploads material to the A-Infos Radio
+Project is implicitly agreeing that they are making
+their audio content available free of charge to the
+public.
+
+All responsibility for the content of the audio material
+available on the A-Infos Radio Project servers belongs to
+the creators/producers of said material. All rights to the
+material uploaded to the A-Infos Radio Project servers
+remain entirely with the creators/producers/legal copyright
+holders of said material.
+</td>
+</tr>
+<tr><td>$capform</td></tr>
+<tr><td><br /><b>DO NOT GO BACK AFTER CLICKING THE BUTTON BELOW!<br />
+CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></td></tr>
+<style>
+.row_b {
+    background-color: #DCDCDC;
+}
+</style>
+<table width="100%" border="0">
+  <th colspan="2">
+  Instructions: Fill out the form as completely as possible,
+  but do not repeat the same information in multiple fields.
+  You do not have to fill out every field.
+  </th>
+  <tr>
+$anonpwd
+    <td width="25%"><label>Program Title: </label></td>
+    <td width="75%"><input name="program_title" type="text" size="60" maxlength="255" /></td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Subtitle: </label></td>
+    <td><input name="program_subtitle" type="text" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td><label>Series: </label></td>
+    <td valign="top">
+      <select name="program_series">
+        <option value="">None</option>
+        {% for i in series_list %}
+          <option value="{{i}}">{{i}}</option>
+        {% endfor %}
+      </select>
+    <input name="program_add_series" type="text" size="60" maxlength="255" />
+    &nbsp;<a href="#" class="help_info"><img src="/images/icons/help-icon.png" /><span>
+    If you have a recurring program (example: "<i>The Weekly News Report</i>") you should put
+    the name of your regular recurring program here in the Series field. The <i>Program Title</i> field
+    above should be used for the title of the specific episode/installment you are uploading. If you are
+    not uploading a recurring program, then leave the Series field blank.<br /><br />
+    Any series you enter will be available in a drop down list above for future use.
+    </span></a>
+    </td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Program Type: </label></td>
+    <td><select name="program_type">
+      {% for i in types_to_use %}
+        <option value="{{i.type_id}}">{{i.type}}</option>
+      {% endfor %}
+      </select></td>
+  </tr>
+  <tr>
+  <td><label>Topic Associations: </label></td>
+  <td>
+ <script type="text/javascript">
+  $().ready(function() {
+    var selectedItemsList = $selected_items_list
+    if (selectedItemsList != null) {
+      for (i=0;i<selectedItemsList.length;i++) {
+        var tmp = '<option value="' + selectedItemsList[i].optionValue + '">' +
+                  selectedItemsList[i].optionLabel + '</option>';
+        $(tmp).appendTo('#selected_items');
+      }
+    }
+    $('#add').click(function() {
+      return !$('#topics option:selected').remove().appendTo('#selected_items').removeAttr("selected");
+    });
+    $('#remove').click(function() {
+      return !$('#selected_items option:selected').remove().appendTo('#topics').removeAttr("selected");
+    });
+    $('form').submit(function() {
+      $('#selected_items option').each(function(i) {
+        $(this).attr("selected", "selected");
+      });
+    });
+  });
+ </script>
+ <style type="text/css">
+  #add {
+   display: block;
+   border: 1px solid #aaa;
+   text-decoration: none;
+   background-color: #F8F8FF;
+   margin: 2px;
+   clear:both;
+   width: 100px;
+  }
+  #remove {
+   display: block;
+   border: 1px solid #aaa;
+   text-decoration: none;
+   background-color: #F8F8FF;
+   margin: 2px;
+   width: 100px;
+  }
+  #topic_selection {
+   float:left;
+   text-align: center;
+   margin: 10px;
+  }
+  #topic_selected {
+   float:left;
+   text-align: center;
+   margin: 10px;
+  }
+  #topics {
+   width: 200px;
+   height:120px;
+  }
+  #selected_items {
+   width: 200px;
+   height: 120px;
+  }
+ </style>
+ <div id="topic_selection">
+  <label for="topics">Topics</label><br />
+  <select multiple id="topics">
+    {% for i in topics_list %}
+      <option value="{{i.topic_id}}">{{i.topic}}</option>
+    {% endfor %}
+  </select>
+  <a href="#" id="add">add &gt;&gt;</a>
+ </div>
+ <div id="topic_selected">
+  <label for="selected_items">Your Selections (max. 10 topics)</label><br />
+  <select multiple name="program_topics[]" id="selected_items"></select>
+  <a href="#" id="remove">&lt;&lt; remove</a>
+ </div>
+  </td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Featured Speakers or Commentators: </label></td>
+    <td><input name="program_speaker" type="text" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td><label>Program Summary (500 characters): </label></td>
+    <td><textarea name="program_summary" cols="60" rows="3"></textarea></td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Credits: </label></td>
+    <td><textarea name="program_credits" cols="60" rows="5"></textarea></td>
+  </tr>
+  <tr>
+    <td><label>License: </label></td>
+    <td>
+    {% for lic in license_list %}
+    <div>
+      <input type="radio" name="program_license" value="{{lic.cc_id}}">&nbsp;
+      <img src="http://www.radio4all.net/images/icons/{{lic.cc_abbrev}}.png" alt="{{lic.cc_name}}" title="{{cc.name}}">&nbsp;<a href="{{lic.cc_url}}" title="View License: {{lic.cc_name}}" target="_blank"><img src="http://www.radio4all.net/images/icons/info-icon.png" border="0" alt="View license: {{lic.cc_name}}"></a>
+    </div>
+    {% endfor %}
+ </td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Broadcast Restictions: </label></td>
+    <td>
+    <select name="program_restriction">
+      <option value="0">Unspecified</options>
+      {% for r in broadcast_restrictions_list %}
+        <option value={{r.lic_id}}>{{r.lic_description}}</option</a>
+      {% endfor %}
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label>Program Notes: </label></td>
+    <td><textarea name="program_notes" cols="60" rows="8">$program_notes</textarea></td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Broadcast Advisory: </label></td>
+    <td>
+    <select name="program_advisory">
+      <option value="0">Unspecified</option>
+      {% for a in advisories_list %}
+        <option value={{a.ad_id}}>{{a.ad_abbrev}}</option>
+      {% endfor %}
+    </select>&nbsp;&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    <b>Unknown</b> - program has not been screened for content.<br />
+    <b>No Advisories</b> - program content screened and verified.<br />
+    <b>Strong Language</b> - Warning: Program may contain strong or potentially offensive language,
+    including possible FCC violations.<br />
+    <b>Safe Harbor Only</b> - Warning: Program only suitable for FCC-designated safe harbor (10PM to 6AM).
+    </span></a>
+    </td>
+  </tr>
+  <tr>
+    <td><label>Keywords (comma sperated): </label></td>
+    <td><input name="program_keywords" type="text" size="60" maxlength="255" /></td>
+  </tr>
+
+<style>
+#file_upload { clear: both; }
+.file_table {
+  float: left;
+  width: 350px;
+  border: 0px;
+}
+.label_cell {
+  text-align: left;
+}
+#progress {
+  float: left;
+  clear: both;
+  display: block;
+  background: #cff;
+  background-color:#cff;
+  color:#000000;
+  border:1px solid #0cf;
+  text-align: right;
+  height: 20px;
+}
+</style>
+<script type="text/javascript">
+function progressMeter () {
+    var url = "/FileUpload";
+    $.getJSON(url, function (data) {
+        if (data.percentComplete >= 0) {
+            $("#msg").html('<span id="progress" style="width: '+data.percentComplete+'%">'+data.msg+'</span>');
+        }
+        else if (data.percentComplete == "error") {
+            $("#msg").html('<span class="errorstyle">'+data.msg+'</span>');
+        }
+        else {
+            $("#msg").html('<span>'+data.msg+'</span>');
+        }
+    });
+}
+function submitAction (param) {
+     p = document.getElementById(param);
+     p.disabled=true;
+     p.value='Uploading, Please Wait...';
+//     if ($.browser.mozilla) {
+//        document.getElementById('msg').className = 'statustyle';
+//        setInterval(progressMeter, 1500);
+//     }
+//     document.getElementById('msg').className = 'statustyle';
+}
+</script>
+
+<script type="text/javascript">
+  $().ready(function() {
+    $("#version_date").mask("9999-99-99");
+  });
+</script>
+<table width="100%" border="0">
+<th colspan="3"><label>Version Information: </label></th>
+  <tr>
+    <td width="25%"><label>Version Title: </label></td>
+    <td width="75%" colspan=2><input type="text" name="version_title" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td><label>Version Description: </label></td>
+    <td colspan=2><input type="text" name="version_description" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td><label>Language: </label></td>
+    <td colspan=2>
+    <select name="version_lang">
+      {% for g in language_list %}
+        <option value="{{g.lang_id}}" {% if g.lang == "English" %}SELECTED{% endif %}>{{g.lang}}</option>
+      {% endfor %}
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label>Date Recorded<br />(yyyy-mm-dd): </label></td>
+    <td colspan=2><input type="text" name="version_date_recorded" size="10" maxlength="10" id="version_date" /></td>
+  </tr>
+  <tr>
+    <td><label>Location Recorded: </label></td>
+    <td colspan=2><input type="text" name="version_location" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td width="25%"><label>Announcer Script / Transcript: </label></td>
+    <td width="55%"><textarea name="version_script" cols="60" rows="8"></textarea></td>
+    <td width="20%" align="left" valign="middle"><a href="#" class="help_info"><img src="/images/icons/help-icon.png" /><span>
+    Use this field if you have a transcript of your program, or if you want to provide an announcer script for stations that may air your show.
+    </span></a></td>
+  </tr>
+</table>
+
+  <table class="file_table">
+      <th colspan="2">Segment $i</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+<table width="100%"><tr><td><input type="submit" name="Submit" value="Submit" /></td></tr></table>
+</form>
+
+     {% endblock %}
+
+
