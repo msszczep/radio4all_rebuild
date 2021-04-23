@@ -4,11 +4,27 @@
      {% block content %}
 
 <form name="add_start" accept-charset="UTF-8" class="add_edit" action="/program/add/" method="post" enctype = "multipart/form-data">
+<script type="text/javascript">
+function adjust_program_segments(n) {
+  var ft;
+  var i;
+  ft = document.getElementsByClassName("file_table");
+  ft[0].hidden = false;
+  for (i = 1; i < 10; i++) {
+    ft[i].hidden = true;
+  }
+  var s;
+  s = document.getElementsByClassName("file_table");
+  for (i = 0; i < n; i++) {
+    s[i].hidden = false;
+  }
+}
+</script>
 <table width="100%" border="0"><tbody>
 <tr>
 <td>
   <label>How many files do you want to add? </label>
-    <select name="program_segments">
+    <select name="program_segments" onchange="adjust_program_segments(this.value);">
       <option value="1" selected>1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -298,6 +314,8 @@ function submitAction (param) {
 //     }
 //     document.getElementById('msg').className = 'statustyle';
 }
+
+
 </script>
 
 <script type="text/javascript">
@@ -342,8 +360,8 @@ function submitAction (param) {
   </tr>
 </table>
 
-  <table class="file_table">
-      <th colspan="2">Segment $i</th>
+  <table class="file_table" id="file_table1">
+      <th colspan="2">Segment 1</th>
     <tr>
       <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
@@ -525,7 +543,1672 @@ $help_list
       
     </tr>
 </tbody></table>
+
+  <table class="file_table" id="file_table2">
+      <th colspan="2">Segment 2</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table3">
+      <th colspan="2">Segment 3</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table4">
+      <th colspan="2">Segment 4</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table5">
+      <th colspan="2">Segment 5</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table6">
+      <th colspan="2">Segment 6</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table7">
+      <th colspan="2">Segment 7</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table8">
+      <th colspan="2">Segment 8</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table9">
+      <th colspan="2">Segment 9</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
+  <table class="file_table" id="file_table10">
+      <th colspan="2">Segment 10</th>
+    <tr>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    ONLY The following audio formats are permitted for upload: <br />
+$help_list
+    <br />All other audio formats will be automatically rejected and deleted from our server.
+    If your file is not in one of the formats above, please convert your file to a
+    valid format before attempting to upload.
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Label:</label></td>
+      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      Enter a descriptive label for this particular segment. (OPTIONAL)
+    </span></a></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Bitrate:</label></td>
+      <td><select name="$bitrate">
+          <option value="8">8 kbps</option>
+          <option value="16">16 kbps</option>
+          <option value="24">24 kbps</option>
+          <option value="32">32 kbps</option>
+          <option value="48">48 kbps</option>
+          <option value="56">56 kbps</option>
+          <option value="64">64 kbps</option>
+          <option value="80">80 kbps</option>
+          <option value="96">96 kbps</option>
+          <option value="112">112 kbps</option>
+          <option value="128" selected>128 kbps</option>
+          <option value="160">160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="224">224 kbps</option>
+          <option value="256">256 kbps</option>
+          <option value="320">320 kbps</option>
+          <option value="0">Variable or FLAC/Speex</option>
+        </select>
+        &nbsp;&nbsp;Stereo?&nbsp;
+        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+    </tr>
+    <tr>
+      <td class="label_cell"><label>Length:</label></td>
+      <td><table border=0 cellpadding="0">
+          <tr>
+            <td bgcolor="#C0C0C0">Hr.</td>
+            <td>Min.</td>
+            <td bgcolor="#C0C0C0">Sec.</td>
+          </tr>
+          <tr>
+            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+                <option value="00" SELECTED>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select></td>
+            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+                <option value="00" selected>00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+              </select></td>
+        </table></td>
+      
+    </tr>
+</tbody></table>
+
 <table width="100%"><tr><td><input type="submit" name="Submit" value="Submit" /></td></tr></table>
+<script type="text/javascript">
+var ft;
+ftg = document.getElementsByClassName("file_table");
+ftg[0].hidden = false;
+for (i = 1; i < 10; i++) {
+  ftg[i].hidden = true;
+}
+</script>
 </form>
 
      {% endblock %}
