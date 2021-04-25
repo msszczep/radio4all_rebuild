@@ -365,7 +365,9 @@ function submitAction (param) {
     <tr>
       <td colspan="2"><input name="filename1" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -549,7 +551,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename2" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -733,7 +737,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename3" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -917,7 +923,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename4" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -1101,7 +1109,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename5" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -1285,7 +1295,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename6" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -1469,7 +1481,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename7" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -1653,7 +1667,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -1837,7 +1853,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename9" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.
@@ -2021,7 +2039,9 @@ $help_list
     <tr>
       <td colspan="2"><input name="filename10" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
-$help_list
+    {% for h in help_list %}
+      <b>{{h.format_name}}</b><br/>
+    {% endfor %}
     <br />All other audio formats will be automatically rejected and deleted from our server.
     If your file is not in one of the formats above, please convert your file to a
     valid format before attempting to upload.

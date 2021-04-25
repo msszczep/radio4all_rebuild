@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment, Restrictions, Advisories, Lang
+from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment, Restrictions, Advisories, Lang, Formats
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -155,6 +155,7 @@ def upload_content(request):
         else:
             uid = 16
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
+        formats_to_use = Formats.objects.all().order_by('format_name')
         return render(request, 'radio4all/upload_content.html', {
             'types_to_use': types_to_use,
             'license_list': licenses_to_use,
@@ -162,7 +163,8 @@ def upload_content(request):
             'advisories_list': advisories_to_use,
             'language_list': languages_to_use,
             'series_list': series_to_use,
-            'topics_list': topics_to_use
+            'topics_list': topics_to_use,
+            'help_list': formats_to_use
         },)
 
 def topic_browse(request):
