@@ -243,7 +243,7 @@ $anonpwd
   </tr>
   <tr>
     <td><label>Program Notes: </label></td>
-    <td><textarea name="program_notes" cols="60" rows="8">$program_notes</textarea></td>
+    <td><textarea name="program_notes" cols="60" rows="8"></textarea></td>
   </tr>
   <tr class="row_b">
     <td><label>Broadcast Advisory: </label></td>
@@ -363,7 +363,7 @@ function submitAction (param) {
   <table class="file_table" id="file_table1">
       <th colspan="2">Segment 1</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename1" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -373,13 +373,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title1" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate1">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -399,7 +399,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo1" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -410,12 +410,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour1" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute1" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -477,7 +477,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second1" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -547,7 +547,7 @@ $help_list
   <table class="file_table" id="file_table2">
       <th colspan="2">Segment 2</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename2" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -557,13 +557,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title2" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate2">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -583,7 +583,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo1" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -594,12 +594,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour2" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute2" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -661,7 +661,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second2" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -731,7 +731,7 @@ $help_list
   <table class="file_table" id="file_table3">
       <th colspan="2">Segment 3</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename3" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -741,13 +741,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title3" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate3">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -767,7 +767,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo3" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -778,12 +778,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour3" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute3" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -845,7 +845,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second3" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -915,7 +915,7 @@ $help_list
   <table class="file_table" id="file_table4">
       <th colspan="2">Segment 4</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename4" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -925,13 +925,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title4" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate4">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -951,7 +951,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo4" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -962,12 +962,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour4" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute4" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1029,7 +1029,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second4" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1099,7 +1099,7 @@ $help_list
   <table class="file_table" id="file_table5">
       <th colspan="2">Segment 5</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename5" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -1109,13 +1109,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title5" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate5">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -1135,7 +1135,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo5" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -1146,12 +1146,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour5" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute5" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1213,7 +1213,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second5" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1283,7 +1283,7 @@ $help_list
   <table class="file_table" id="file_table6">
       <th colspan="2">Segment 6</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename6" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -1293,13 +1293,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title6" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate6">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -1319,7 +1319,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo6" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -1330,12 +1330,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour6" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute6" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1397,7 +1397,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second6" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1467,7 +1467,7 @@ $help_list
   <table class="file_table" id="file_table7">
       <th colspan="2">Segment 7</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename7" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -1477,13 +1477,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title7" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate7">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -1503,7 +1503,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo7" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -1514,12 +1514,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour7" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute7" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1581,7 +1581,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second7" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1661,13 +1661,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title8" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate8">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -1687,7 +1687,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo8" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -1698,12 +1698,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour8" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute8" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1765,7 +1765,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second8" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1835,7 +1835,7 @@ $help_list
   <table class="file_table" id="file_table9">
       <th colspan="2">Segment 9</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename9" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -1845,13 +1845,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title9" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate9">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -1871,7 +1871,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo9" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -1882,12 +1882,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour9" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute9" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -1949,7 +1949,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second9" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -2019,7 +2019,7 @@ $help_list
   <table class="file_table" id="file_table10">
       <th colspan="2">Segment 10</th>
     <tr>
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename10" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
 $help_list
     <br />All other audio formats will be automatically rejected and deleted from our server.
@@ -2029,13 +2029,13 @@ $help_list
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="$file_title" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title10" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Bitrate:</label></td>
-      <td><select name="$bitrate">
+      <td><select name="bitrate10">
           <option value="8">8 kbps</option>
           <option value="16">16 kbps</option>
           <option value="24">24 kbps</option>
@@ -2055,7 +2055,7 @@ $help_list
           <option value="0">Variable or FLAC/Speex</option>
         </select>
         &nbsp;&nbsp;Stereo?&nbsp;
-        <input name="$stereo" type="checkbox" value="Stereo" /></td>
+        <input name="stereo10" type="checkbox" value="Stereo" /></td>
     </tr>
     <tr>
       <td class="label_cell"><label>Length:</label></td>
@@ -2066,12 +2066,12 @@ $help_list
             <td bgcolor="#C0C0C0">Sec.</td>
           </tr>
           <tr>
-            <td bgcolor="#C0C0C0"><select name="$hour" class="small">
+            <td bgcolor="#C0C0C0"><select name="hour10" class="small">
                 <option value="00" SELECTED>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
               </select></td>
-            <td bgcolor="#00FFFF"><select name="$minute" class="small">
+            <td bgcolor="#00FFFF"><select name="minute10" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -2133,7 +2133,7 @@ $help_list
                 <option value="58">58</option>
                 <option value="59">59</option>
               </select></td>
-            <td bgcolor="#C0C0C0"><select name="$second" class="small">
+            <td bgcolor="#C0C0C0"><select name="second10" class="small">
                 <option value="00" selected>00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
