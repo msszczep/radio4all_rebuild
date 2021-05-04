@@ -112,23 +112,32 @@ def contributor_browse(request):
 
 def upload_content(request):
     if request.method == 'POST':
+        now = datetime.datetime.now()
         p = Programs()
         p.program_title = request.POST.get('program_title')
+        # add p.uid
+        p.program_type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
         add_series = request.POST.get('program_add_series')
         if series == '':
-            p.series = series
-        else:
             p.series = add_series
+        else:
+            p.series = series
         p.speaker = request.POST.get('program_speaker')
         p.summary = request.POST.get('program_summary')
+        # add p.keywords
         p.credits = request.POST.get('program_credits')
         p.license = request.POST.get('program_license')
         p.restriction = request.POST.get('program_restriction')
         p.notes = request.POST.get('program_notes')
+        p.hidden = 0
         p.advisory = request.POST.get('program_advisory')
         p.keywords = request.POST.get('program_keywords')
+        p.password = ''
+        # account for anonymous password
+        # p.permanent = ?
+        p.date_created = now
         p.save()
         v = Versions()
         v.program = p.program_id
@@ -138,10 +147,27 @@ def upload_content(request):
         v.date_recorded = request.POST.get('version_date_recorded')
         v.location = request.POST.get('version_location')
         v.script = request.POST.get('version_script')
+        # v.length = ?
+        # v.version_id = ?
+        v.date_created = now
+        v.program_id = p.id # is this right?
         v.save()
-        # TODO: where to get version ID
-        # TODO: where to get version length
-        
+        # check for number of files, follow this pattern
+        f1 = Files()
+        f1.program_id = p.id # is this right?
+        f1.version_id = v.id # is this right?
+        f1.segment = 1
+        f1.filename = request.POST.get('filename1') # check for filename, file content
+        f1.title = request.POST.get('file_title1')
+        f1.file_size = request.POST.get('size1') + ' ' + request.POST.get('file_size_bytes1') # double check db
+        f1.bitrate = request.POST.get('bitrate1')
+        f1.stereo = request.POST.get('stereo1')
+        f1.format_id = request.POST.get('file_type_text1')
+        # length?
+        # how?
+        # work out file upload to server
+        # f.no_delete = ?
+        f.save()
         return HttpResponseRedirect('radio4all/home.html')
     else:
         types_to_use = Types.objects.all()
