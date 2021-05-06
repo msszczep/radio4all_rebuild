@@ -112,10 +112,11 @@ def contributor_browse(request):
 
 def upload_content(request):
     if request.method == 'POST':
+        nps = request.POST.get('program_segments')
         now = datetime.datetime.now()
         p = Programs()
         p.program_title = request.POST.get('program_title')
-        # add p.uid
+        p.uid = request.user.uid
         p.program_type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
@@ -148,7 +149,7 @@ def upload_content(request):
         v.location = request.POST.get('version_location')
         v.script = request.POST.get('version_script')
         # v.length = ?
-        # v.version_id = ?
+        # v.version_id = 1?
         v.date_created = now
         v.program_id = p.id # is this right?
         v.save()
@@ -168,6 +169,8 @@ def upload_content(request):
         # work out file upload to server
         # f.no_delete = ?
         f.save()
+        # if nps == 2:
+        #    repeat p and f for each file
         return HttpResponseRedirect('radio4all/home.html')
     else:
         types_to_use = Types.objects.all()
