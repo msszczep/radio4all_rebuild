@@ -110,9 +110,14 @@ def series(request):
 def contributor_browse(request):
     return render(request, 'radio4all/contributor_browse.html')
 
+def handle_uploaded_file(email_dir, f):
+    with open('/tank/radio4all/files/' + email_dir, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
 def upload_content(request):
     if request.method == 'POST':
-        nps = request.POST.get('program_segments')
+        nps = int(request.POST.get('program_segments'))
         now = datetime.datetime.now()
         p = Programs()
         p.program_title = request.POST.get('program_title')
@@ -137,10 +142,39 @@ def upload_content(request):
         p.keywords = request.POST.get('program_keywords')
         p.password = ''
         # account for anonymous password
-        # p.permanent = ?
-        # topics: topic_assignment
         p.date_created = now
         p.save()
+        t = TopicAssignment()
+        topics = request.POST.getlist('program_topics[]')
+        for e in topics:
+            t = TopicAssignment()
+            t.topic_id = e.value
+            t.program_id = p.program_id
+            t.save()
+        f1 = Files()
+        f1.program_id = p.program_id
+        f1.version_id = v.version_id
+        f1.segment = 1
+        if request.POST.get('how') == 'upload':
+            f1.filename = request.POST.get('filename1')
+        else
+            f1.filename = request.POST.get('filenametext1')
+        f1.title = request.POST.get('file_title1')
+        f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
+        f1.bitrate = request.POST.get('bitrate1')
+        f1.stereo = request.POST.get('stereo1')
+        f1.format_id = request.POST.get('file_type_text1')
+        f1_hrs = request.POST.get('hour1')
+        f1_minutes = request.POST.get('minute1')
+        f1_seconds = request.POST.get('second1')
+        f1.length = f1_hrs + ':' + f1_minutes + ':' + f1_seconds
+        f1_timedelta = datetime.timedelta(0, (3600 * int(f1_hrs)) + (60 * int(f1_minutes)) + int(f1_seconds))
+        f1.how = request.POST.get('how')
+        handle_uploaded_file(request.user.email, request.FILES['file1'])
+        f1.save()
+        f2_timedelta = datetime.timedelta(0)
+        #if nps > 1:
+        #    repeat f for each file
         v = Versions()
         v.program = p.program_id
         v.version_title = request.POST.get('version_title')
@@ -149,30 +183,11 @@ def upload_content(request):
         v.date_recorded = request.POST.get('version_date_recorded')
         v.location = request.POST.get('version_location')
         v.script = request.POST.get('version_script')
-        v.length = request.POST.get('version_script')
+        v.length = print(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.version_id = 1
         v.date_created = now
         v.program_id = p.program_id
         v.save()
-        # check for number of files, follow this pattern
-        f1 = Files()
-        f1.program_id = p.program_id
-        f1.version_id = v.version_id
-        f1.segment = 1
-        f1.filename = request.POST.get('filename1') # check for filename, file content
-        f1.title = request.POST.get('file_title1')
-        f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1') # double check db
-        f1.bitrate = request.POST.get('bitrate1')
-        f1.stereo = request.POST.get('stereo1')
-        f1.format_id = request.POST.get('file_type_text1')
-        # length?
-        f1.how = request.POST.get('stereo1')
-        # work out file upload to server
-        # f.no_delete = ?
-        f1.save()
-        # if nps == 2:
-        #    repeat p and f for each file
-        # solve mystery of versions and files
         return HttpResponseRedirect('radio4all/home.html')
     else:
         types_to_use = Types.objects.all()
