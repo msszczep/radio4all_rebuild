@@ -157,7 +157,7 @@ def upload_content(request):
         f1.segment = 1
         if request.POST.get('how') == 'upload':
             f1.filename = request.POST.get('filename1')
-        else
+        else:
             f1.filename = request.POST.get('filenametext1')
         f1.title = request.POST.get('file_title1')
         f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
@@ -180,7 +180,7 @@ def upload_content(request):
             f2.segment = 2
             if request.POST.get('how') == 'upload':
                 f2.filename = request.POST.get('filename2')
-            else
+            else:
                 f2.filename = request.POST.get('filenametext2')
             f2.title = request.POST.get('file_title2')
             f2.file_size = request.POST.get('size2') + request.POST.get('file_size_bytes2')
@@ -203,7 +203,7 @@ def upload_content(request):
             f3.segment = 3
             if request.POST.get('how') == 'upload':
                 f3.filename = request.POST.get('filename3')
-            else
+            else:
                 f3.filename = request.POST.get('filenametext3')
             f3.title = request.POST.get('file_title3')
             f3.file_size = request.POST.get('size3') + request.POST.get('file_size_bytes3')
@@ -226,7 +226,7 @@ def upload_content(request):
             f4.segment = 4
             if request.POST.get('how') == 'upload':
                 f4.filename = request.POST.get('filename4')
-            else
+            else:
                 f4.filename = request.POST.get('filenametext4')
             f4.title = request.POST.get('file_title4')
             f4.file_size = request.POST.get('size4') + request.POST.get('file_size_bytes4')
@@ -249,7 +249,7 @@ def upload_content(request):
             f5.segment = 5
             if request.POST.get('how') == 'upload':
                 f5.filename = request.POST.get('filename5')
-            else
+            else:
                 f5.filename = request.POST.get('filenametext5')
             f5.title = request.POST.get('file_title5')
             f5.file_size = request.POST.get('size5') + request.POST.get('file_size_bytes5')
@@ -272,7 +272,7 @@ def upload_content(request):
             f6.segment = 6
             if request.POST.get('how') == 'upload':
                 f6.filename = request.POST.get('filename6')
-            else
+            else:
                 f6.filename = request.POST.get('filenametext6')
             f6.title = request.POST.get('file_title6')
             f6.file_size = request.POST.get('size6') + request.POST.get('file_size_bytes6')
@@ -295,7 +295,7 @@ def upload_content(request):
             f7.segment = 7
             if request.POST.get('how') == 'upload':
                 f7.filename = request.POST.get('filename7')
-            else
+            else:
                 f7.filename = request.POST.get('filenametext7')
             f7.title = request.POST.get('file_title7')
             f7.file_size = request.POST.get('size7') + request.POST.get('file_size_bytes7')
@@ -317,7 +317,7 @@ def upload_content(request):
             f8.segment = 8
             if request.POST.get('how') == 'upload':
                 f8.filename = request.POST.get('filename8')
-            else
+            else:
                 f8.filename = request.POST.get('filenametext8')
             f8.title = request.POST.get('file_title8')
             f8.file_size = request.POST.get('size8') + request.POST.get('file_size_bytes8')
@@ -339,7 +339,7 @@ def upload_content(request):
             f9.segment = 9
             if request.POST.get('how') == 'upload':
                 f9.filename = request.POST.get('filename9')
-            else
+            else:
                 f9.filename = request.POST.get('filenametext9')
             f9.title = request.POST.get('file_title9')
             f9.file_size = request.POST.get('size9') + request.POST.get('file_size_bytes9')
@@ -361,7 +361,7 @@ def upload_content(request):
             f10.segment = 10
             if request.POST.get('how') == 'upload':
                 f10.filename = request.POST.get('filename10')
-            else
+            else:
                 f10.filename = request.POST.get('filenametext10')
             f10.title = request.POST.get('file_title10')
             f10.file_size = request.POST.get('size10') + request.POST.get('file_size_bytes10')
