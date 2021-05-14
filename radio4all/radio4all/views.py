@@ -121,7 +121,7 @@ def upload_content(request):
         now = datetime.datetime.now()
         p = Programs()
         p.program_title = request.POST.get('program_title')
-        p.uid = request.user.uid
+        p.uid = request.user
         p.program_type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
@@ -134,13 +134,14 @@ def upload_content(request):
         p.summary = request.POST.get('program_summary')
         p.keywords = request.POST.get('program_keywords')
         p.credits = request.POST.get('program_credits')
-        p.license = request.POST.get('program_license')
+        p.license = License.objects.get(cc_id=request.POST.get('program_license'))
         p.restriction = request.POST.get('program_restriction')
         p.notes = request.POST.get('program_notes')
         p.hidden = 0
-        p.advisory = request.POST.get('program_advisory')
+        p.advisory = Advisories.objects.get(ad_id = request.POST.get('program_advisory'))
         p.keywords = request.POST.get('program_keywords')
-        p.password = ''
+        # p.password = ''
+        p.permanent = 0
         # account for anonymous password
         p.date_created = now
         p.save()
