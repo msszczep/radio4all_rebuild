@@ -148,7 +148,7 @@ def upload_content(request):
         topics = request.POST.getlist('program_topics[]')
         for e in topics:
             t = TopicAssignment()
-            t.topic = Topics.objects.get(topic_id=e)
+            t.topic_id = e
             t.program_id = p.program_id
             t.save()
         f1 = Files()

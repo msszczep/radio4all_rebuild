@@ -185,7 +185,7 @@ class Sessions(models.Model):
 
 class TopicAssignment(models.Model):
     assign_id = models.AutoField(primary_key=True)
-    topic_id = models.ForeignKey('Topics', on_delete=models.PROTECT, related_name='+',default=1)
+    topic_id = models.IntegerField()
     program_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
