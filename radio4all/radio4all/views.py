@@ -145,16 +145,15 @@ def upload_content(request):
         # account for anonymous password
         p.date_created = now
         p.save()
-        t = TopicAssignment()
         topics = request.POST.getlist('program_topics[]')
         for e in topics:
             t = TopicAssignment()
-            t.topic_id = e.value
+            t.topic = Topics.objects.get(topic_id=e)
             t.program_id = p.program_id
             t.save()
         f1 = Files()
         f1.program_id = p.program_id
-        f1.version_id = v.version_id
+        f1.version_id = 1
         f1.segment = 1
         if request.POST.get('how') == 'upload':
             f1.filename = request.POST.get('filename1')
