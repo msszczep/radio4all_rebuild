@@ -156,7 +156,7 @@ def upload_content(request):
         f1.version_id = 1
         f1.segment = 1
         if request.POST.get('how') == 'upload':
-            f1.filename = request.POST.get('filename1')
+            f1.filename = str(request.FILES['filename1'])
         else:
             f1.filename = request.POST.get('filenametext1')
         f1.title = request.POST.get('file_title1')
@@ -170,7 +170,8 @@ def upload_content(request):
         f1.length = f1_hrs + ':' + f1_minutes + ':' + f1_seconds
         f1_timedelta = datetime.timedelta(0, (3600 * int(f1_hrs)) + (60 * int(f1_minutes)) + int(f1_seconds))
         f1.how = request.POST.get('how')
-        handle_uploaded_file(request.user.email, request.POST.get('filename1'), request.FILES['filename1'])
+        f1.no_delete = 0
+        handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
         f1.save()
         f2_timedelta = datetime.timedelta(0)
         if nps > 1:
