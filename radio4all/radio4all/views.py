@@ -110,8 +110,8 @@ def series(request):
 def contributor_browse(request):
     return render(request, 'radio4all/contributor_browse.html')
 
-def handle_uploaded_file(email_dir, f):
-    with open('/tank/radio4all/files/' + email_dir, 'wb+') as destination:
+def handle_uploaded_file(email_dir, filename, f):
+    with open('/tank/radio4all/files/' + email_dir + '/' + filename, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -170,7 +170,7 @@ def upload_content(request):
         f1.length = f1_hrs + ':' + f1_minutes + ':' + f1_seconds
         f1_timedelta = datetime.timedelta(0, (3600 * int(f1_hrs)) + (60 * int(f1_minutes)) + int(f1_seconds))
         f1.how = request.POST.get('how')
-        handle_uploaded_file(request.user.email, request.FILES['file1'])
+        handle_uploaded_file(request.user.email, request.POST.get('filename1'), request.FILES['filename1'])
         f1.save()
         f2_timedelta = datetime.timedelta(0)
         if nps > 1:
