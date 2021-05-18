@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment, Restrictions, Advisories, Lang, Formats
+from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment, Restrictions, Advisories, Lang, Formats, Versions
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -151,9 +151,21 @@ def upload_content(request):
             t.topic_id = e
             t.program_id = p.program_id
             t.save()
+        v = Versions()
+        v.version_title = request.POST.get('version_title')
+        v.version_description = request.POST.get('version_description')
+        v.lang_id = request.POST.get('version_lang')
+        v.date_recorded = request.POST.get('version_date_recorded')
+        v.location = request.POST.get('version_location')
+        v.script = request.POST.get('version_script')
+        v.length = '00:00:00'
+        v.version = 1
+        v.date_created = now
+        v.program_id = p.program_id
+        v.save()
         f1 = Files()
         f1.program_id = p.program_id
-        f1.version_id = 1
+        f1.version_id = v.version_id
         f1.segment = 1
         if request.POST.get('how') == 'upload':
             f1.filename = str(request.FILES['filename1'])
@@ -311,6 +323,7 @@ def upload_content(request):
             f7.how = request.POST.get('how')
             handle_uploaded_file(request.user.email, request.FILES['file7'])
             f7.save()
+        f8_timedelta = datetime.timedelta(0)
         if nps > 7:
             f8 = Files()
             f8.program_id = p.program_id
@@ -333,6 +346,7 @@ def upload_content(request):
             f8.how = request.POST.get('how')
             handle_uploaded_file(request.user.email, request.FILES['file8'])
             f8.save()
+        f9_timedelta = datetime.timedelta(0)
         if nps > 8:
             f9 = Files()
             f9.program_id = p.program_id
@@ -355,6 +369,7 @@ def upload_content(request):
             f9.how = request.POST.get('how')
             handle_uploaded_file(request.user.email, request.FILES['file9'])
             f9.save()
+        f10_timedelta = datetime.timedelta(0)
         if nps > 9:
             f10 = Files()
             f10.program_id = p.program_id
@@ -377,18 +392,7 @@ def upload_content(request):
             f10.how = request.POST.get('how')
             handle_uploaded_file(request.user.email, request.FILES['file10'])
             f10.save()
-        v = Versions()
-        v.program = p.program_id
-        v.version_title = request.POST.get('version_title')
-        v.version_description = request.POST.get('version_description')
-        v.lang = request.POST.get('version_lang')
-        v.date_recorded = request.POST.get('version_date_recorded')
-        v.location = request.POST.get('version_location')
-        v.script = request.POST.get('version_script')
         v.length = print(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
-        v.version_id = 1
-        v.date_created = now
-        v.program_id = p.program_id
         v.save()
         return HttpResponseRedirect('radio4all/home.html')
     else:
