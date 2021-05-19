@@ -192,7 +192,7 @@ def upload_content(request):
             f2.version_id = v.version_id
             f2.segment = 2
             if request.POST.get('how') == 'upload':
-                f2.filename = request.POST.get('filename2')
+                f2.filename = str(request.FILES('filename2'))
             else:
                 f2.filename = request.POST.get('filenametext2')
             f2.title = request.POST.get('file_title2')
@@ -206,7 +206,8 @@ def upload_content(request):
             f2.length = f2_hrs + ':' + f2_minutes + ':' + f2_seconds
             f2_timedelta = datetime.timedelta(0, (3600 * int(f2_hrs)) + (60 * int(f2_minutes)) + int(f2_seconds))
             f2.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file2'])
+            f2.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
             f2.save()
         f3_timedelta = datetime.timedelta(0)
         if nps > 2:
@@ -215,7 +216,7 @@ def upload_content(request):
             f3.version_id = v.version_id
             f3.segment = 3
             if request.POST.get('how') == 'upload':
-                f3.filename = request.POST.get('filename3')
+                f3.filename = str(request.FILES['filename3'])
             else:
                 f3.filename = request.POST.get('filenametext3')
             f3.title = request.POST.get('file_title3')
@@ -229,7 +230,8 @@ def upload_content(request):
             f3.length = f3_hrs + ':' + f3_minutes + ':' + f3_seconds
             f3_timedelta = datetime.timedelta(0, (3600 * int(f3_hrs)) + (60 * int(f3_minutes)) + int(f3_seconds))
             f3.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file3'])
+            f3.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
             f3.save()
         f4_timedelta = datetime.timedelta(0)
         if nps > 3:
@@ -238,7 +240,7 @@ def upload_content(request):
             f4.version_id = v.version_id
             f4.segment = 4
             if request.POST.get('how') == 'upload':
-                f4.filename = request.POST.get('filename4')
+                f4.filename = str(request.FILES['filename4'])
             else:
                 f4.filename = request.POST.get('filenametext4')
             f4.title = request.POST.get('file_title4')
@@ -252,7 +254,8 @@ def upload_content(request):
             f4.length = f4_hrs + ':' + f4_minutes + ':' + f4_seconds
             f4_timedelta = datetime.timedelta(0, (3600 * int(f4_hrs)) + (60 * int(f4_minutes)) + int(f4_seconds))
             f4.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file4'])
+            f4.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
             f4.save()
         f5_timedelta = datetime.timedelta(0)
         if nps > 4:
@@ -261,7 +264,7 @@ def upload_content(request):
             f5.version_id = v.version_id
             f5.segment = 5
             if request.POST.get('how') == 'upload':
-                f5.filename = request.POST.get('filename5')
+                f5.filename = str(request.FILES['filename5'])
             else:
                 f5.filename = request.POST.get('filenametext5')
             f5.title = request.POST.get('file_title5')
@@ -275,7 +278,8 @@ def upload_content(request):
             f5.length = f5_hrs + ':' + f5_minutes + ':' + f5_seconds
             f5_timedelta = datetime.timedelta(0, (3600 * int(f5_hrs)) + (60 * int(f5_minutes)) + int(f5_seconds))
             f5.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file5'])
+            f6.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
             f5.save()
         f6_timedelta = datetime.timedelta(0)
         if nps > 5:
@@ -284,7 +288,7 @@ def upload_content(request):
             f6.version_id = v.version_id
             f6.segment = 6
             if request.POST.get('how') == 'upload':
-                f6.filename = request.POST.get('filename6')
+                f6.filename = str(request.FILES['filename6'])
             else:
                 f6.filename = request.POST.get('filenametext6')
             f6.title = request.POST.get('file_title6')
@@ -298,7 +302,8 @@ def upload_content(request):
             f6.length = f6_hrs + ':' + f6_minutes + ':' + f6_seconds
             f6_timedelta = datetime.timedelta(0, (3600 * int(f6_hrs)) + (60 * int(f6_minutes)) + int(f6_seconds))
             f6.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file6'])
+            f6.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
             f6.save()
         f7_timedelta = datetime.timedelta(0)
         if nps > 6:
@@ -307,7 +312,7 @@ def upload_content(request):
             f7.version_id = v.version_id
             f7.segment = 7
             if request.POST.get('how') == 'upload':
-                f7.filename = request.POST.get('filename7')
+                f7.filename = str(request.FILES['filename7'])
             else:
                 f7.filename = request.POST.get('filenametext7')
             f7.title = request.POST.get('file_title7')
@@ -321,7 +326,8 @@ def upload_content(request):
             f7.length = f7_hrs + ':' + f7_minutes + ':' + f7_seconds
             f7_timedelta = datetime.timedelta(0, (3600 * int(f7_hrs)) + (60 * int(f7_minutes)) + int(f7_seconds))
             f7.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file7'])
+            f7.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
             f7.save()
         f8_timedelta = datetime.timedelta(0)
         if nps > 7:
@@ -330,7 +336,7 @@ def upload_content(request):
             f8.version_id = v.version_id
             f8.segment = 8
             if request.POST.get('how') == 'upload':
-                f8.filename = request.POST.get('filename8')
+                f8.filename = str(request.FILES['filename8'])
             else:
                 f8.filename = request.POST.get('filenametext8')
             f8.title = request.POST.get('file_title8')
@@ -344,7 +350,8 @@ def upload_content(request):
             f8.length = f8_hrs + ':' + f8_minutes + ':' + f8_seconds
             f8_timedelta = datetime.timedelta(0, (3600 * int(f8_hrs)) + (60 * int(f8_minutes)) + int(f8_seconds))
             f8.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file8'])
+            f8.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
             f8.save()
         f9_timedelta = datetime.timedelta(0)
         if nps > 8:
@@ -353,7 +360,7 @@ def upload_content(request):
             f9.version_id = v.version_id
             f9.segment = 9
             if request.POST.get('how') == 'upload':
-                f9.filename = request.POST.get('filename9')
+                f9.filename = str(request.FILES['filename9'])
             else:
                 f9.filename = request.POST.get('filenametext9')
             f9.title = request.POST.get('file_title9')
@@ -367,7 +374,8 @@ def upload_content(request):
             f9.length = f9_hrs + ':' + f9_minutes + ':' + f9_seconds
             f9_timedelta = datetime.timedelta(0, (3600 * int(f9_hrs)) + (60 * int(f9_minutes)) + int(f9_seconds))
             f9.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file9'])
+            f9.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
             f9.save()
         f10_timedelta = datetime.timedelta(0)
         if nps > 9:
@@ -376,7 +384,7 @@ def upload_content(request):
             f10.version_id = v.version_id
             f10.segment = 10
             if request.POST.get('how') == 'upload':
-                f10.filename = request.POST.get('filename10')
+                f10.filename = str(request.FILES['filename1'])
             else:
                 f10.filename = request.POST.get('filenametext10')
             f10.title = request.POST.get('file_title10')
@@ -390,7 +398,8 @@ def upload_content(request):
             f10.length = f10_hrs + ':' + f10_minutes + ':' + f10_seconds
             f10_timedelta = datetime.timedelta(0, (3600 * int(f10_hrs)) + (60 * int(f10_minutes)) + int(f10_seconds))
             f10.how = request.POST.get('how')
-            handle_uploaded_file(request.user.email, request.FILES['file10'])
+            f10.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
             f10.save()
         v.length = print(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.save()
