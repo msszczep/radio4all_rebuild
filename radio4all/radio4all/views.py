@@ -20,7 +20,7 @@ class HomePageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
-    queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
+    queryset = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(versions__version=1)  # Default: Model.objects.all()
     template_name = "radio4all/home.html"
 
 class DashboardView(LoginRequiredMixin,ListView):
