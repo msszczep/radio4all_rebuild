@@ -10,7 +10,7 @@ from .forms import ContactForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.paginator import Paginator
-from django.http import HttpResponse, Http404, BadHeaderError
+from django.http import HttpResponse, Http404, BadHeaderError, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.db import connection
 from django.utils import feedgenerator
