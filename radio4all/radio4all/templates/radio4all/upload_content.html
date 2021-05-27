@@ -2641,6 +2641,12 @@ for (i = 0; i < 10; i++) {
   fst[i].hidden = true;
   fbu[i].hidden = false;
 }
+
+(function () {
+    var d = new Date().toISOString().substring(0, 10);
+    var vd = document.getElementById('version_date');
+    vd.value = d;
+})();
 </script>
 </form>
      {% endblock %}
