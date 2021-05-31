@@ -1,0 +1,16 @@
+{% extends "radio4all/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Login Successful" %}</h1>
+
+ {% if request.user.is_authenticated %}
+        <div class="navcontent"><a href="/">Home</a> |
+        <a href="/program/add/">Add Program</a> |
+        <a href="/program/my/">My Programs</a></div>
+ {% endif %}
+
+{% endblock %}
