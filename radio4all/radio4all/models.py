@@ -41,6 +41,32 @@ class Captcha(models.Model):
         managed = False
         db_table = 'captcha'
 
+class Djusers(AbstractBaseUser, PermissionsMixin):
+    uid = models.AutoField(primary_key=True)
+    email = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+    user_level = models.IntegerField()
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
+    website = models.CharField(max_length=255, blank=True, null=True)
+    display_email = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
+    last_login = models.DateTimeField(blank=True, null=True)
+    suspended = models.IntegerField()
+    special = models.IntegerField()
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
+
+    class Meta:
+        managed = False
+        db_table = 'djusers'
 
 class Faq(models.Model):
     q = models.CharField(max_length=255, blank=True, null=True)
@@ -226,7 +252,6 @@ class Users(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
-
 
     class Meta:
         managed = False

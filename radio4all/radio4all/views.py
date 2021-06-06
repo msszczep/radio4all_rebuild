@@ -31,7 +31,7 @@ class DashboardView(LoginRequiredMixin,ListView):
     template_name = "radio4all/dashboard.html"
 
     def get_queryset(self):
-        return Programs.objects.filter(uid=self.request.user).order_by('-date_created')  # Default: Model.objects.all()
+        return Programs.objects.filter(uid=self.request.user.uid).order_by('-date_created')  # Default: Model.objects.all()
 
 class ProgramView(DetailView):
     model = Files
