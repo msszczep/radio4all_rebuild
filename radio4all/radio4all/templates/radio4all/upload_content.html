@@ -83,6 +83,15 @@ function show_upload_links() {
 <li><input type="radio" name="how" value="upload" checked="checked" onclick="show_upload_files();"/> Upload files to this server.</li><br/>
 <li><input type="radio" name="how" value="link" onclick="show_upload_links();" /> Add links to files already located on an FTP/Web server.</li>
 </ul>
+
+{% if request.user.email == "anonymous@radio4all.net" %}
+<label>Create a Password for this Program: </label>
+<input type="password" name="program_password" value="" size=25 maxlength=25 />&nbsp;
+<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png"><span>
+Anonymous users must create a password for each program they add.
+If you don\'t enter a password, you will not be able to edit the program later.
+</span></a>
+{% endif %}
     </td>
 </tr><tr>
 <td class="info_cell">

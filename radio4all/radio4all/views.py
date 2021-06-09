@@ -140,9 +140,8 @@ def upload_content(request):
         p.hidden = 0
         p.advisory = Advisories.objects.get(ad_id = request.POST.get('program_advisory'))
         p.keywords = request.POST.get('program_keywords')
-        # p.password = ''
+        p.password = request.POST.get('program_password')
         p.permanent = 0
-        # account for anonymous password
         p.date_created = now
         p.save()
         topics = request.POST.getlist('program_topics[]')
