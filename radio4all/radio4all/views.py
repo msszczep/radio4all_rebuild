@@ -427,6 +427,65 @@ def upload_content(request):
             'help_list': formats_to_use
         },)
 
+def edit_program(request):
+    if request.method == 'POST':
+        nps = int(request.POST.get('program_segments'))
+        now = datetime.datetime.now()
+        p = Programs.objects.get(request.)
+        p.program_title = request.POST.get('program_title')
+        p.uid = request.user
+        p.program_type = request.POST.get('program_type')
+        p.subtitle = request.POST.get('program_subtitle')
+        series = request.POST.get('program_series')
+        add_series = request.POST.get('program_add_series')
+        if series == '':
+            p.series = add_series
+        else:
+            p.series = series
+        p.speaker = request.POST.get('program_speaker')
+        p.summary = request.POST.get('program_summary')
+        p.keywords = request.POST.get('program_keywords')
+        p.credits = request.POST.get('program_credits')
+        p.license = License.objects.get(cc_id=request.POST.get('program_license'))
+        p.restriction = request.POST.get('program_restriction')
+        p.notes = request.POST.get('program_notes')
+        p.hidden = 0
+        p.advisory = Advisories.objects.get(ad_id = request.POST.get('program_advisory'))
+        p.keywords = request.POST.get('program_keywords')
+        p.password = request.POST.get('program_password')
+        p.permanent = 0
+        p.date_created = now
+        p.save()
+        topics = request.POST.getlist('program_topics[]')
+        for e in topics:
+            t = TopicAssignment()
+            t.topic_id = e
+            t.program_id = p.program_id
+            t.save()
+        return HttpResponseRedirect('radio4all/home.html')
+    else:
+        types_to_use = Types.objects.all()
+        licenses_to_use = License.objects.all()
+        restrictions_to_use = Restrictions.objects.all()
+        advisories_to_use = Advisories.objects.all()
+        languages_to_use = Lang.objects.all().order_by('lang')
+        topics_to_use = Topics.objects.all().order_by('topic')
+        uid = request.user.uid
+        series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
+        formats_to_use = Formats.objects.all().order_by('format_name')
+        program_data = Programs.objects.get(program_id = request.GET.get('pk'))
+        return render(request, 'radio4all/edit_program.html', {
+            'types_to_use': types_to_use,
+            'license_list': licenses_to_use,
+            'broadcast_restrictions_list': restrictions_to_use,
+            'advisories_list': advisories_to_use,
+            'language_list': languages_to_use,
+            'series_list': series_to_use,
+            'topics_list': topics_to_use,
+            'help_list': formats_to_use,
+            'program_data': program_data
+        },)
+
 def topic_browse(request):
     try:
         curs = connection.cursor()
