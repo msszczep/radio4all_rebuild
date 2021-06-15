@@ -1,0 +1,277 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+       
+     {% block content %}
+
+<form name="edit_program" accept-charset="UTF-8" class="edit_program" action="/edit/program/" method="post" enctype = "multipart/form-data">
+{% csrf_token %}
+<table width="100%" border="0"><tbody>
+<tr></tr>
+<style>
+.row_b {
+    background-color: #DCDCDC;
+}
+</style>
+<table width="100%" border="0">
+  <div id="content_title">Edit Program</div>
+  <th colspan="2">
+  Instructions: Fill out the form as completely as possible,
+  but do not repeat the same information in multiple fields.
+  You do not have to fill out every field.
+  </th>
+  <tr>
+    <td width="25%"><label>Program Title: </label></td>
+    <td width="75%"><input name="program_title" type="text" size="60" maxlength="255" /></td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Subtitle: </label></td>
+    <td><input name="program_subtitle" type="text" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td><label>Series: </label></td>
+    <td valign="top">
+      <select name="program_series">
+        <option value="">None</option>
+        {% for i in series_list %}
+          <option value="{{i}}">{{i}}</option>
+        {% endfor %}
+      </select>
+    <input name="program_add_series" type="text" size="60" maxlength="255" />
+    &nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    If you have a recurring program (example: "<i>The Weekly News Report</i>") you should put
+    the name of your regular recurring program here in the Series field. The <i>Program Title</i> field
+    above should be used for the title of the specific episode/installment you are uploading. If you are
+    not uploading a recurring program, then leave the Series field blank.<br /><br />
+    Any series you enter will be available in a drop down list above for future use.
+    </span></a>
+    </td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Program Type: </label></td>
+    <td><select name="program_type">
+      {% for i in types_to_use %}
+        <option value="{{i.type_id}}">{{i.type}}</option>
+      {% endfor %}
+      </select></td>
+  </tr>
+  <tr>
+  <td><label>Topic Associations: </label></td>
+  <td>
+ <script type="text/javascript">
+  $().ready(function() {
+    var selectedItemsList = [];
+    if (selectedItemsList != null) {
+      for (i=0;i < selectedItemsList.length; i++) {
+        var tmp = '<option value="' + selectedItemsList[i].optionValue + '">' +
+                  selectedItemsList[i].optionLabel + '</option>';
+        $(tmp).appendTo('#selected_items');
+      }
+    }
+    $('#add').click(function() {
+      return !$('#topics option:selected').remove().appendTo('#selected_items').removeAttr("selected");
+    });
+    $('#remove').click(function() {
+      return !$('#selected_items option:selected').remove().appendTo('#topics').removeAttr("selected");
+    });
+    $('form').submit(function() {
+      $('#selected_items option').each(function(i) {
+        $(this).attr("selected", "selected");
+      });
+    });
+  });
+ </script>
+ <style type="text/css">
+  #add {
+   display: block;
+   border: 1px solid #aaa;
+   text-decoration: none;
+   background-color: #F8F8FF;
+   margin: 2px;
+   clear:both;
+   width: 100px;
+  }
+  #remove {
+   display: block;
+   border: 1px solid #aaa;
+   text-decoration: none;
+   background-color: #F8F8FF;
+   margin: 2px;
+   width: 100px;
+  }
+  #topic_selection {
+   float:left;
+   text-align: center;
+   margin: 10px;
+  }
+  #topic_selected {
+   float:left;
+   text-align: center;
+   margin: 10px;
+  }
+  #topics {
+   width: 200px;
+   height:120px;
+  }
+  #selected_items {
+   width: 200px;
+   height: 120px;
+  }
+ </style>
+ <div id="topic_selection">
+  <label for="topics">Topics</label><br />
+  <select multiple id="topics">
+    {% for i in topics_list %}
+      <option value="{{i.topic_id}}">{{i.topic}}</option>
+    {% endfor %}
+  </select>
+  <a href="#" id="add">add &gt;&gt;</a>
+ </div>
+ <div id="topic_selected">
+  <label for="selected_items">Your Selections (max. 10 topics)</label><br />
+  <select multiple name="program_topics[]" id="selected_items"></select>
+  <a href="#" id="remove">&lt;&lt; remove</a>
+ </div>
+  </td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Featured Speakers or Commentators: </label></td>
+    <td><input name="program_speaker" type="text" size="60" maxlength="255" /></td>
+  </tr>
+  <tr>
+    <td><label>Program Summary (500 characters): </label></td>
+    <td><textarea name="program_summary" cols="60" rows="3"></textarea></td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Credits: </label></td>
+    <td><textarea name="program_credits" cols="60" rows="5"></textarea></td>
+  </tr>
+  <tr>
+    <td><label>License: </label></td>
+    <td>
+    {% for lic in license_list %}
+    <div>
+      <input type="radio" name="program_license" value="{{lic.cc_id}}">&nbsp;
+      <img src="http://www.radio4all.net/images/icons/{{lic.cc_abbrev}}.png" alt="{{lic.cc_name}}" title="{{cc.name}}">&nbsp;<a href="{{lic.cc_url}}" title="View License: {{lic.cc_name}}" target="_blank"><img src="http://www.radio4all.net/images/icons/info-icon.png" border="0" alt="View license: {{lic.cc_name}}"></a>
+    </div>
+    {% endfor %}
+ </td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Broadcast Restictions: </label></td>
+    <td>
+    <select name="program_restriction">
+      <option value="0">Unspecified</options>
+      {% for r in broadcast_restrictions_list %}
+        <option value={{r.lic_id}}>{{r.lic_description}}</option</a>
+      {% endfor %}
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label>Program Notes: </label></td>
+    <td><textarea name="program_notes" cols="60" rows="8"></textarea></td>
+  </tr>
+  <tr class="row_b">
+    <td><label>Broadcast Advisory: </label></td>
+    <td>
+    <select name="program_advisory">
+      <option value="0">Unspecified</option>
+      {% for a in advisories_list %}
+        <option value={{a.ad_id}}>{{a.ad_abbrev}}</option>
+      {% endfor %}
+    </select>&nbsp;&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    <b>Unknown</b> - program has not been screened for content.<br />
+    <b>No Advisories</b> - program content screened and verified.<br />
+    <b>Strong Language</b> - Warning: Program may contain strong or potentially offensive language,
+    including possible FCC violations.<br />
+    <b>Safe Harbor Only</b> - Warning: Program only suitable for FCC-designated safe harbor (10PM to 6AM).
+    </span></a>
+    </td>
+  </tr>
+  <tr>
+    <td><label>Keywords (comma sperated): </label></td>
+    <td><input name="program_keywords" type="text" size="60" maxlength="255" /></td>
+  </tr>
+
+<style>
+#file_upload { clear: both; }
+.file_table {
+  float: left;
+  width: 350px;
+  border: 0px;
+}
+.label_cell {
+  text-align: left;
+}
+#progress {
+  float: left;
+  clear: both;
+  display: block;
+  background: #cff;
+  background-color:#cff;
+  color:#000000;
+  border:1px solid #0cf;
+  text-align: right;
+  height: 20px;
+}
+</style>
+<script type="text/javascript">
+function progressMeter () {
+    var url = "/FileUpload";
+    $.getJSON(url, function (data) {
+        if (data.percentComplete >= 0) {
+            $("#msg").html('<span id="progress" style="width: '+data.percentComplete+'%">'+data.msg+'</span>');
+        }
+        else if (data.percentComplete == "error") {
+            $("#msg").html('<span class="errorstyle">'+data.msg+'</span>');
+        }
+        else {
+            $("#msg").html('<span>'+data.msg+'</span>');
+        }
+    });
+}
+function submitAction (param) {
+     p = document.getElementById(param);
+     p.disabled=true;
+     p.value='Uploading, Please Wait...';
+//     if ($.browser.mozilla) {
+//        document.getElementById('msg').className = 'statustyle';
+//        setInterval(progressMeter, 1500);
+//     }
+//     document.getElementById('msg').className = 'statustyle';
+}
+
+</script>
+<table width="100%"><tr><td><input type="submit" name="Submit" value="Save Changes" /></td></tr></table>
+<script type="text/javascript">
+var ft;
+ftg = document.getElementsByClassName("file_table");
+ftg[0].hidden = false;
+for (i = 1; i < 10; i++) {
+  ftg[i].hidden = true;
+}
+var fbu;
+var fut;
+var ftt;
+var fst;
+fbu = document.getElementsByClassName("file_browse_upload");
+fut = document.getElementsByClassName("file_url_text");
+ftt = document.getElementsByClassName("file_type_text");
+fst = document.getElementsByClassName("file_size_text");
+for (i = 0; i < 10; i++) {
+  fut[i].hidden = true;
+  ftt[i].hidden = true;
+  fst[i].hidden = true;
+  fbu[i].hidden = false;
+}
+
+(function () {
+    var d = new Date().toISOString().substring(0, 10);
+    var vd = document.getElementById('version_date');
+    vd.value = d;
+})();
+</script>
+</form>
+     {% endblock %}
+
+
