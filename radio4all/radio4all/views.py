@@ -427,11 +427,11 @@ def upload_content(request):
             'help_list': formats_to_use
         },)
 
-def edit_program(request):
+def edit_program(request, pk):
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
         now = datetime.datetime.now()
-        p = Programs.objects.get(request.)
+        p = Programs.objects.get(program_id = pk)
         p.program_title = request.POST.get('program_title')
         p.uid = request.user
         p.program_type = request.POST.get('program_type')
@@ -473,7 +473,7 @@ def edit_program(request):
         uid = request.user.uid
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
         formats_to_use = Formats.objects.all().order_by('format_name')
-        program_data = Programs.objects.get(program_id = request.GET.get('pk'))
+        program_data = Programs.objects.get(program_id = pk)
         return render(request, 'radio4all/edit_program.html', {
             'types_to_use': types_to_use,
             'license_list': licenses_to_use,
