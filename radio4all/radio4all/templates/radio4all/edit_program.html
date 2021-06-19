@@ -150,7 +150,7 @@
     <td>
     {% for lic in license_list %}
     <div>
-      <input type="radio" name="program_license" value="{{lic.cc_id}}">&nbsp;
+      <input type="radio" name="program_license" value="{{lic.cc_id}}" {% if lic.cc_id == program_data.license_id %}checked="checked"{% endif %}>&nbsp;
       <img src="http://www.radio4all.net/images/icons/{{lic.cc_abbrev}}.png" alt="{{lic.cc_name}}" title="{{cc.name}}">&nbsp;<a href="{{lic.cc_url}}" title="View License: {{lic.cc_name}}" target="_blank"><img src="http://www.radio4all.net/images/icons/info-icon.png" border="0" alt="View license: {{lic.cc_name}}"></a>
     </div>
     {% endfor %}
@@ -162,7 +162,7 @@
     <select name="program_restriction">
       <option value="0">Unspecified</options>
       {% for r in broadcast_restrictions_list %}
-        <option value={{r.lic_id}}>{{r.lic_description}}</option</a>
+        <option value={{r.lic_id}} {% if program_data.restriction == r.lic_id %}selected="selected"{% endif %}>{{r.lic_description}}</option</a>
       {% endfor %}
     </select>
     </td>
@@ -177,7 +177,7 @@
     <select name="program_advisory">
       <option value="0">Unspecified</option>
       {% for a in advisories_list %}
-        <option value={{a.ad_id}}>{{a.ad_abbrev}}</option>
+        <option value={{a.ad_id}} {% if program_data.advisory_id == a.ad_id %}selected="selected"{% endif %}>{{a.ad_abbrev}}</option>
       {% endfor %}
     </select>&nbsp;&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
     <b>Unknown</b> - program has not been screened for content.<br />
