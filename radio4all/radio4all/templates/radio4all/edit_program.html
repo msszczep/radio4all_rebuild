@@ -21,11 +21,11 @@
   </th>
   <tr>
     <td width="25%"><label>Program Title: </label></td>
-    <td width="75%"><input name="program_title" type="text" size="60" maxlength="255" /></td>
+    <td width="75%"><input name="program_title" type="text" size="60" maxlength="255" value="{{program_data.program_title}}" /></td>
   </tr>
   <tr class="row_b">
     <td><label>Subtitle: </label></td>
-    <td><input name="program_subtitle" type="text" size="60" maxlength="255" /></td>
+    <td><input name="program_subtitle" type="text" size="60" maxlength="255" value="{{program_data.subtitle}}" /></td>
   </tr>
   <tr>
     <td><label>Series: </label></td>
@@ -135,15 +135,15 @@
   </tr>
   <tr class="row_b">
     <td><label>Featured Speakers or Commentators: </label></td>
-    <td><input name="program_speaker" type="text" size="60" maxlength="255" /></td>
+    <td><input name="program_speaker" type="text" size="60" maxlength="255" value="{{program_data.speaker}}" /></td>
   </tr>
   <tr>
     <td><label>Program Summary (500 characters): </label></td>
-    <td><textarea name="program_summary" cols="60" rows="3"></textarea></td>
+    <td><textarea name="program_summary" cols="60" rows="3">{{program_data.summary}}</textarea></td>
   </tr>
   <tr class="row_b">
     <td><label>Credits: </label></td>
-    <td><textarea name="program_credits" cols="60" rows="5"></textarea></td>
+    <td><textarea name="program_credits" cols="60" rows="5">{{program_data.credits}}</textarea></td>
   </tr>
   <tr>
     <td><label>License: </label></td>
@@ -169,7 +169,7 @@
   </tr>
   <tr>
     <td><label>Program Notes: </label></td>
-    <td><textarea name="program_notes" cols="60" rows="8"></textarea></td>
+    <td><textarea name="program_notes" cols="60" rows="8">{{program_data.notes}}</textarea></td>
   </tr>
   <tr class="row_b">
     <td><label>Broadcast Advisory: </label></td>
@@ -190,7 +190,7 @@
   </tr>
   <tr>
     <td><label>Keywords (comma sperated): </label></td>
-    <td><input name="program_keywords" type="text" size="60" maxlength="255" /></td>
+    <td><input name="program_keywords" type="text" size="60" maxlength="255" value="{{program_data.keywords}}" /></td>
   </tr>
 
 <style>
