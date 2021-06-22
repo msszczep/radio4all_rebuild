@@ -121,7 +121,7 @@ def upload_content(request):
         now = datetime.datetime.now()
         p = Programs()
         p.program_title = request.POST.get('program_title')
-        p.uid = request.user
+        p.uid = Users.objects.get(uid = request.user.uid)
         p.program_type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
