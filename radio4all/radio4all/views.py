@@ -402,7 +402,7 @@ def upload_content(request):
             f10.save()
         v.length = print(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.save()
-        return HttpResponseRedirect('radio4all/home.html')
+        return HttpResponseRedirect('/')
     else:
         types_to_use = Types.objects.all()
         licenses_to_use = License.objects.all()
@@ -410,10 +410,7 @@ def upload_content(request):
         advisories_to_use = Advisories.objects.all()
         languages_to_use = Lang.objects.all().order_by('lang')
         topics_to_use = Topics.objects.all().order_by('topic')
-        if request.user.is_authenticated:
-            uid = request.user.uid
-        else:
-            uid = 16
+        uid = request.user.uid
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
         formats_to_use = Formats.objects.all().order_by('format_name')
         return render(request, 'radio4all/upload_content.html', {
@@ -462,7 +459,7 @@ def edit_program(request, pk):
             t.topic_id = e
             t.program_id = p.program_id
             t.save()
-        return HttpResponseRedirect('radio4all/home.html')
+        return HttpResponseRedirect('/')
     else:
         types_to_use = Types.objects.all()
         licenses_to_use = License.objects.all()
