@@ -122,7 +122,7 @@ def upload_content(request):
         p = Programs()
         p.program_title = request.POST.get('program_title')
         p.uid = Users.objects.get(uid = request.user.uid)
-        p.program_type = request.POST.get('program_type')
+        p.type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
         add_series = request.POST.get('program_add_series')
@@ -400,7 +400,7 @@ def upload_content(request):
             f10.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
             f10.save()
-        v.length = print(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
+        v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.save()
         return HttpResponseRedirect('/')
     else:
