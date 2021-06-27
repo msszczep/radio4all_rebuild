@@ -120,7 +120,7 @@
  <div id="topic_selection">
   <label for="topics">Topics</label><br />
   <select multiple id="topics">
-    {% for i in topics_list %}
+    {% for i in topic_assignments_unused %}
       <option value="{{i.topic_id}}">{{i.topic}}</option>
     {% endfor %}
   </select>
@@ -128,7 +128,11 @@
  </div>
  <div id="topic_selected">
   <label for="selected_items">Your Selections (max. 10 topics)</label><br />
-  <select multiple name="program_topics[]" id="selected_items"></select>
+  <select multiple name="program_topics[]" id="selected_items">
+    {% for i in topic_assignments_used %}
+      <option value="{{i.topic_id}}">{{i.topic}}</option>
+    {% endfor %}
+  </select>
   <a href="#" id="remove">&lt;&lt; remove</a>
  </div>
   </td>

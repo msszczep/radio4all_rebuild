@@ -431,7 +431,7 @@ def edit_program(request, pk):
         p = Programs.objects.get(program_id = pk)
         p.program_title = request.POST.get('program_title')
         p.uid = request.user
-        p.program_type = request.POST.get('program_type')
+        p.type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
         add_series = request.POST.get('program_add_series')
@@ -466,7 +466,12 @@ def edit_program(request, pk):
         restrictions_to_use = Restrictions.objects.all()
         advisories_to_use = Advisories.objects.all()
         languages_to_use = Lang.objects.all().order_by('lang')
-        topics_to_use = Topics.objects.all().order_by('topic')
+        topic_assignments_orig = TopicAssignment.objects.filter(program_id = pk).values_list('topic_id')
+        topic_assignments = []
+        for e in topic_assignments_orig:
+            topic_assignments.append(e[0])
+        topic_assignments_unused = Topics.objects.exclude(topic_id__in=topic_assignments).order_by('topic')
+        topic_assignments_used = Topics.objects.filter(topic_id__in=topic_assignments).order_by('topic')
         uid = request.user.uid
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
         formats_to_use = Formats.objects.all().order_by('format_name')
@@ -478,7 +483,8 @@ def edit_program(request, pk):
             'advisories_list': advisories_to_use,
             'language_list': languages_to_use,
             'series_list': series_to_use,
-            'topics_list': topics_to_use,
+            'topic_assignments_used': topic_assignments_used,
+            'topic_assignments_unused': topic_assignments_unused,
             'help_list': formats_to_use,
             'program_data': program_data
         },)
