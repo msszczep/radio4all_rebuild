@@ -3,7 +3,7 @@
        
      {% block content %}
 
-<form name="edit_program" accept-charset="UTF-8" class="edit_program" action="/edit/program/" method="post" enctype = "multipart/form-data">
+<form name="edit_program" accept-charset="UTF-8" class="edit_program" action="/edit/program/{{program_data.program_id}}" method="post" enctype = "multipart/form-data">
 {% csrf_token %}
 <table width="100%" border="0"><tbody>
 <tr></tr>

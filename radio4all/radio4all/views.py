@@ -426,11 +426,10 @@ def upload_content(request):
 
 def edit_program(request, pk):
     if request.method == 'POST':
-        nps = int(request.POST.get('program_segments'))
         now = datetime.datetime.now()
         p = Programs.objects.get(program_id = pk)
         p.program_title = request.POST.get('program_title')
-        p.uid = request.user
+        p.uid = Users.objects.get(uid = request.user.uid)
         p.type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
@@ -451,7 +450,6 @@ def edit_program(request, pk):
         p.keywords = request.POST.get('program_keywords')
         p.password = request.POST.get('program_password')
         p.permanent = 0
-        p.date_created = now
         p.save()
         topics = request.POST.getlist('program_topics[]')
         for e in topics:
