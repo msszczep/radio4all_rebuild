@@ -68,7 +68,11 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3"><label>Description: </label>{{  file.version.version_description }}</td>
+    <td colspan="3"><label>Description: </label>{{  file.version.version_description }}
+    {% if object.0.program.uid.uid == request.user.uid %}
+      <div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/version/{{file.version.version_id}}">Edit Version</a></div>
+    {% endif %}
+    </td>
   </tr>
   <tr class="row_b">
     <td width="35%"><label>Length (hh:mm:ss): </label>{{ file.version.length | date:'H:i:s' }}</td>
