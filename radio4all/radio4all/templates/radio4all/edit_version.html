@@ -1,0 +1,50 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+       
+     {% block content %}
+
+<form name="edit_version" accept-charset="UTF-8" class="add_edit" action="/edit/version/{{version_data.version_id}}" method="post" enctype = "multipart/form-data">
+{% csrf_token %}
+<table width="100%" border="0"><tbody>
+<table width="100%" border="0">
+<th colspan="3"><label>Version Information: </label></th>
+  <tr>
+    <td width="25%"><label>Version Title: </label></td>
+    <td width="75%" colspan=2><input type="text" name="version_title" size="60" maxlength="255" value="{{version_data.version_title}}" /></td>
+  </tr>
+  <tr>
+    <td><label>Version Description: </label></td>
+    <td colspan=2><input type="text" name="version_description" size="60" maxlength="255" value="{{version_data.version_description}}" /></td>
+  </tr>
+  <tr>
+    <td><label>Language: </label></td>
+    <td colspan=2>
+    <select name="version_lang">
+      {% for g in language_list %}
+        <option value="{{g.lang_id}}" {% if g.lang_id == version_data.lang_id %}SELECTED{% endif %}>{{g.lang}}</option>
+      {% endfor %}
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label>Date Recorded<br />(yyyy-mm-dd): </label></td>
+    <td colspan=2><input type="text" name="version_date_recorded" size="10" maxlength="10" id="version_date" value="{{version_data.date_recorded}}" /></td>
+  </tr>
+  <tr>
+    <td><label>Location Recorded: </label></td>
+    <td colspan=2><input type="text" name="version_location" size="60" maxlength="255" id="version_location" value="{{version_data.location}}" /></td>
+  </tr>
+  <tr>
+    <td width="25%"><label>Announcer Script / Transcript: </label></td>
+    <td width="55%"><textarea name="version_script" cols="60" rows="8">{{version_data.script}}</textarea></td>
+    <td width="20%" align="left" valign="middle"><a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    Use this field if you have a transcript of your program, or if you want to provide an announcer script for stations that may air your show.
+    </span></a></td>
+  </tr>
+</table>
+
+<table width="100%"><tr><td><input type="submit" name="Save Changes" value="Submit" /></td></tr></table>
+</form>
+     {% endblock %}
+
+

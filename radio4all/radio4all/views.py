@@ -487,6 +487,25 @@ def edit_program(request, pk):
             'program_data': program_data
         },)
 
+def edit_version(request, version_id):
+    if request.method == 'POST':
+        v = Versions.objects.get(version_id = version_id)
+        v.version_title = request.POST.get('version_title')
+        v.version_description = request.POST.get('version_description')
+        v.lang_id = request.POST.get('version_lang')
+        v.date_recorded = request.POST.get('version_date_recorded')
+        v.location = request.POST.get('version_location')
+        v.script = request.POST.get('version_script')
+        v.save()
+        return HttpResponseRedirect('/')
+    else:
+        languages_to_use = Lang.objects.all().order_by('lang')
+        version_data = Versions.objects.get(version_id = version_id)
+        return render(request, 'radio4all/edit_version.html', {
+            'language_list': languages_to_use,
+            'version_data': version_data
+        },)
+
 def topic_browse(request):
     try:
         curs = connection.cursor()
