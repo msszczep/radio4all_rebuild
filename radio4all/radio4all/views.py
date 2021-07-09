@@ -503,7 +503,8 @@ def edit_version(request, version_id):
         version_data = Versions.objects.get(version_id = version_id)
         return render(request, 'radio4all/edit_version.html', {
             'language_list': languages_to_use,
-            'version_data': version_data
+            'version_data': version_data,
+            'date_recorded': str(version_data.date_recorded)
         },)
 
 def add_version(request, ):
