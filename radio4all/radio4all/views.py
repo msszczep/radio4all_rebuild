@@ -507,7 +507,7 @@ def edit_version(request, version_id):
             'date_recorded': str(version_data.date_recorded)
         },)
 
-def add_version(request, ):
+def add_version(request, program_id):
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
         now = datetime.datetime.now()
@@ -519,9 +519,9 @@ def add_version(request, ):
         v.location = request.POST.get('version_location')
         v.script = request.POST.get('version_script')
         v.length = '00:00:00'
-        v.version = version_number # update
+        v.version = request.POST.get('version_number')
         v.date_created = now
-        v.program_id = program_id # update
+        v.program_id = request.POST.get('program_id')
         v.save()
         f1 = Files()
         f1.program_id = program_id
@@ -766,16 +766,12 @@ def add_version(request, ):
         return HttpResponseRedirect('/')
     else:
         languages_to_use = Lang.objects.all().order_by('lang')
+        version_tmp = Versions.objects.filter(program_id = program_id).order_by('-version')
         uid = request.user.uid
         return render(request, 'radio4all/upload_content.html', {
-            'types_to_use': types_to_use,
-            'license_list': licenses_to_use,
-            'broadcast_restrictions_list': restrictions_to_use,
-            'advisories_list': advisories_to_use,
             'language_list': languages_to_use,
-            'series_list': series_to_use,
-            'topics_list': topics_to_use,
-            'help_list': formats_to_use
+            'version_id': version_id,
+            'version_number_to_use': version_tmp[0].version + 1
         },)
 
 def topic_browse(request):
