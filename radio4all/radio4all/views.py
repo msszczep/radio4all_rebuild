@@ -519,9 +519,9 @@ def add_version(request, program_id):
         v.location = request.POST.get('version_location')
         v.script = request.POST.get('version_script')
         v.length = '00:00:00'
-        v.version = request.POST.get('version_number')
+        v.version = request.POST.get('version_number_to_use')
         v.date_created = now
-        v.program_id = request.POST.get('program_id')
+        v.program_id = program_id
         v.save()
         f1 = Files()
         f1.program_id = program_id
@@ -768,9 +768,9 @@ def add_version(request, program_id):
         languages_to_use = Lang.objects.all().order_by('lang')
         version_tmp = Versions.objects.filter(program_id = program_id).order_by('-version')
         uid = request.user.uid
-        return render(request, 'radio4all/upload_content.html', {
+        return render(request, 'radio4all/add_version.html', {
             'language_list': languages_to_use,
-            'version_id': version_id,
+            'program_id': program_id,
             'version_number_to_use': version_tmp[0].version + 1
         },)
 

@@ -3,7 +3,9 @@
        
      {% block content %}
 
-<form name="add_start" accept-charset="UTF-8" class="add_edit" action="/version/add/{{version_data.version_id}}" method="post" enctype = "multipart/form-data">
+<form name="add_start" accept-charset="UTF-8" class="add_edit" action="/version/add/{{program_id}}" method="post" enctype = "multipart/form-data">
+<input name="version_number" value="{{version_number_to_use}}" type="hidden">
+
 <script type="text/javascript">
 function adjust_program_segments(n) {
   var ft;

@@ -43,7 +43,7 @@ urlpatterns = [
     path('program/add', upload_content),
     path('edit/program/<int:pk>', edit_program),
     path('edit/version/<int:version_id>', edit_version),
-    path('version/add/<int:version_id>', add_version),
+    path('version/add/<int:program_id>', add_version),
     path('faq/', FaqPageView.as_view(), name='faq'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
