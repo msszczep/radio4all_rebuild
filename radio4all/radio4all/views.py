@@ -174,7 +174,10 @@ def upload_content(request):
         f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
         f1.bitrate = request.POST.get('bitrate1')
         f1.stereo = request.POST.get('stereo1')
-        f1.format_id = request.POST.get('file_type_text1')
+        if request.POST.get('how') == 'upload':
+            f1.format_id = os.path.splitext(request.POST.get('file_type_text1'))[-1].replace('.','')
+        else:
+            f1.format_id = request.POST.get('file_type_text1')
         f1_hrs = request.POST.get('hour1')
         f1_minutes = request.POST.get('minute1')
         f1_seconds = request.POST.get('second1')
@@ -472,7 +475,7 @@ def edit_program(request, pk):
         topic_assignments_used = Topics.objects.filter(topic_id__in=topic_assignments).order_by('topic')
         uid = request.user.uid
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
-        formats_to_use = Formats.objects.all().order_by('format_name')
+        formats_to_use = Formats.objects.all().order_by('format_name') Formats.objects.all().order_by('format_name')
         program_data = Programs.objects.get(program_id = pk)
         return render(request, 'radio4all/edit_program.html', {
             'types_to_use': types_to_use,
@@ -511,6 +514,7 @@ def add_version(request, program_id):
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
         now = datetime.datetime.now()
+        format_map = {f.format_ext: f.format_id for f in Formats.objects.all().order_by('format_name')}
         v = Versions()
         v.version_title = request.POST.get('version_title')
         v.version_description = request.POST.get('version_description')
@@ -519,7 +523,7 @@ def add_version(request, program_id):
         v.location = request.POST.get('version_location')
         v.script = request.POST.get('version_script')
         v.length = '00:00:00'
-        v.version = request.POST.get('version_number_to_use')
+        v.version = request.POST.get('version_number')
         v.date_created = now
         v.program_id = program_id
         v.save()
@@ -529,13 +533,14 @@ def add_version(request, program_id):
         f1.segment = 1
         if request.POST.get('how') == 'upload':
             f1.filename = str(request.FILES['filename1'])
+            f1.format_id = format_map[os.path.splitext(request.FILES['filename1'])[-1].replace('.','')]
         else:
             f1.filename = request.POST.get('filenametext1')
+            f1.format_id = request.POST.get('file_type_text1')
         f1.title = request.POST.get('file_title1')
         f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
         f1.bitrate = request.POST.get('bitrate1')
         f1.stereo = request.POST.get('stereo1')
-        f1.format_id = request.POST.get('file_type_text1')
         f1_hrs = request.POST.get('hour1')
         f1_minutes = request.POST.get('minute1')
         f1_seconds = request.POST.get('second1')
