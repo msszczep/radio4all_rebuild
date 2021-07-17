@@ -475,7 +475,7 @@ def edit_program(request, pk):
         topic_assignments_used = Topics.objects.filter(topic_id__in=topic_assignments).order_by('topic')
         uid = request.user.uid
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
-        formats_to_use = Formats.objects.all().order_by('format_name') Formats.objects.all().order_by('format_name')
+        formats_to_use = Formats.objects.all().order_by('format_name')
         program_data = Programs.objects.get(program_id = pk)
         return render(request, 'radio4all/edit_program.html', {
             'types_to_use': types_to_use,
