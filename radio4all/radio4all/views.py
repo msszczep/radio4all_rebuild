@@ -788,6 +788,16 @@ def add_version(request, program_id):
             'version_number_to_use': version_tmp[0].version + 1
         },)
 
+def show_script(request, program_id, version_id):
+    curs = connection.cursor()
+    curs.execute("SELECT t1.script, t2.program_title FROM versions AS t1, programs AS t2 WHERE t1.program_id = %s AND t2.hidden = '0' AND t1.version_id = %s AND t1.program_id = t2.program_id", (program_id, version_id))
+    r = curs.fetchall()
+    curs.close()
+    return render(request, 'radio4all/script.html', {
+        'program_title': r[0][1],
+        'script': r[0][0]
+    },)
+
 def topic_browse(request):
     try:
         curs = connection.cursor()
