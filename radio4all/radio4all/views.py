@@ -803,6 +803,7 @@ def topic_browse(request):
         curs = connection.cursor()
         curs.execute("SELECT count(t1.assign_id) as quantity, t1.topic_id as tag_id, t2.topic as tag FROM topic_assignment AS t1, topics AS t2 WHERE t1.topic_id = t2.topic_id AND t1.program_id NOT IN (SELECT program_id FROM programs WHERE hidden != 0) GROUP BY t1.topic_id ORDER BY t2.topic ASC")
         raw_topic_data = curs.fetchall()
+        curs.close()
         qtys = [x[0] for x in raw_topic_data]
         max_qty = max(qtys)
         min_qty = min(qtys)
@@ -829,6 +830,7 @@ def filter_topic(request, topic_id):
         filter_topic_data = []
         for c in curs.fetchall():
             filter_topic_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
+        curs.close()
         target = filter_topic_data
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
@@ -980,6 +982,7 @@ def filter_length(request, length_to_use):
         filter_length_data = []
         for c in curs.fetchall():
             filter_length_data.append({'program_id': c[0], 'program_title': c[1], 'series': c[2], 'date_created': c[3], 'length': c[4], 'contributor': c[5]})
+        curs.close()
         target = filter_length_data
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
@@ -1071,6 +1074,7 @@ def podcast_view(request):
             for c in curs.fetchall():
                 enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
                 f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
+    curs.close()
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
 def podcast_program(request):
@@ -1093,6 +1097,7 @@ def podcast_program(request):
         for c in curs.fetchall():
             enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
             f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
+    curs.close()
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
 def download(request, program, version,file):
