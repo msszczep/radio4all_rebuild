@@ -4,7 +4,7 @@
      {% block content %}
 
 <form name="add_start" accept-charset="UTF-8" class="add_edit" action="/segment/add/{{program_id}}/{{version_id}}" method="post" enctype = "multipart/form-data">
-<input name="version_number" value="{{version_number_to_use}}" type="hidden">
+<input name="segment_number" value="{{segment_number_to_use}}" type="hidden">
 
 <script type="text/javascript">
 function adjust_program_segments(n) {
@@ -2384,12 +2384,6 @@ for (i = 0; i < 10; i++) {
   fst[i].hidden = true;
   fbu[i].hidden = false;
 }
-
-(function () {
-    var d = new Date().toISOString().substring(0, 10);
-    var vd = document.getElementById('version_date');
-    vd.value = d;
-})();
 </script>
 </form>
      {% endblock %}

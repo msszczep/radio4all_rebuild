@@ -504,9 +504,11 @@ def edit_version(request, version_id):
     else:
         languages_to_use = Lang.objects.all().order_by('lang')
         version_data = Versions.objects.get(version_id = version_id)
+        formats_to_use = Formats.objects.all().order_by('format_name')
         return render(request, 'radio4all/edit_version.html', {
             'language_list': languages_to_use,
             'version_data': version_data,
+            'help_list': formats_to_use,
             'date_recorded': str(version_data.date_recorded)
         },)
 
@@ -780,12 +782,275 @@ def add_version(request, program_id):
         return HttpResponseRedirect('/')
     else:
         languages_to_use = Lang.objects.all().order_by('lang')
+        formats_to_use = Formats.objects.all().order_by('format_name')
         version_tmp = Versions.objects.filter(program_id = program_id).order_by('-version')
         uid = request.user.uid
         return render(request, 'radio4all/add_version.html', {
             'language_list': languages_to_use,
+            'help_list': formats_to_use,
             'program_id': program_id,
             'version_number_to_use': version_tmp[0].version + 1
+        },)
+
+def add_files(request, program_id, version_id):
+    if request.method == 'POST':
+        nps = int(request.POST.get('program_segments'))
+        f1 = Files()
+        f1.program_id = program_id
+        f1.version_id = version_id
+        f1.segment = int(request.POST.get('segment_number_to_use'))
+        if request.POST.get('how') == 'upload':
+            f1.filename = str(request.FILES['filename1'])
+            f1.format_id = format_map[os.path.splitext(str(request.FILES['filename1']))[-1].replace('.','')]
+        else:
+            f1.filename = request.POST.get('filenametext1')
+            f1.format_id = request.POST.get('file_type_text1')
+        f1.title = request.POST.get('file_title1')
+        f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
+        f1.bitrate = request.POST.get('bitrate1')
+        f1.stereo = request.POST.get('stereo1')
+        f1_hrs = request.POST.get('hour1')
+        f1_minutes = request.POST.get('minute1')
+        f1_seconds = request.POST.get('second1')
+        f1.length = f1_hrs + ':' + f1_minutes + ':' + f1_seconds
+        f1_timedelta = datetime.timedelta(0, (3600 * int(f1_hrs)) + (60 * int(f1_minutes)) + int(f1_seconds))
+        f1.how = request.POST.get('how')
+        f1.no_delete = 0
+        handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
+        f1.save()
+        f2_timedelta = datetime.timedelta(0)
+        if nps > 1:
+            f2 = Files()
+            f2.program_id = program_id
+            f2.version_id = version_id
+            f2.segment = int(request.POST.get('segment_number_to_use')) + 1
+            if request.POST.get('how') == 'upload':
+                f2.filename = str(request.FILES('filename2'))
+                f2.format_id = format_map[os.path.splitext(str(request.FILES['filename2']))[-1].replace('.','')]
+            else:
+                f2.filename = request.POST.get('filenametext2')
+                f2.format_id = request.POST.get('file_type_text2')
+            f2.title = request.POST.get('file_title2')
+            f2.file_size = request.POST.get('size2') + request.POST.get('file_size_bytes2')
+            f2.bitrate = request.POST.get('bitrate2')
+            f2.stereo = request.POST.get('stereo2')
+            f2_hrs = request.POST.get('hour2')
+            f2_minutes = request.POST.get('minute2')
+            f2_seconds = request.POST.get('second2')
+            f2.length = f2_hrs + ':' + f2_minutes + ':' + f2_seconds
+            f2_timedelta = datetime.timedelta(0, (3600 * int(f2_hrs)) + (60 * int(f2_minutes)) + int(f2_seconds))
+            f2.how = request.POST.get('how')
+            f2.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
+            f2.save()
+        f3_timedelta = datetime.timedelta(0)
+        if nps > 2:
+            f3 = Files()
+            f3.program_id = program_id
+            f3.version_id = version_id
+            f3.segment = int(request.POST.get('segment_number_to_use')) + 2
+            if request.POST.get('how') == 'upload':
+                f3.filename = str(request.FILES['filename3'])
+                f3.format_id = format_map[os.path.splitext(str(request.FILES['filename3']))[-1].replace('.','')]
+            else:
+                f3.filename = request.POST.get('filenametext3')
+                f3.format_id = request.POST.get('file_type_text3')
+            f3.title = request.POST.get('file_title3')
+            f3.file_size = request.POST.get('size3') + request.POST.get('file_size_bytes3')
+            f3.bitrate = request.POST.get('bitrate3')
+            f3.stereo = request.POST.get('stereo3')
+            f3_hrs = request.POST.get('hour3')
+            f3_minutes = request.POST.get('minute3')
+            f3_seconds = request.POST.get('second3')
+            f3.length = f3_hrs + ':' + f3_minutes + ':' + f3_seconds
+            f3_timedelta = datetime.timedelta(0, (3600 * int(f3_hrs)) + (60 * int(f3_minutes)) + int(f3_seconds))
+            f3.how = request.POST.get('how')
+            f3.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
+            f3.save()
+        f4_timedelta = datetime.timedelta(0)
+        if nps > 3:
+            f4 = Files()
+            f4.program_id = program_id
+            f4.version_id = version_id
+            f4.segment = int(request.POST.get('segment_number_to_use')) + 3
+            if request.POST.get('how') == 'upload':
+                f4.filename = str(request.FILES['filename4'])
+                f4.format_id = format_map[os.path.splitext(str(request.FILES['filename4']))[-1].replace('.','')]
+            else:
+                f4.filename = request.POST.get('filenametext4')
+                f4.format_id = request.POST.get('file_type_text4')
+            f4.title = request.POST.get('file_title4')
+            f4.file_size = request.POST.get('size4') + request.POST.get('file_size_bytes4')
+            f4.bitrate = request.POST.get('bitrate4')
+            f4.stereo = request.POST.get('stereo4')
+            f4_hrs = request.POST.get('hour4')
+            f4_minutes = request.POST.get('minute4')
+            f4_seconds = request.POST.get('second4')
+            f4.length = f4_hrs + ':' + f4_minutes + ':' + f4_seconds
+            f4_timedelta = datetime.timedelta(0, (3600 * int(f4_hrs)) + (60 * int(f4_minutes)) + int(f4_seconds))
+            f4.how = request.POST.get('how')
+            f4.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
+            f4.save()
+        f5_timedelta = datetime.timedelta(0)
+        if nps > 4:
+            f5 = Files()
+            f5.program_id = program_id
+            f5.version_id = version_id
+            f5.segment = int(request.POST.get('segment_number_to_use')) + 4
+            if request.POST.get('how') == 'upload':
+                f5.filename = str(request.FILES['filename5'])
+                f5.format_id = format_map[os.path.splitext(str(request.FILES['filename5']))[-1].replace('.','')]
+            else:
+                f5.filename = request.POST.get('filenametext5')
+                f5.format_id = request.POST.get('file_type_text5')
+            f5.title = request.POST.get('file_title5')
+            f5.file_size = request.POST.get('size5') + request.POST.get('file_size_bytes5')
+            f5.bitrate = request.POST.get('bitrate5')
+            f5.stereo = request.POST.get('stereo5')
+            f5_hrs = request.POST.get('hour5')
+            f5_minutes = request.POST.get('minute5')
+            f5_seconds = request.POST.get('second5')
+            f5.length = f5_hrs + ':' + f5_minutes + ':' + f5_seconds
+            f5_timedelta = datetime.timedelta(0, (3600 * int(f5_hrs)) + (60 * int(f5_minutes)) + int(f5_seconds))
+            f5.how = request.POST.get('how')
+            f6.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
+            f5.save()
+        f6_timedelta = datetime.timedelta(0)
+        if nps > 5:
+            f6 = Files()
+            f6.program_id = program_id
+            f6.version_id = version_id
+            f6.segment = int(request.POST.get('segment_number_to_use')) + 5
+            if request.POST.get('how') == 'upload':
+                f6.filename = str(request.FILES['filename6'])
+                f6.format_id = format_map[os.path.splitext(str(request.FILES['filename6']))[-1].replace('.','')]
+            else:
+                f6.filename = request.POST.get('filenametext6')
+                f6.format_id = request.POST.get('file_type_text6')
+            f6.title = request.POST.get('file_title6')
+            f6.file_size = request.POST.get('size6') + request.POST.get('file_size_bytes6')
+            f6.bitrate = request.POST.get('bitrate6')
+            f6.stereo = request.POST.get('stereo6')
+            f6_hrs = request.POST.get('hour6')
+            f6_minutes = request.POST.get('minute6')
+            f6_seconds = request.POST.get('second6')
+            f6.length = f6_hrs + ':' + f6_minutes + ':' + f6_seconds
+            f6_timedelta = datetime.timedelta(0, (3600 * int(f6_hrs)) + (60 * int(f6_minutes)) + int(f6_seconds))
+            f6.how = request.POST.get('how')
+            f6.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
+            f6.save()
+        f7_timedelta = datetime.timedelta(0)
+        if nps > 6:
+            f7 = Files()
+            f7.program_id = program_id
+            f7.version_id = version_id
+            f7.segment = int(request.POST.get('segment_number_to_use')) + 6
+            if request.POST.get('how') == 'upload':
+                f7.filename = str(request.FILES['filename7'])
+                f7.format_id = format_map[os.path.splitext(str(request.FILES['filename7']))[-1].replace('.','')]
+            else:
+                f7.filename = request.POST.get('filenametext7')
+                f7.format_id = request.POST.get('file_type_text7')
+            f7.title = request.POST.get('file_title7')
+            f7.file_size = request.POST.get('size7') + request.POST.get('file_size_bytes7')
+            f7.bitrate = request.POST.get('bitrate7')
+            f7.stereo = request.POST.get('stereo7')
+            f7_hrs = request.POST.get('hour7')
+            f7_minutes = request.POST.get('minute7')
+            f7_seconds = request.POST.get('second7')
+            f7.length = f7_hrs + ':' + f7_minutes + ':' + f7_seconds
+            f7_timedelta = datetime.timedelta(0, (3600 * int(f7_hrs)) + (60 * int(f7_minutes)) + int(f7_seconds))
+            f7.how = request.POST.get('how')
+            f7.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
+            f7.save()
+        f8_timedelta = datetime.timedelta(0)
+        if nps > 7:
+            f8 = Files()
+            f8.program_id = p.program_id
+            f8.version_id = v.version_id
+            f8.segment = int(request.POST.get('segment_number_to_use')) + 7
+            if request.POST.get('how') == 'upload':
+                f8.filename = str(request.FILES['filename8'])
+                f8.format_id = format_map[os.path.splitext(str(request.FILES['filename8']))[-1].replace('.','')]
+            else:
+                f8.filename = request.POST.get('filenametext8')
+                f8.format_id = request.POST.get('file_type_text8')
+            f8.title = request.POST.get('file_title8')
+            f8.file_size = request.POST.get('size8') + request.POST.get('file_size_bytes8')
+            f8.bitrate = request.POST.get('bitrate8')
+            f8.stereo = request.POST.get('stereo8')
+            f8_hrs = request.POST.get('hour8')
+            f8_minutes = request.POST.get('minute8')
+            f8_seconds = request.POST.get('second8')
+            f8.length = f8_hrs + ':' + f8_minutes + ':' + f8_seconds
+            f8_timedelta = datetime.timedelta(0, (3600 * int(f8_hrs)) + (60 * int(f8_minutes)) + int(f8_seconds))
+            f8.how = request.POST.get('how')
+            f8.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
+            f8.save()
+        f9_timedelta = datetime.timedelta(0)
+        if nps > 8:
+            f9 = Files()
+            f9.program_id = program_id
+            f9.version_id = version_id
+            f9.segment = int(request.POST.get('segment_number_to_use')) + 8
+            if request.POST.get('how') == 'upload':
+                f9.filename = str(request.FILES['filename9'])
+                f9.format_id = format_map[os.path.splitext(str(request.FILES['filename9']))[-1].replace('.','')]
+            else:
+                f9.filename = request.POST.get('filenametext9')
+                f9.format_id = request.POST.get('file_type_text9')
+            f9.title = request.POST.get('file_title9')
+            f9.file_size = request.POST.get('size9') + request.POST.get('file_size_bytes9')
+            f9.bitrate = request.POST.get('bitrate9')
+            f9.stereo = request.POST.get('stereo9')
+            f9_hrs = request.POST.get('hour9')
+            f9_minutes = request.POST.get('minute9')
+            f9_seconds = request.POST.get('second9')
+            f9.length = f9_hrs + ':' + f9_minutes + ':' + f9_seconds
+            f9_timedelta = datetime.timedelta(0, (3600 * int(f9_hrs)) + (60 * int(f9_minutes)) + int(f9_seconds))
+            f9.how = request.POST.get('how')
+            f9.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
+            f9.save()
+        f10_timedelta = datetime.timedelta(0)
+        if nps > 9:
+            f10 = Files()
+            f10.program_id = program_id
+            f10.version_id = version_id
+            f10.segment = int(request.POST.get('segment_number_to_use')) + 9
+            if request.POST.get('how') == 'upload':
+                f10.filename = str(request.FILES['filename1'])
+                f10.format_id = format_map[os.path.splitext(str(request.FILES['filename10']))[-1].replace('.','')]
+            else:
+                f10.filename = request.POST.get('filenametext10')
+                f10.format_id = request.POST.get('file_type_text10')
+            f10.title = request.POST.get('file_title10')
+            f10.file_size = request.POST.get('size10') + request.POST.get('file_size_bytes10')
+            f10.bitrate = request.POST.get('bitrate10')
+            f10.stereo = request.POST.get('stereo10')
+            f10_hrs = request.POST.get('hour10')
+            f10_minutes = request.POST.get('minute10')
+            f10_seconds = request.POST.get('second10')
+            f10.length = f10_hrs + ':' + f10_minutes + ':' + f10_seconds
+            f10_timedelta = datetime.timedelta(0, (3600 * int(f10_hrs)) + (60 * int(f10_minutes)) + int(f10_seconds))
+            f10.how = request.POST.get('how')
+            f10.no_delete = 0
+            handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
+            f10.save()
+        return HttpResponseRedirect('/')
+    else:
+        segment_tmp = Files.objects.filter(program_id = program_id).filter.(version_id = version_id).order_by('-segment')
+        uid = request.user.uid
+        return render(request, 'radio4all/add_version.html', {
+            'program_id': program_id,
+            'version_id': version_id,
+            'segment_number_to_use': segment_tmp[0].segment + 1
         },)
 
 def show_script(request, program_id, version_id):
