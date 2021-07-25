@@ -1045,9 +1045,9 @@ def add_files(request, program_id, version_id):
             f10.save()
         return HttpResponseRedirect('/')
     else:
-        segment_tmp = Files.objects.filter(program_id = program_id).filter.(version_id = version_id).order_by('-segment')
+        segment_tmp = Files.objects.filter(program_id = program_id, version_id = version_id).order_by('-segment')
         uid = request.user.uid
-        return render(request, 'radio4all/add_version.html', {
+        return render(request, 'radio4all/add_files.html', {
             'program_id': program_id,
             'version_id': version_id,
             'segment_number_to_use': segment_tmp[0].segment + 1

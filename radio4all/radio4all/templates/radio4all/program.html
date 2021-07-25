@@ -70,7 +70,7 @@
   <tr>
     <td colspan="3"><label>Description: </label>{{  file.version.version_description }}
     {% if object.0.program.uid.uid == request.user.uid %}
-      <div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/version/{{file.version.version_id}}">Edit Version</a></div>
+      <div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/version/{{file.version.version_id}}">Edit Version</a> | <a style="text-decoration: underline;" href="/segment/add/{{file.program.program_id}}/{{file.version.version_id}}">Add Files</a></div>
     {% endif %}
     </td>
   </tr>
