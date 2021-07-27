@@ -795,6 +795,7 @@ def add_version(request, program_id):
 def add_files(request, program_id, version_id):
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
+        format_map = {f.format_ext: f.format_id for f in Formats.objects.all().order_by('format_name')}
         f1 = Files()
         f1.program_id = program_id
         f1.version_id = version_id
