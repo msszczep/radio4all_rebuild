@@ -1,0 +1,24 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+{% block content %}
+<form name="delete_confirm"
+      accept-charset="UTF-8" method="POST"
+      action="/delete/version/{{program_id}}/{{version_id}}">
+    $fields
+  <table class="content" border="0" width="100%" align="left">
+    <tbody>
+      <tr>
+        <th colspan="2">$item_title</th>
+        </tr>
+        $anonpwd
+        $keep_files
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+        <td><input name="Confirm" value="Confirm Delete" type="submit" /> </td>
+        <td>$cancel_link</td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+{% endblock %}
