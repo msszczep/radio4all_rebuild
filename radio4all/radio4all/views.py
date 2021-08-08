@@ -1054,6 +1054,27 @@ def add_files(request, program_id, version_id):
             'segment_number_to_use': segment_tmp[0].segment + 1
         },)
 
+def delete_version(request, program_id, version_id):
+    if request.method == 'POST':
+        #v = Versions.objects.get(version_id = version_id)
+        #v.version_title = request.POST.get('version_title')
+        #v.version_description = request.POST.get('version_description')
+        #v.lang_id = request.POST.get('version_lang')
+        #v.date_recorded = request.POST.get('version_date_recorded')
+        #v.location = request.POST.get('version_location')
+        #v.script = request.POST.get('version_script')
+        #v.save()
+        #return HttpResponseRedirect('/')
+        return render(request, 'radio4all/delete_version_completed.html', {
+            'program_id': program_id,
+            'version_id': version_id
+        },)
+    else:
+        return render(request, 'radio4all/delete_version.html', {
+            'program_id': program_id,
+            'version_id': version_id
+        },)
+
 def show_script(request, program_id, version_id):
     curs = connection.cursor()
     curs.execute("SELECT t1.script, t2.program_title FROM versions AS t1, programs AS t2 WHERE t1.program_id = %s AND t2.hidden = '0' AND t1.version_id = %s AND t1.program_id = t2.program_id", (program_id, version_id))
