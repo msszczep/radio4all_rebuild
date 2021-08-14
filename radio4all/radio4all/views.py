@@ -1056,9 +1056,17 @@ def add_files(request, program_id, version_id):
 
 def delete_version(request, program_id, version_id):
     if request.method == 'POST':
-        Versions.objects.filter(version_id = version_id).delete() # confirm
-        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = 120099)]
-        # delete from locations where file_id = file_ids_to_use
+        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
+        version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
+        curs = connection.cursor()
+        curs.execute('DELETE from versions where version_id = %s', (version_id,))
+        for file_id in file_ids_to_use:
+            curs.execute('DELETE from locations where file_id = %s', (file_id,))
+        i = 1
+        for version_id in version_ids_to_use:
+            curs.execute('UPDATE versions set version = %s where version_id = %s', (i, file_id,))
+            i = i + 1
+        curs.close()
         return render(request, 'radio4all/delete_version_completed.html', {
             'program_id': program_id,
             'version_id': version_id
