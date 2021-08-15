@@ -1056,6 +1056,7 @@ def add_files(request, program_id, version_id):
 
 def delete_version(request, program_id, version_id):
     if request.method == 'POST':
+        # add in provisions to block for failed password
         file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
         version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
         curs = connection.cursor()
@@ -1072,9 +1073,11 @@ def delete_version(request, program_id, version_id):
             'version_id': version_id
         },)
     else:
+        is_anonymous = (request.user.email == 'anonymous@radio4all.net')
         return render(request, 'radio4all/delete_version.html', {
             'program_id': program_id,
-            'version_id': version_id
+            'version_id': version_id,
+            'is_anonymous': is_anonymous
         },)
 
 def show_script(request, program_id, version_id):
