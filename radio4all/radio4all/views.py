@@ -1054,14 +1054,20 @@ def add_files(request, program_id, version_id):
             'segment_number_to_use': segment_tmp[0].segment + 1
         },)
 
+def delete_given_file(email_dir, file_name):
+    file_to_delete = '/tank/radio4all/files/' + email_dir + '/' + file_name
+    if os.path.isfile(file_to_delete):
+        os.remove(file_to_delete
+
 def delete_version(request, program_id, version_id):
     if request.method == 'POST':
         # add in provisions to block for failed password
         file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
         version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
+        keep_files = request.POST.get('keep_files')
         curs = connection.cursor()
         curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.version_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id, version_id))
-        file_to_keep = curs.fetchall()
+        files_to_keep = curs.fetchall()
         curs.execute('DELETE from versions where version_id = %s', (version_id,))
         for file_id in file_ids_to_use:
             curs.execute('DELETE from locations where file_id = %s', (file_id,))
@@ -1070,11 +1076,13 @@ def delete_version(request, program_id, version_id):
             curs.execute('UPDATE versions set version = %s where version_id = %s', (i, file_id,))
             i = i + 1
         curs.close()
+        if not keep_files:
+            delete_given_file(request.user.email, files_to_keep)
         return render(request, 'radio4all/delete_version_completed.html', {
             'program_id': program_id,
             'version_id': version_id,
             'files_to_keep': files_to_keep,
-            'keep_files': request.POST.get('keep_files')
+            'keep_files': keep_files
         },)
     else:
         is_anonymous = (request.user.email == 'anonymous@radio4all.net')
