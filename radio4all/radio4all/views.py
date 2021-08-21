@@ -1057,7 +1057,7 @@ def add_files(request, program_id, version_id):
 def delete_given_file(email_dir, file_name):
     file_to_delete = '/tank/radio4all/files/' + email_dir + '/' + file_name
     if os.path.isfile(file_to_delete):
-        os.remove(file_to_delete
+        os.remove(file_to_delete)
 
 def delete_version(request, program_id, version_id):
     if request.method == 'POST':
@@ -1077,7 +1077,8 @@ def delete_version(request, program_id, version_id):
             i = i + 1
         curs.close()
         if not keep_files:
-            delete_given_file(request.user.email, files_to_keep)
+            for e in files_to_keep:
+                delete_given_file(request.user.email, e[2])
         return render(request, 'radio4all/delete_version_completed.html', {
             'program_id': program_id,
             'version_id': version_id,
