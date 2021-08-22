@@ -1093,6 +1093,37 @@ def delete_version(request, program_id, version_id):
             'is_anonymous': is_anonymous
         },)
 
+def delete_program(request, program_id):
+    if request.method == 'POST':
+        # add in provisions to block for failed password
+        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
+        version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
+        keep_files = request.POST.get('keep_files')
+        curs = connection.cursor()
+        curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id))
+        files_to_keep = curs.fetchall()
+        curs.execute('DELETE from programs where program_id = %s', (program_id,))
+        for file_id in file_ids_to_use:
+            curs.execute('DELETE from files where file_id = %s', (file_id,))
+            curs.execute('DELETE from locations where file_id = %s', (file_id,))
+        for version_id in version_ids_to_use:
+            curs.execute('DELETE from versions where version_id = %s', (file_id,))
+        curs.close()
+        if not keep_files:
+            for e in files_to_keep:
+                delete_given_file(request.user.email, e[2])
+        return render(request, 'radio4all/delete_version_completed.html', {
+            'program_id': program_id,
+            'files_to_keep': files_to_keep,
+            'keep_files': keep_files
+        },)
+    else:
+        is_anonymous = (request.user.email == 'anonymous@radio4all.net')
+        return render(request, 'radio4all/delete_program.html', {
+            'program_id': program_id,
+            'is_anonymous': is_anonymous
+        },)
+
 def show_script(request, program_id, version_id):
     curs = connection.cursor()
     curs.execute("SELECT t1.script, t2.program_title FROM versions AS t1, programs AS t2 WHERE t1.program_id = %s AND t2.hidden = '0' AND t1.version_id = %s AND t1.program_id = t2.program_id", (program_id, version_id))

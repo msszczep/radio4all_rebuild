@@ -22,7 +22,7 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     filter_license, filter_popular, type, license, length_page, advisory, series, filter_series, get_series, \
     contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse, \
     filter_topic, podcast_view, podcast_program, filter_advisory, get_contributor_contact, filter_search, \
-    upload_content, edit_program, edit_version, add_version, show_script, add_files, delete_version
+    upload_content, edit_program, edit_version, add_version, show_script, add_files, delete_version, delete_program
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -45,6 +45,7 @@ urlpatterns = [
     path('edit/version/<int:version_id>', edit_version),
     path('version/add/<int:program_id>', add_version),
     path('delete/version/<int:program_id>/<int:version_id>', delete_version),
+    path('delete/program/<int:program_id>', delete_program),
     path('script/<int:program_id>/<int:version_id>', show_script),
     path('segment/add/<int:program_id>/<int:version_id>', add_files),
     path('faq/', FaqPageView.as_view(), name='faq'),
