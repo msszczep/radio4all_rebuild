@@ -21,7 +21,7 @@
 </style>
 <div id="content_title" style="float: left;">Program Information</div>
 {% if object.0.program.uid.uid == request.user.uid %}
-<div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/program/{{object.0.program.program_id}}">Edit Program</a> | <a style="text-decoration: underline;" href="/version/add/{{object.0.program.program_id}}">Add Version</a></div>
+<div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/program/{{object.0.program.program_id}}">Edit Program</a> | <a style="text-decoration: underline;" href="/version/add/{{object.0.program.program_id}}">Add Version</a> | <a style="text-decoration: underline;" href="/delete/program/{{object.0.program.program_id}}">Delete Program</a></div>
 {% endif %}
 <table class="proginfo">
   <tbody>

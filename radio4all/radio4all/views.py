@@ -1065,6 +1065,7 @@ def delete_version(request, program_id, version_id):
         file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
         version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
         keep_files = request.POST.get('keep_files')
+        is_anonymous = request.POST.get('is_anonymous_hidden')
         curs = connection.cursor()
         curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.version_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id, version_id))
         files_to_keep = curs.fetchall()
@@ -1119,8 +1120,10 @@ def delete_program(request, program_id):
         },)
     else:
         is_anonymous = (request.user.email == 'anonymous@radio4all.net')
+        program_data = Programs.objects.get(program_id = program_id)
         return render(request, 'radio4all/delete_program.html', {
             'program_id': program_id,
+            'program_title': program_data[3]
             'is_anonymous': is_anonymous
         },)
 
