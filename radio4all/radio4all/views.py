@@ -1125,7 +1125,7 @@ def delete_program(request, program_id):
         program_data = Programs.objects.get(program_id = program_id)
         return render(request, 'radio4all/delete_program.html', {
             'program_id': program_id,
-            'program_title': program_data[3]
+            'program_title': program_data.program_title,
             'is_anonymous': is_anonymous
         },)
 
