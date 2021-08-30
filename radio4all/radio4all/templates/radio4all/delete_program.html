@@ -7,11 +7,10 @@
       action="/delete/program/{{program_id}}">
   <hidden>
   <input name="is_anonymous_hidden" value="{{is_anonymous}}" type="hidden">
-    $fields
   <table class="content" border="0" width="100%" align="left">
     <tbody>
       <tr>
-        <th colspan="2">{{program_title}}</th>
+        <th colspan="2">Delete Program: <i>{{program_title}}</i></th>
         </tr>
         {% if is_anonymous == True %}
           <tr><td colspan="2"><label>Enter the Password Associated With this Program: </label>
@@ -23,7 +22,7 @@
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
         <td><input name="Confirm" value="Confirm Delete" type="submit" /> </td>
-        <td>$cancel_link</td>
+        <td><a href="/program/{{program_id}}">&lt;Cancel&gt;</a></td>
       </tr>
     </tbody>
   </table>
