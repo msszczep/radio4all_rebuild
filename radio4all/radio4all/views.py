@@ -1088,9 +1088,13 @@ def delete_version(request, program_id, version_id):
         },)
     else:
         is_anonymous = (request.user.email == 'anonymous@radio4all.net')
+        program_data = Programs.objects.get(program_id = program_id)
+        version_data = Versions.objects.get(version_id = version_id)
         return render(request, 'radio4all/delete_version.html', {
             'program_id': program_id,
             'version_id': version_id,
+            'program_title': program_data.program_title,
+            'version': version_data.version,
             'is_anonymous': is_anonymous
         },)
 
@@ -1118,7 +1122,7 @@ def delete_program(request, program_id):
             'program_id': program_id,
             'files_to_keep': files_to_keep,
             'keep_files': keep_files,
-            'program_title': program_data[3]
+            'program_title': program_data.program_title
         },)
     else:
         is_anonymous = (request.user.email == 'anonymous@radio4all.net')
