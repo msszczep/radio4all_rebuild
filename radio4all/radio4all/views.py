@@ -1062,6 +1062,7 @@ def delete_given_file(email_dir, file_name):
 def delete_version(request, program_id, version_id):
     if request.method == 'POST':
         # add in provisions to block for failed password
+        program_data = Programs.objects.get(program_id = program_id)
         file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
         version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
         keep_files = request.POST.get('keep_files')
@@ -1084,7 +1085,8 @@ def delete_version(request, program_id, version_id):
             'program_id': program_id,
             'version_id': version_id,
             'files_to_keep': files_to_keep,
-            'keep_files': keep_files
+            'keep_files': keep_files,
+            'delete_title': program_data.program_title
         },)
     else:
         is_anonymous = (request.user.email == 'anonymous@radio4all.net')

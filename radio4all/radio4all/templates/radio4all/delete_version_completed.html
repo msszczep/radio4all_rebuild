@@ -3,7 +3,7 @@
 
 {% block content %}
 <div id="result_set">
-<div id="content_title">$delete_title</div>
+<div id="content_title">{{delete_title}}</div>
 Item successully deleted.<br /><br />
 {% if keep_files %}
   Here are the URLs to the local files that you chose to keep on the server:
@@ -12,6 +12,6 @@ Item successully deleted.<br /><br />
   {% endfor %}
 {% endif %}
 <br />
-<a href="$back_link">&lt; Back</a>
+<a href="/program/{{program_id}}">&lt; Back</a>
 </div>
 {% endblock %}
