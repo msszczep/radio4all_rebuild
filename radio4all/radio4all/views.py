@@ -194,6 +194,7 @@ def upload_content(request):
         c1.file_id = f1.file_id
         c1.filename =  str(request.FILES['filename1'])
         c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
         if nps > 1:
@@ -223,6 +224,7 @@ def upload_content(request):
             c2.file_id = f2.file_id
             c2.filename =  str(request.FILES['filename2'])
             c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
         if nps > 2:
@@ -252,6 +254,7 @@ def upload_content(request):
             c3.file_id = f3.file_id
             c3.filename =  str(request.FILES['filename3'])
             c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
         if nps > 3:
@@ -281,6 +284,7 @@ def upload_content(request):
             c4.file_id = f4.file_id
             c4.filename =  str(request.FILES['filename4'])
             c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
         if nps > 4:
@@ -310,6 +314,7 @@ def upload_content(request):
             c5.file_id = f5.file_id
             c5.filename =  str(request.FILES['filename5'])
             c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
         if nps > 5:
@@ -339,6 +344,7 @@ def upload_content(request):
             c6.file_id = f6.file_id
             c6.filename =  str(request.FILES['filename6'])
             c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
         if nps > 6:
@@ -368,6 +374,7 @@ def upload_content(request):
             c7.file_id = f7.file_id
             c7.filename =  str(request.FILES['filename7'])
             c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
         if nps > 7:
@@ -397,6 +404,7 @@ def upload_content(request):
             c8.file_id = f8.file_id
             c8.filename =  str(request.FILES['filename8'])
             c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
         if nps > 8:
@@ -426,6 +434,7 @@ def upload_content(request):
             c9.file_id = f9.file_id
             c9.filename =  str(request.FILES['filename9'])
             c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
         if nps > 9:
@@ -455,6 +464,7 @@ def upload_content(request):
             c10.file_id = f10.file_id
             c10.filename =  str(request.FILES['filename10'])
             c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            c10.mirror = 0
             c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.save()
@@ -609,6 +619,7 @@ def add_version(request, program_id):
         c1.file_id = f1.file_id
         c1.filename =  str(request.FILES['filename1'])
         c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
         if nps > 1:
@@ -639,6 +650,7 @@ def add_version(request, program_id):
             c2.file_id = f2.file_id
             c2.filename =  str(request.FILES['filename2'])
             c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
         if nps > 2:
@@ -669,6 +681,7 @@ def add_version(request, program_id):
             c3.file_id = f3.file_id
             c3.filename =  str(request.FILES['filename3'])
             c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
         if nps > 3:
@@ -699,6 +712,7 @@ def add_version(request, program_id):
             c4.file_id = f4.file_id
             c4.filename =  str(request.FILES['filename4'])
             c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
         if nps > 4:
@@ -729,6 +743,7 @@ def add_version(request, program_id):
             c5.file_id = f5.file_id
             c5.filename =  str(request.FILES['filename5'])
             c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
         if nps > 5:
@@ -759,6 +774,7 @@ def add_version(request, program_id):
             c6.file_id = f6.file_id
             c6.filename =  str(request.FILES['filename6'])
             c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
         if nps > 6:
@@ -789,6 +805,7 @@ def add_version(request, program_id):
             c7.file_id = f7.file_id
             c7.filename =  str(request.FILES['filename7'])
             c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
         if nps > 7:
@@ -819,6 +836,7 @@ def add_version(request, program_id):
             c8.file_id = f8.file_id
             c8.filename =  str(request.FILES['filename8'])
             c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
         if nps > 8:
@@ -849,6 +867,7 @@ def add_version(request, program_id):
             c9.file_id = f9.file_id
             c9.filename =  str(request.FILES['filename9'])
             c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
         if nps > 9:
@@ -879,6 +898,7 @@ def add_version(request, program_id):
             c10.file_id = f10.file_id
             c10.filename =  str(request.FILES['filename10'])
             c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            c10.mirror = 0
             c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.save()
@@ -926,6 +946,7 @@ def add_files(request, program_id, version_id):
         c1.file_id = f1.file_id
         c1.filename =  str(request.FILES['filename1'])
         c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
         if nps > 1:
@@ -956,6 +977,7 @@ def add_files(request, program_id, version_id):
             c2.file_id = f2.file_id
             c2.filename =  str(request.FILES['filename2'])
             c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
         if nps > 2:
@@ -986,6 +1008,7 @@ def add_files(request, program_id, version_id):
             c3.file_id = f3.file_id
             c3.filename =  str(request.FILES['filename3'])
             c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
         if nps > 3:
@@ -1016,6 +1039,7 @@ def add_files(request, program_id, version_id):
             c4.file_id = f4.file_id
             c4.filename =  str(request.FILES['filename4'])
             c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
         if nps > 4:
@@ -1046,6 +1070,7 @@ def add_files(request, program_id, version_id):
             c5.file_id = f5.file_id
             c5.filename =  str(request.FILES['filename5'])
             c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
         if nps > 5:
@@ -1076,6 +1101,7 @@ def add_files(request, program_id, version_id):
             c6.file_id = f6.file_id
             c6.filename =  str(request.FILES['filename6'])
             c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
         if nps > 6:
@@ -1106,6 +1132,7 @@ def add_files(request, program_id, version_id):
             c7.file_id = f7.file_id
             c7.filename =  str(request.FILES['filename7'])
             c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
         if nps > 7:
@@ -1136,6 +1163,7 @@ def add_files(request, program_id, version_id):
             c8.file_id = f8.file_id
             c8.filename =  str(request.FILES['filename8'])
             c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
         if nps > 8:
@@ -1166,6 +1194,7 @@ def add_files(request, program_id, version_id):
             c9.file_id = f9.file_id
             c9.filename =  str(request.FILES['filename9'])
             c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
         if nps > 9:
@@ -1196,6 +1225,7 @@ def add_files(request, program_id, version_id):
             c10.file_id = f10.file_id
             c10.filename =  str(request.FILES['filename10'])
             c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            c10.mirror = 0
             c10.save()
         return HttpResponseRedirect('/')
     else:
