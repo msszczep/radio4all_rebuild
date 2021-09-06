@@ -115,6 +115,9 @@ def handle_uploaded_file(email_dir, filename, f):
         for chunk in f.chunks():
             destination.write(chunk)
 
+def make_file_location(email_dir, filename):
+    return "http://www.radio4all.net/files/" + email_dir + "/" + filename
+
 def upload_content(request):
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
@@ -187,6 +190,11 @@ def upload_content(request):
         f1.no_delete = 0
         handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
         f1.save()
+        c1 = Locations()
+        c1.file_id = f1.file_id
+        c1.filename =  str(request.FILES['filename1'])
+        c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        c1.save()
         f2_timedelta = datetime.timedelta(0)
         if nps > 1:
             f2 = Files()
@@ -211,6 +219,11 @@ def upload_content(request):
             f2.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
             f2.save()
+            c2 = Locations()
+            c2.file_id = f2.file_id
+            c2.filename =  str(request.FILES['filename2'])
+            c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            c2.save()
         f3_timedelta = datetime.timedelta(0)
         if nps > 2:
             f3 = Files()
@@ -235,6 +248,11 @@ def upload_content(request):
             f3.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
             f3.save()
+            c3 = Locations()
+            c3.file_id = f3.file_id
+            c3.filename =  str(request.FILES['filename3'])
+            c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            c3.save()
         f4_timedelta = datetime.timedelta(0)
         if nps > 3:
             f4 = Files()
@@ -259,6 +277,11 @@ def upload_content(request):
             f4.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
             f4.save()
+            c4 = Locations()
+            c4.file_id = f4.file_id
+            c4.filename =  str(request.FILES['filename4'])
+            c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            c4.save()
         f5_timedelta = datetime.timedelta(0)
         if nps > 4:
             f5 = Files()
@@ -283,6 +306,11 @@ def upload_content(request):
             f6.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
             f5.save()
+            c5 = Locations()
+            c5.file_id = f5.file_id
+            c5.filename =  str(request.FILES['filename5'])
+            c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            c5.save()
         f6_timedelta = datetime.timedelta(0)
         if nps > 5:
             f6 = Files()
@@ -307,6 +335,11 @@ def upload_content(request):
             f6.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
             f6.save()
+            c6 = Locations()
+            c6.file_id = f6.file_id
+            c6.filename =  str(request.FILES['filename6'])
+            c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            c6.save()
         f7_timedelta = datetime.timedelta(0)
         if nps > 6:
             f7 = Files()
@@ -331,6 +364,11 @@ def upload_content(request):
             f7.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
             f7.save()
+            c7 = Locations()
+            c7.file_id = f7.file_id
+            c7.filename =  str(request.FILES['filename7'])
+            c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            c7.save()
         f8_timedelta = datetime.timedelta(0)
         if nps > 7:
             f8 = Files()
@@ -355,6 +393,11 @@ def upload_content(request):
             f8.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
             f8.save()
+            c8 = Locations()
+            c8.file_id = f8.file_id
+            c8.filename =  str(request.FILES['filename8'])
+            c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            c8.save()
         f9_timedelta = datetime.timedelta(0)
         if nps > 8:
             f9 = Files()
@@ -379,6 +422,11 @@ def upload_content(request):
             f9.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
             f9.save()
+            c9 = Locations()
+            c9.file_id = f9.file_id
+            c9.filename =  str(request.FILES['filename9'])
+            c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            c9.save()
         f10_timedelta = datetime.timedelta(0)
         if nps > 9:
             f10 = Files()
@@ -403,6 +451,11 @@ def upload_content(request):
             f10.no_delete = 0
             handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
             f10.save()
+            c10 = Locations()
+            c10.file_id = f10.file_id
+            c10.filename =  str(request.FILES['filename10'])
+            c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
         v.save()
         return HttpResponseRedirect('/')
