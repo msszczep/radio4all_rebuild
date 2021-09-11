@@ -1247,7 +1247,7 @@ def delete_version(request, program_id, version_id):
         # add in provisions to block for failed password in anonymous uploads
         program_data = Programs.objects.get(program_id = program_id)
         file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
-        version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
+        version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version_id')]
         keep_files = request.POST.get('keep_files')
         is_anonymous = request.POST.get('is_anonymous_hidden')
         curs = connection.cursor()
@@ -1257,8 +1257,8 @@ def delete_version(request, program_id, version_id):
         for file_id in file_ids_to_use:
             curs.execute('DELETE from locations where file_id = %s', (file_id,))
         i = 1
-        for version_id in version_ids_to_use:
-            curs.execute('UPDATE versions set version = %s where version_id = %s', (i, file_id,))
+        for vid in version_ids_to_use:
+            curs.execute('UPDATE versions set version = %s where version_id = %s', (i, vid,))
             i = i + 1
         curs.close()
         if not keep_files:
@@ -1284,9 +1284,9 @@ def delete_version(request, program_id, version_id):
 
 def delete_program(request, program_id):
     if request.method == 'POST':
-        # add in provisions to block for failed password
+        # add in provisions to block for failed password in anonymous uploads
         file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
-        version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version')]
+        version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version_id')]
         keep_files = request.POST.get('keep_files')
         program_data = Programs.objects.get(program_id = program_id)
         curs = connection.cursor()
