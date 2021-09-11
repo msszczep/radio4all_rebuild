@@ -177,10 +177,10 @@ def upload_content(request):
         f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
         f1.bitrate = request.POST.get('bitrate1')
         f1.stereo = request.POST.get('stereo1')
-        if request.POST.get('how') == 'upload':
-            f1.format_id = os.path.splitext(request.POST.get('file_type_text1'))[-1].replace('.','')
-        else:
-            f1.format_id = request.POST.get('file_type_text1')
+        #if request.POST.get('how') == 'upload':
+        #    f1.format_id = os.path.splitext(request.POST.get('file_type_text1'))[-1].replace('.','')
+        #else:
+        f1.format_id = request.POST.get('file_type_text1')
         f1_hrs = request.POST.get('hour1')
         f1_minutes = request.POST.get('minute1')
         f1_seconds = request.POST.get('second1')

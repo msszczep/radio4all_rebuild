@@ -40,7 +40,7 @@ urlpatterns = [
     path('news/', NewsPageView.as_view(), name='news'),
     path('program/<int:pk>', ProgramView.as_view(), name='program-detail'),
     path('program/my/', DashboardView.as_view(), name='my-programs'),
-    path('program/add', upload_content),
+    path('program/add/', upload_content),
     path('edit/program/<int:pk>', edit_program),
     path('edit/version/<int:version_id>', edit_version),
     path('version/add/<int:program_id>', add_version),
