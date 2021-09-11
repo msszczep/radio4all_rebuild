@@ -1643,6 +1643,8 @@ def download(request, program, version,file):
         file_path = "http://www.radio4all.net/files/"+target.program.uid.email+"/"+target.filename
     else:
         file_path = location.file_location
+    if target.downloads == None:
+        target.downloads = 0
     target.downloads=target.downloads+1
     target.save()
     return redirect(file_path)
