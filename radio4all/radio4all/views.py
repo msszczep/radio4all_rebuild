@@ -598,7 +598,8 @@ def add_version(request, program_id):
         f1.segment = 1
         if request.POST.get('how') == 'upload':
             f1.filename = str(request.FILES['filename1'])
-            f1.format_id = format_map[os.path.splitext(str(request.FILES['filename1']))[-1].replace('.','')]
+            f1.format_id = request.POST.get('file_type_text1')
+            # f1.format_id = format_map[os.path.splitext(str(request.FILES['filename1']))[-1].replace('.','')]
         else:
             f1.filename = request.POST.get('filenametext1')
             f1.format_id = request.POST.get('file_type_text1')
