@@ -5,7 +5,7 @@
 <form name="delete_confirm"
       accept-charset="UTF-8" method="POST"
       action="/delete/program/{{program_id}}">
-  <hidden>
+  {% csrf_token %}
   <input name="is_anonymous_hidden" value="{{is_anonymous}}" type="hidden">
   <table class="content" border="0" width="100%" align="left">
     <tbody>

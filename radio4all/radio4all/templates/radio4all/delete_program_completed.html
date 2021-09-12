@@ -8,7 +8,7 @@ Item successully deleted.<br /><br />
 {% if keep_files %}
   Here are the URLs to the local files that you chose to keep on the server:
   {% for entry in files_to_keep %}
-    {{entry[3]}}
+    {{entry.3}}
   {% endfor %}
 {% endif %}
 <br />

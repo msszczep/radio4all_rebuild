@@ -1286,12 +1286,12 @@ def delete_version(request, program_id, version_id):
 def delete_program(request, program_id):
     if request.method == 'POST':
         # add in provisions to block for failed password in anonymous uploads
-        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
+        file_ids_to_use = [x.file_id for x in Files.objects.filter(program_id = program_id))]
         version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version_id')]
         keep_files = request.POST.get('keep_files')
         program_data = Programs.objects.get(program_id = program_id)
         curs = connection.cursor()
-        curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id))
+        curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id,))
         files_to_keep = curs.fetchall()
         curs.execute('DELETE from programs where program_id = %s', (program_id,))
         for file_id in file_ids_to_use:
