@@ -1297,8 +1297,8 @@ def delete_program(request, program_id):
         for file_id in file_ids_to_use:
             curs.execute('DELETE from files where file_id = %s', (file_id,))
             curs.execute('DELETE from locations where file_id = %s', (file_id,))
-        for version_id in version_ids_to_use:
-            curs.execute('DELETE from versions where version_id = %s', (file_id,))
+        for vid in version_ids_to_use:
+            curs.execute('DELETE from versions where version_id = %s', (vid,))
         curs.close()
         if not keep_files:
             for e in files_to_keep:
