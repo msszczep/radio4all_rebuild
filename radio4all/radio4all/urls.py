@@ -47,7 +47,7 @@ urlpatterns = [
     path('delete/version/<int:program_id>/<int:version_id>', delete_version),
     path('delete/program/<int:program_id>', delete_program),
     path('script/<int:program_id>/<int:version_id>', show_script),
-    path('segment/add/<int:program_id>/<int:version_id>', add_files),
+    path('add/segment/<int:program_id>/<int:version_id>', add_files),
     path('faq/', FaqPageView.as_view(), name='faq'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
