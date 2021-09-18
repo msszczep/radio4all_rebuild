@@ -575,6 +575,27 @@ def edit_version(request, version_id):
             'date_recorded': str(version_data.date_recorded)
         },)
 
+def edit_segment(request, file_id):
+    if request.method == 'POST':
+        f = Files.objects.get(file_id = file_id)
+        f.title = request.POST.get('file_title')
+        f.bitrate = request.POST.get('bitrate')
+        f.stereo = request.POST.get('stereo')
+        f.length = request.POST.get('length')
+        f.save()
+        return HttpResponseRedirect('/')
+    else:
+        file_data = Files.objects.get(file_id = file_id)
+        length = file_data.length
+        return render(request, 'radio4all/edit_segment.html', {
+            'file_title': file_data.title,
+            'bitrate': file_data.bitrate,
+            'stereo': file_data.stereo,
+            'hours': length.hour,
+            'minutes': length.minute,
+            'seconds': length.second
+        },)
+
 def add_version(request, program_id):
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
