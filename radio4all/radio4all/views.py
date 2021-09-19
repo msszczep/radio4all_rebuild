@@ -1361,6 +1361,7 @@ def delete_segment(request, program_id, version_id, file_id):
             'program_id': program_id,
             'files_to_keep': files_to_keep,
             'keep_files': keep_files,
+            'version_id': version_id,
             'delete_title': program_data.program_title
         },)
     else:
