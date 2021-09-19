@@ -1277,6 +1277,7 @@ def delete_version(request, program_id, version_id):
         files_to_keep = curs.fetchall()
         curs.execute('DELETE from versions where version_id = %s', (version_id,))
         for file_id in file_ids_to_use:
+            curs.execute('DELETE from files where file_id = %s', (file_id,))
             curs.execute('DELETE from locations where file_id = %s', (file_id,))
         i = 1
         for vid in version_ids_to_use:
@@ -1336,6 +1337,43 @@ def delete_program(request, program_id):
         return render(request, 'radio4all/delete_program.html', {
             'program_id': program_id,
             'program_title': program_data.program_title,
+            'is_anonymous': is_anonymous
+        },)
+
+def delete_segment(request, program_id, version_id, file_id):
+    if request.method == 'POST':
+        # add in provisions to block for failed password in anonymous uploads
+        program_data = Programs.objects.get(program_id = program_id)
+        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
+        keep_files = request.POST.get('keep_files')
+        is_anonymous = request.POST.get('is_anonymous_hidden')
+        curs = connection.cursor()
+        curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.version_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id, version_id))
+        files_to_keep = curs.fetchall()
+        for file_id in file_ids_to_use:
+            curs.execute('DELETE from files where file_id = %s', (file_id,))
+            curs.execute('DELETE from locations where file_id = %s', (file_id,))
+        curs.close()
+        if not keep_files:
+            for e in files_to_keep:
+                delete_given_file(request.user.email, e[2])
+        return render(request, 'radio4all/delete_segment_completed.html', {
+            'program_id': program_id,
+            'files_to_keep': files_to_keep,
+            'keep_files': keep_files,
+            'delete_title': program_data.program_title
+        },)
+    else:
+        is_anonymous = (request.user.email == 'anonymous@radio4all.net')
+        program_data = Programs.objects.get(program_id = program_id)
+        version_data = Versions.objects.get(version_id = version_id)
+        file_data = Files.objects.get(file_id = file_id)
+        return render(request, 'radio4all/delete_segment.html', {
+            'file_id': file_id,
+            'file_name': file_data.filename
+            'version_id': version_id,
+            'program_title': program_data.program_title,
+            'version': version_data.version,
             'is_anonymous': is_anonymous
         },)
 
