@@ -1,0 +1,30 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+{% block content %}
+<form name="delete_confirm"
+      accept-charset="UTF-8" method="POST"
+      action="/delete/segment/{{file_id}}">
+  {% csrf_token %}
+  <input name="is_anonymous_hidden" value="{{is_anonymous}}" type="hidden">
+  <table class="content" border="0" width="100%" align="left">
+    <tbody>
+      <tr>
+        <th colspan="2">Delete file <i>{{file_name}}</i> from version <i>{{version}}</i> of program <i>{{program_title}}</i></th>
+        </tr>
+        {% if is_anonymous == True %}
+          <tr><td colspan="2"><label>Enter the Password Associated With this Program: </label>
+          <input type="password" name="program_password" value="" size=25 maxlength=25 />
+          </td></tr>
+        {% endif %}
+        <tr><td colspan="2"> Do not delete locally uploaded files. &nbsp;
+        <input type="checkbox" name="keep_files" /></td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+        <td><input name="Confirm" value="Confirm Delete" type="submit" /> </td>
+        <td><a href="/edit/version/{{version_id}}">&lt;Cancel&gt;</a></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+{% endblock %}
