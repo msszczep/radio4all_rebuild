@@ -567,10 +567,12 @@ def edit_version(request, version_id):
     else:
         languages_to_use = Lang.objects.all().order_by('lang')
         version_data = Versions.objects.get(version_id = version_id)
+        file_data = Files.objects.filter(version_id = version_id)
         formats_to_use = Formats.objects.all().order_by('format_name')
         return render(request, 'radio4all/edit_version.html', {
             'language_list': languages_to_use,
             'version_data': version_data,
+            'file_data': file_data,
             'help_list': formats_to_use,
             'date_recorded': str(version_data.date_recorded)
         },)
