@@ -583,7 +583,7 @@ def edit_segment(request, file_id):
         f.title = request.POST.get('file_title')
         f.bitrate = request.POST.get('bitrate')
         f.stereo = request.POST.get('stereo')
-        f.length = request.POST.get('length')
+        f.length = request.POST.get('hour') + ":" + request.POST.get('minute') + ":" + request.POST.get('second')
         f.save()
         return HttpResponseRedirect('/')
     else:
