@@ -1310,7 +1310,7 @@ def delete_version(request, program_id, version_id):
 def delete_program(request, program_id):
     if request.method == 'POST':
         # add in provisions to block for failed password in anonymous uploads
-        file_ids_to_use = [x.file_id for x in Files.objects.filter(program_id = program_id))]
+        file_ids_to_use = [x.file_id for x in Files.objects.filter(program_id = program_id)]
         version_ids_to_use = [x.version_id for x in Versions.objects.filter(program_id = program_id).order_by('version_id')]
         keep_files = request.POST.get('keep_files')
         program_data = Programs.objects.get(program_id = program_id)
@@ -1373,7 +1373,7 @@ def delete_segment(request, program_id, version_id, file_id):
         file_data = Files.objects.get(file_id = file_id)
         return render(request, 'radio4all/delete_segment.html', {
             'file_id': file_id,
-            'file_name': file_data.filename
+            'file_name': file_data.filename,
             'version_id': version_id,
             'program_title': program_data.program_title,
             'version': version_data.version,
