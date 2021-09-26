@@ -585,11 +585,12 @@ def edit_segment(request, file_id):
         f.stereo = request.POST.get('stereo')
         f.length = request.POST.get('hour') + ":" + request.POST.get('minute') + ":" + request.POST.get('second')
         f.save()
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/edit/version/' + str(f.version_id))
     else:
         file_data = Files.objects.get(file_id = file_id)
         length = file_data.length
         return render(request, 'radio4all/edit_segment.html', {
+            'file_id': file_id,
             'file_title': file_data.title,
             'bitrate': file_data.bitrate,
             'stereo': file_data.stereo,
