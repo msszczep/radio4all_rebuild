@@ -1,14 +1,12 @@
 {% extends 'radio4all/base.html' %}
 {% load static %}
-       
+
      {% block content %}
 
 <form name="edit_segment" accept-charset="UTF-8" class="add_edit" action="/edit/segment/{{file_id}}" method="post" enctype="multipart/form-data">
-
 {% csrf_token %}
-<table width="100%" border="0"><tbody>
 
-  <table class="file_table" id="file_table1">
+ <table class="file_table" id="file_table1">
       <th colspan="2">Segment</th>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
@@ -179,13 +177,11 @@
                 <option value="59" {% if seconds == 59 %}selected{% endif %}>59</option>
               </select></td>
         </table></td>
-      
+
     </tr>
-</tbody></table>
+</table>
 
 <table width="100%"><tr><td><input type="submit" name="Submit" value="Save Changes" /></td></tr></table>
+
 </form>
-</tbody></table>
-     {% endblock %}
-
-
+{% endblock %}
