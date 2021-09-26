@@ -277,9 +277,9 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     <td><label>Broadcast Restictions: </label></td>
     <td>
     <select name="program_restriction">
-      <option value="0">Unspecified</options>
+      <option value=0>Unspecified</option>
       {% for r in broadcast_restrictions_list %}
-        <option value={{r.lic_id}}>{{r.lic_description}}</option</a>
+        <option value={{r.lic_id}}>{{r.lic_description}}</option>
       {% endfor %}
     </select>
     </td>
