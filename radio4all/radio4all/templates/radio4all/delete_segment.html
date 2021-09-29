@@ -4,7 +4,7 @@
 {% block content %}
 <form name="delete_confirm"
       accept-charset="UTF-8" method="POST"
-      action="/delete/segment/{{file_id}}">
+      action="/delete/segment/{{program_id}}/{{version_id}}/{{file_id}}">
   {% csrf_token %}
   <input name="is_anonymous_hidden" value="{{is_anonymous}}" type="hidden">
   <table class="content" border="0" width="100%" align="left">

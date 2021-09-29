@@ -1347,15 +1347,25 @@ def delete_segment(request, program_id, version_id, file_id):
     if request.method == 'POST':
         # add in provisions to block for failed password in anonymous uploads
         program_data = Programs.objects.get(program_id = program_id)
-        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id)]
         keep_files = request.POST.get('keep_files')
         is_anonymous = request.POST.get('is_anonymous_hidden')
         curs = connection.cursor()
         curs.execute("SELECT t1.file_id, t1.how, t1.filename, t2.file_location FROM files AS t1, locations AS t2 WHERE t1.program_id = %s AND t1.version_id = %s AND t1.no_delete = 0 AND t1.file_id = t2.file_id", (program_id, version_id))
         files_to_keep = curs.fetchall()
-        for file_id in file_ids_to_use:
-            curs.execute('DELETE from files where file_id = %s', (file_id,))
-            curs.execute('DELETE from locations where file_id = %s', (file_id,))
+        curs.execute('DELETE from files where file_id = %s', (file_id,))
+        curs.execute('DELETE from locations where file_id = %s', (file_id,))
+        file_lengths_to_use = [x.length for x in Files.objects.filter(version_id = version_id)]
+        file_ids_to_use = [x.file_id for x in Files.objects.filter(version_id = version_id).order_by('file_id')]
+        version_data = Versions.objects.get(version_id = version_id)
+        i = 1
+        for fid in file_ids_to_use:
+            curs.execute('UPDATE files set segment = %s where file_id = %s', (i, fid,))
+            i = i + 1
+        tgrande = datetime.timedelta(0, 0)
+        for t in file_lengths_to_use:
+            tdtu = timedelta(0, (3600 * int(t.hour)) + (60 * int(t.minute)) + int(t.second))
+            tgrande = tgrande + tdtu
+        curs.execute("UPDATE versions set length = '%s' where version_id = %s", (str(tgrande), version_id,))
         curs.close()
         if not keep_files:
             for e in files_to_keep:
@@ -1376,6 +1386,7 @@ def delete_segment(request, program_id, version_id, file_id):
             'file_id': file_id,
             'file_name': file_data.filename,
             'version_id': version_id,
+            'program_id': program_id,
             'program_title': program_data.program_title,
             'version': version_data.version,
             'is_anonymous': is_anonymous
