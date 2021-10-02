@@ -1363,9 +1363,9 @@ def delete_segment(request, program_id, version_id, file_id):
             i = i + 1
         tgrande = datetime.timedelta(0, 0)
         for t in file_lengths_to_use:
-            tdtu = timedelta(0, (3600 * int(t.hour)) + (60 * int(t.minute)) + int(t.second))
+            tdtu = datetime.timedelta(0, (3600 * int(t.hour)) + (60 * int(t.minute)) + int(t.second))
             tgrande = tgrande + tdtu
-        curs.execute("UPDATE versions set length = '%s' where version_id = %s", (str(tgrande), version_id,))
+        curs.execute("UPDATE versions set length = %s where version_id = %s", (str(tgrande), version_id,))
         curs.close()
         if not keep_files:
             for e in files_to_keep:
