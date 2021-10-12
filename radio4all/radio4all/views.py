@@ -1476,11 +1476,15 @@ def filter_contributor(request, letter):
         else:
             contributors = Users.objects.filter(full_name__startswith=letter.capitalize()) | Users.objects.filter(full_name__startswith=letter)
         target = contributors.values('full_name', 'uid').distinct().order_by('full_name')
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/programs_by_contributor.html', {
         'all_contributors': target,
         'letter': letter,
+        'page_obj': page_obj
     },)
 
 def get_contributor(request, uid):

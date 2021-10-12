@@ -1,6 +1,7 @@
 {% extends 'radio4all/base.html' %}
 {% load static %}
 
+<form name="filter-contributor" accept-charset="UTF-8" method="post" action="/filter/contributor/{{letter}}">
             {% block content %}
                 <div id="result_set">
                     <div id="content_title">Programs by Contributor beginning with {{letter}} </div>
@@ -14,3 +15,28 @@
                 </div>
             {% endblock %}
 
+<!-- START: Browsing Controls -->
+<table border="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+    <select name="browsecontrol" id="browsecontrol">
+        {% for i in page_obj.paginator.page_range %}
+          {% if page_obj.number == i %}
+          <option value="{{i}}" selected="selected">{{ i }}</option>
+          {% else %}
+          <option value="{{i}}">{{ i }}</option>
+          {% endif %}
+        {% endfor %}
+{% endif %}
+    </select>
+</td>
+      <td>&nbsp;<b>&gt;</b></td>
+      <td>&nbsp;<span id="loadmsg">Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} - Total: {{ page_obj.paginator.count }} <input name="submit" id="searchbutton" value="submit" border="0" src="/images/search-button.png" align="absmiddle" type="image"></span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</form>
+<!-- END: Browsing Controls -->
