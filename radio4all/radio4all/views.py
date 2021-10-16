@@ -1482,7 +1482,6 @@ def filter_contributor(request, letter):
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/programs_by_contributor.html', {
-        'all_contributors': target,
         'letter': letter,
         'page_obj': page_obj
     },)
