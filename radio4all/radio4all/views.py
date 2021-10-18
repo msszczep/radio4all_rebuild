@@ -42,6 +42,14 @@ class ProgramView(DetailView):
         context['object'] = Files.objects.filter(program__program_id=self.kwargs.get('pk'))
         return context
 
+def view_program(request, pk):
+    files_to_use = Files.objects.filter(program_id = pk)
+    program_data = Programs.objects.get(program_id = pk)
+    return render(request, 'radio4all/program.html', {
+        'files': files_to_use,
+        'program': program_data,
+    },)
+
 class AboutPageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list

@@ -20,48 +20,48 @@
 }
 </style>
 <div id="content_title" style="float: left;">Program Information</div>
-{% if object.0.program.uid.uid == request.user.uid %}
-<div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/program/{{object.0.program.program_id}}">Edit Program</a> | <a style="text-decoration: underline;" href="/version/add/{{object.0.program.program_id}}">Add Version</a> | <a style="text-decoration: underline;" href="/delete/program/{{object.0.program.program_id}}">Delete Program</a></div>
+{% if program.uid.uid == request.user.uid %}
+<div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/program/{{program.program_id}}">Edit Program</a> | <a style="text-decoration: underline;" href="/version/add/{{program.program_id}}">Add Version</a> | <a style="text-decoration: underline;" href="/delete/program/{{program.program_id}}">Delete Program</a></div>
 {% endif %}
 <table class="proginfo">
   <tbody>
   <tr>
-    <td id="program_title" colspan="2"><label>{{ object.0.program.program_title |safe }}</label></td>
+    <td id="program_title" colspan="2"><label>{{ program.program_title |safe }}</label></td>
   </tr>
   <tr>
     <td class="label_cell"><label>Series:</label></td>
-    <td class="content_cell">{{ object.0.program.series |safe }}</td>
+    <td class="content_cell">{{ program.series |safe }}</td>
   </tr>
   <tr class="row_b">
     <td class="label_cell"><label>Subtitle:</label></td>
-    <td>{{ object.0.program.subtitle |safe }}</td>
+    <td>{{ program.subtitle |safe }}</td>
   </tr>
   <tr>
     <td class="label_cell"><label>Program Type:</label></td>
-    <td>{{ object.0.program.type }}</td>
+    <td>{{ program.type }}</td>
   </tr>
   <tr class="row_b">
     <td class="label_cell"><label>Featured Speakers/Commentators:</label></td>
-    <td>{{ object.0.program.speaker }}</td>
+    <td>{{ program.speaker }}</td>
   </tr>
   <tr>
     <td class="label_cell"><label>Contributor:</label></td>
-    <td>&nbsp;<a href="/contributor/{{ object.0.program.uid.uid }}']}">{{ object.0.program.uid.full_name |safe }}</a>&nbsp;&nbsp;Contact Contributor</td>
+    <td>&nbsp;<a href="/contributor/{{ program.uid.uid }}']}">{{ program.uid.full_name |safe }}</a>&nbsp;&nbsp;Contact Contributor</td>
   </tr>
   <tr>
-    <td colspan="2"><label>Summary:&nbsp;</label> {{ object.0.program.summary|safe}}</td>
+    <td colspan="2"><label>Summary:&nbsp;</label> {{ program.summary|safe}}</td>
   </tr>
   <tr>
-    <td class="row_b" colspan="2"><label>Credits:&nbsp;</label>{{ object.0.program.credits | safe }}</td>
+    <td class="row_b" colspan="2"><label>Credits:&nbsp;</label>{{ program.credits | safe }}</td>
   </tr>
   <tr>
-    <td colspan="2"><label>Notes:&nbsp;</label>{{ object.0.program.notes |safe }}</td>
+    <td colspan="2"><label>Notes:&nbsp;</label>{{ program.notes |safe }}</td>
   </tr>
 <tr><td><br /></td></tr><tr><td colspan="2">
 
 <table border="0" cellspacing="0" width="100%">
   <tbody>
-  {% for file in object %}
+  {% for file in files %}
   <tr>
     <td colspan="3"><label>Version {{ file.version.version }}:</label> {{ file.version.version_title }}
     <a href="/podcast/podcast.xml?program_id={{ file.program.program_id }}&amp;version_id={{ file.version.version_id }}&amp;version={{ file.version.version }}" title="Download Podcast for Program: file.program.program_title; Version: {{ file.version.version }}"><img src="/static/images/podcast.gif" height="16" alt="Download Program Podcast" align="absmiddle" border="0" width="62"></a>
@@ -69,7 +69,7 @@
   </tr>
   <tr>
     <td colspan="3"><label>Description: </label>{{  file.version.version_description }}
-    {% if object.0.program.uid.uid == request.user.uid %}
+    {% if program.uid.uid == request.user.uid %}
       <div style="float: right; padding-right: 3px;"><a style="text-decoration: underline;" href="/edit/version/{{file.version.version_id}}">Edit Version</a> | <a style="text-decoration: underline;" href="/add/segment/{{file.program.program_id}}/{{file.version.version_id}}">Add Files</a> | <a style="text-decoration: underline;" href="/delete/version/{{file.program.program_id}}/{{file.version.version_id}}">Delete Version</a></div>
     {% endif %}
     </td>
