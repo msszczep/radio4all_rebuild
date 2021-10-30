@@ -1615,7 +1615,7 @@ def filter_type(request, pk):
     except Types.DoesNotExist:
         return HttpResponse('<h1>No Type Here</h1>')
     try:
-        target = Programs.objects.filter(type=typer.type)
+        target = Programs.objects.filter(type=typer.type, hidden=0).order_by('-date_created')
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
