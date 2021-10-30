@@ -1,17 +1,54 @@
 {% extends 'radio4all/base.html' %}
 {% load static %}
 
+<form name="filter-series" accept-charset="UTF-8" method="post" action="/filter/series/{{letter}}">
+
             {% block content %}
                 <div id="result_set">
                     <div id="content_title">Programs by Series beginning with {{letter}} </div>
-                    {% for s in all_series %}
+                    {% for latest in page_obj %}
                     <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}">
-                       <a href="/series/{{ s.series }}" class="result_info">
-                          {{ s.series }}
+                       <a href="/series/{{ latest.series }}" class="result_info">
+                          {{ latest.series }}
                        </a>
                     </div>
                     {% endfor %}
                 </div>
-            {% endblock %}
+
+      {% if True %}
+            <script type="text/javascript">
+$(document).ready(function(){
+        $(".control_link").click(function(){
+                document.getElementById('loadmsg').innerHTML = "Loading...";
+                $("#content").load($(this).attr("href"));
+                return false;
+         });
+        $("#browsecontrol").change(function() {
+                window.location.href = $(this).val();
+        });
+});
+</script>
+<!-- START: Browsing Controls -->
+<table border="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+<form><select id="browsecontrol">
+        {% for i in page_obj.paginator.page_range %}
+          <option value="?page={{i}}">{{ i }}</option>
+        {% endfor %}
+{% endif %}
+    </select></form>
+</td>
+      <td>&nbsp;<a href=""><b>&gt;</b></a></td>
+      <td>&nbsp;<span id="loadmsg">Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} - Total: {{ page_obj.paginator.count }}</span></td>
+    </tr>
+  </tbody>
+</table></div>
+<!-- END: Browsing Controls -->
+&nbsp;
+
+ {% endblock %}
 
 

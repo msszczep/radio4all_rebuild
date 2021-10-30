@@ -1469,11 +1469,14 @@ def filter_series(request, letter):
             programs_series = Programs.objects.filter(series__startswith='0', hidden=0) | Programs.objects.filter(series__startswith='1', hidden=0) | Programs.objects.filter(series__startswith='2', hidden=0) | Programs.objects.filter(series__startswith='3', hidden=0) | Programs.objects.filter(series__startswith='4', hidden=0) | Programs.objects.filter(series__startswith='5', hidden=0) | Programs.objects.filter(series__startswith='6', hidden=0) | Programs.objects.filter(series__startswith='7', hidden=0) | Programs.objects.filter(series__startswith='8', hidden=0) | Programs.objects.filter(series__startswith='9', hidden=0)
         else:
             programs_series = Programs.objects.filter(series__startswith=letter.capitalize(), hidden=0) | Programs.objects.filter(series__startswith=letter, hidden=0)
-        target = programs_series.values('series').distinct()
+        target = programs_series.values('series').distinct().order_by('series')
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/programs_by_series.html', {
-        'all_series': target,
+        'page_obj': page_obj,
         'letter': letter,
     },)
 
