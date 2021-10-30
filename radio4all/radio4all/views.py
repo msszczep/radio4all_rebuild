@@ -1466,9 +1466,9 @@ def filter_popular(request):
 def filter_series(request, letter):
     try:
         if letter == "0-9":
-            programs_series = Programs.objects.filter(series__startswith='0') | Programs.objects.filter(series__startswith='1') | Programs.objects.filter(series__startswith='2') | Programs.objects.filter(series__startswith='3') | Programs.objects.filter(series__startswith='4') | Programs.objects.filter(series__startswith='5') | Programs.objects.filter(series__startswith='6') | Programs.objects.filter(series__startswith='7') | Programs.objects.filter(series__startswith='8') | Programs.objects.filter(series__startswith='9')
+            programs_series = Programs.objects.filter(series__startswith='0', hidden=0) | Programs.objects.filter(series__startswith='1', hidden=0) | Programs.objects.filter(series__startswith='2', hidden=0) | Programs.objects.filter(series__startswith='3', hidden=0) | Programs.objects.filter(series__startswith='4', hidden=0) | Programs.objects.filter(series__startswith='5', hidden=0) | Programs.objects.filter(series__startswith='6', hidden=0) | Programs.objects.filter(series__startswith='7', hidden=0) | Programs.objects.filter(series__startswith='8', hidden=0) | Programs.objects.filter(series__startswith='9', hidden=0)
         else:
-            programs_series = Programs.objects.filter(series__startswith=letter.capitalize()) | Programs.objects.filter(series__startswith=letter)
+            programs_series = Programs.objects.filter(series__startswith=letter.capitalize(), hidden=0) | Programs.objects.filter(series__startswith=letter, hidden=0)
         target = programs_series.values('series').distinct()
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
