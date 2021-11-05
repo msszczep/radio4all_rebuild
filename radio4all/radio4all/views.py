@@ -1551,7 +1551,7 @@ def filter_license(request, abbrev):
     except License.DoesNotExist:
         return HttpResponse('<h1>No License Here</h1>')
     try:
-        target = Programs.objects.filter(license=license)
+        target = Programs.objects.filter(license=license, hidden=0)
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -1565,7 +1565,7 @@ def filter_legacy_license(request, legacy_license):
     restrictions = {'np': 1, 'ne': 2, 'cp': 3, 'sn': 4}
     restriction_to_use = restrictions[legacy_license]
     try:
-        target = Programs.objects.filter(restriction=restriction_to_use).order_by('-date_created')
+        target = Programs.objects.filter(restriction=restriction_to_use, hidden=0).order_by('-date_created')
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
