@@ -127,6 +127,7 @@ def make_file_location(email_dir, filename):
     return "http://www.radio4all.net/files/" + email_dir + "/" + filename
 
 def upload_content(request):
+    file_formats = {f.format_ext: f.format_id for f in Formats.objects.all().order_by('format_name')}
     if request.method == 'POST':
         nps = int(request.POST.get('program_segments'))
         now = datetime.datetime.now()
@@ -185,10 +186,13 @@ def upload_content(request):
         f1.file_size = request.POST.get('size1') + request.POST.get('file_size_bytes1')
         f1.bitrate = request.POST.get('bitrate1')
         f1.stereo = request.POST.get('stereo1')
-        #if request.POST.get('how') == 'upload':
-        #    f1.format_id = os.path.splitext(request.POST.get('file_type_text1'))[-1].replace('.','')
-        #else:
-        f1.format_id = request.POST.get('file_type_text1')
+        if request.POST.get('how') == 'upload':
+            try:
+                f1.format_id = file_formats[os.path.splitext(str(request.FILES['filename1']))[-1].replace('.','')]
+            except:
+                f1.format_id = 0
+        else:
+            f1.format_id = request.POST.get('file_type_text1')
         f1_hrs = request.POST.get('hour1')
         f1_minutes = request.POST.get('minute1')
         f1_seconds = request.POST.get('second1')
@@ -218,7 +222,13 @@ def upload_content(request):
             f2.file_size = request.POST.get('size2') + request.POST.get('file_size_bytes2')
             f2.bitrate = request.POST.get('bitrate2')
             f2.stereo = request.POST.get('stereo2')
-            f2.format_id = request.POST.get('file_type_text2')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f2.format_id = file_formats[os.path.splitext(str(request.FILES['filename2']))[-1].replace('.','')]
+                except:
+                    f2.format_id = 0
+            else:
+                f2.format_id = request.POST.get('file_type_text2')
             f2_hrs = request.POST.get('hour2')
             f2_minutes = request.POST.get('minute2')
             f2_seconds = request.POST.get('second2')
@@ -248,7 +258,13 @@ def upload_content(request):
             f3.file_size = request.POST.get('size3') + request.POST.get('file_size_bytes3')
             f3.bitrate = request.POST.get('bitrate3')
             f3.stereo = request.POST.get('stereo3')
-            f3.format_id = request.POST.get('file_type_text3')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f3.format_id = file_formats[os.path.splitext(str(request.FILES['filename3']))[-1].replace('.','')]
+                except:
+                    f3.format_id = 0
+            else:
+                f3.format_id = request.POST.get('file_type_text3')
             f3_hrs = request.POST.get('hour3')
             f3_minutes = request.POST.get('minute3')
             f3_seconds = request.POST.get('second3')
@@ -278,7 +294,13 @@ def upload_content(request):
             f4.file_size = request.POST.get('size4') + request.POST.get('file_size_bytes4')
             f4.bitrate = request.POST.get('bitrate4')
             f4.stereo = request.POST.get('stereo4')
-            f4.format_id = request.POST.get('file_type_text4')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f4.format_id = file_formats[os.path.splitext(str(request.FILES['filename4']))[-1].replace('.','')]
+                except:
+                    f4.format_id = 0
+            else:
+                f4.format_id = request.POST.get('file_type_text4')
             f4_hrs = request.POST.get('hour4')
             f4_minutes = request.POST.get('minute4')
             f4_seconds = request.POST.get('second4')
@@ -308,7 +330,13 @@ def upload_content(request):
             f5.file_size = request.POST.get('size5') + request.POST.get('file_size_bytes5')
             f5.bitrate = request.POST.get('bitrate5')
             f5.stereo = request.POST.get('stereo5')
-            f5.format_id = request.POST.get('file_type_text5')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f5.format_id = file_formats[os.path.splitext(str(request.FILES['filename5']))[-1].replace('.','')]
+                except:
+                    f5.format_id = 0
+            else:
+                f5.format_id = request.POST.get('file_type_text5')
             f5_hrs = request.POST.get('hour5')
             f5_minutes = request.POST.get('minute5')
             f5_seconds = request.POST.get('second5')
@@ -338,7 +366,13 @@ def upload_content(request):
             f6.file_size = request.POST.get('size6') + request.POST.get('file_size_bytes6')
             f6.bitrate = request.POST.get('bitrate6')
             f6.stereo = request.POST.get('stereo6')
-            f6.format_id = request.POST.get('file_type_text6')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f6.format_id = file_formats[os.path.splitext(str(request.FILES['filename6']))[-1].replace('.','')]
+                except:
+                    f6.format_id = 0
+            else:
+                f6.format_id = request.POST.get('file_type_text6')
             f6_hrs = request.POST.get('hour6')
             f6_minutes = request.POST.get('minute6')
             f6_seconds = request.POST.get('second6')
@@ -368,7 +402,13 @@ def upload_content(request):
             f7.file_size = request.POST.get('size7') + request.POST.get('file_size_bytes7')
             f7.bitrate = request.POST.get('bitrate7')
             f7.stereo = request.POST.get('stereo7')
-            f7.format_id = request.POST.get('file_type_text7')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f7.format_id = file_formats[os.path.splitext(str(request.FILES['filename7']))[-1].replace('.','')]
+                except:
+                    f7.format_id = 0
+            else:
+                f7.format_id = request.POST.get('file_type_text7')
             f7_hrs = request.POST.get('hour7')
             f7_minutes = request.POST.get('minute7')
             f7_seconds = request.POST.get('second7')
@@ -398,7 +438,13 @@ def upload_content(request):
             f8.file_size = request.POST.get('size8') + request.POST.get('file_size_bytes8')
             f8.bitrate = request.POST.get('bitrate8')
             f8.stereo = request.POST.get('stereo8')
-            f8.format_id = request.POST.get('file_type_text8')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f8.format_id = file_formats[os.path.splitext(str(request.FILES['filename8']))[-1].replace('.','')]
+                except:
+                    f8.format_id = 0
+            else:
+                f8.format_id = request.POST.get('file_type_text8')
             f8_hrs = request.POST.get('hour8')
             f8_minutes = request.POST.get('minute8')
             f8_seconds = request.POST.get('second8')
@@ -428,7 +474,13 @@ def upload_content(request):
             f9.file_size = request.POST.get('size9') + request.POST.get('file_size_bytes9')
             f9.bitrate = request.POST.get('bitrate9')
             f9.stereo = request.POST.get('stereo9')
-            f9.format_id = request.POST.get('file_type_text9')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f9.format_id = file_formats[os.path.splitext(str(request.FILES['filename9']))[-1].replace('.','')]
+                except:
+                    f9.format_id = 0
+            else:
+                f9.format_id = request.POST.get('file_type_text9')
             f9_hrs = request.POST.get('hour9')
             f9_minutes = request.POST.get('minute9')
             f9_seconds = request.POST.get('second9')
@@ -458,7 +510,13 @@ def upload_content(request):
             f10.file_size = request.POST.get('size10') + request.POST.get('file_size_bytes10')
             f10.bitrate = request.POST.get('bitrate10')
             f10.stereo = request.POST.get('stereo10')
-            f10.format_id = request.POST.get('file_type_text10')
+            if request.POST.get('how') == 'upload':
+                try:
+                    f10.format_id = file_formats[os.path.splitext(str(request.FILES['filename10']))[-1].replace('.','')]
+                except:
+                    f10.format_id = 0
+            else:
+                f10.format_id = request.POST.get('file_type_text10')
             f10_hrs = request.POST.get('hour10')
             f10_minutes = request.POST.get('minute10')
             f10_seconds = request.POST.get('second10')
