@@ -1512,13 +1512,26 @@ def filter_topic(request, topic_id):
         'topic': topic,
     },)
 
-def filter_popular(request):
+def filter_popular_firstpage(request):
     try:
-        target = Files.objects.all().order_by('-downloads')[:300]
+        target = Files.objects.all().order_by('-downloads')[:30]
     except Files.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
     return render(request, 'radio4all/popular.html', {
         'latest_programs': target,
+        'pagenum': 1,
+        'nums_to_use': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },)
+
+def filter_popular(request, pagenum):
+    try:
+        target = Files.objects.all().order_by('-downloads')[(30 * (pagenum - 1)) : (30 * pagenum)]
+    except Files.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/popular.html', {
+        'latest_programs': target,
+        'pagenum': pagenum,
+        'nums_to_use': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },)
 
 def filter_series(request, letter):

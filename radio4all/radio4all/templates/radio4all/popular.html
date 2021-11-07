@@ -16,6 +16,21 @@
                         </a>
                     </div>
                     {% endfor %}
+                <table border="0">
+                <tbody>
+                <tr>
+                {% for n in nums_to_use %}
+                <td>
+                {% if n == pagenum %}
+                  {{n}}&nbsp;&nbsp;
+                {% else %}
+                  <b><a href="/filter/popular/{{n}}">{{n}}</a></b>&nbsp;&nbsp;
+                {% endif %}
+                </td>
+                {% endfor %}
+                </tr>
+                </tbody>
+                </table>
                 </div>
             {% endblock %}
 
