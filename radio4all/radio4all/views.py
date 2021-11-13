@@ -1622,7 +1622,13 @@ def filter_license(request, abbrev):
     except License.DoesNotExist:
         return HttpResponse('<h1>No License Here</h1>')
     try:
-        target = Programs.objects.filter(license=license, hidden=0)
+        curs = connection.cursor()
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.license = %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (license.pk,))
+        filter_license_data = []
+        for c in curs.fetchall():
+            filter_license_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
+        curs.close()
+        target = filter_license_data
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -1636,7 +1642,13 @@ def filter_legacy_license(request, legacy_license):
     restrictions = {'np': 1, 'ne': 2, 'cp': 3, 'sn': 4}
     restriction_to_use = restrictions[legacy_license]
     try:
-        target = Programs.objects.filter(restriction=restriction_to_use, hidden=0).order_by('-date_created')
+        curs = connection.cursor()
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.restriction = %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (restriction_to_use,))
+        filter_license_data = []
+        for c in curs.fetchall():
+            filter_license_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
+        curs.close()
+        target = filter_license_data
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -1650,7 +1662,13 @@ def filter_advisory(request, advisory_id):
     advisory_strings = {1: 'Unknown - program has not been checked for content', 2: 'No Advisories - content screened and verified', 3: 'Warning: Program may contain strong or potentially offensive language, including possible FCC violations.', 4: 'Warning: Program content only suitable for FCC-designated safe harbor (10PM to 6AM).'}
     advisory_to_use = advisory_strings[advisory_id]
     try:
-        target = Programs.objects.filter(advisory=advisory_id, hidden=0).order_by('-date_created')
+        curs = connection.cursor()
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.series, t1.date_created, t2.length, t3.full_name FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.advisory = %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (advisory_id,))
+        filter_advisory_data = []
+        for c in curs.fetchall():
+            filter_advisory_data.append({'program_id': c[0], 'program_title': c[1], 'series': c[2], 'date_created': c[3], 'length': c[4], 'full_name': c[5]})
+        curs.close()
+        target = filter_advisory_data
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
