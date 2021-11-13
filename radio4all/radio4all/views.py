@@ -1592,7 +1592,7 @@ def get_contributor_contact(request, uid):
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
             try:
-                send_mail(subject, message, 'info@radio4all.net', [to_email], fail_silently=False,)
+                send_mail(subject, message, from_email, [to_email], fail_silently=False,)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return HttpResponse('<h1>Message sent!  Thank you.  <a href="http://radio4all.net">Return to Radio4All</a></h1>')
