@@ -1536,11 +1536,25 @@ def filter_popular(request, pagenum):
 
 def filter_series(request, letter):
     try:
-        if letter == "0-9":
-            programs_series = Programs.objects.filter(series__startswith='0', hidden=0) | Programs.objects.filter(series__startswith='1', hidden=0) | Programs.objects.filter(series__startswith='2', hidden=0) | Programs.objects.filter(series__startswith='3', hidden=0) | Programs.objects.filter(series__startswith='4', hidden=0) | Programs.objects.filter(series__startswith='5', hidden=0) | Programs.objects.filter(series__startswith='6', hidden=0) | Programs.objects.filter(series__startswith='7', hidden=0) | Programs.objects.filter(series__startswith='8', hidden=0) | Programs.objects.filter(series__startswith='9', hidden=0)
-        else:
-            programs_series = Programs.objects.filter(series__startswith=letter.capitalize(), hidden=0) | Programs.objects.filter(series__startswith=letter, hidden=0)
-        target = programs_series.values('series').distinct().order_by('series')
+        filter_series_data = []
+        curs = connection.cursor()
+        curs.execute("select distinct replace(series, '&#039;', '''') as series from programs where hidden = 0 order by series desc")
+        for e in curs.fetchall():
+            if letter == "0-9":
+                try:
+                    if e[0][0] == '0' or e[0][0] == '1' or e[0][0] == '2' or e[0][0] == '3' or e[0][0] == '4' or e[0][0] == '5' or e[0][0] == '6' or e[0][0] == '7' or e[0][0] == '8' or e[0][0] == '9':
+                        filter_series_data.append({'series': e[0]})
+                except:
+                    pass
+            else:
+                try:
+                    if e[0][0] == letter or e[0][0] == letter.upper():
+                        filter_series_data.append({'series': e[0]})
+                except:
+                    pass
+        curs.close()
+        filter_series_data.reverse()
+        target = filter_series_data
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -1605,7 +1619,7 @@ def get_contributor_contact(request, uid):
 
 def get_series(request, series_name):
     try:
-        target = Programs.objects.filter(series=series_name).order_by('-date_created')
+        target = Programs.objects.filter(series=series_name.replace("'", '&#039;')).order_by('-date_created')
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
