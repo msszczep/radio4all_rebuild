@@ -1733,7 +1733,7 @@ def filter_type(request, pk):
 
 def filter_search(request):
     try:
-        search_terms = request.POST.get('searchtext')
+        search_terms = request.POST.get('searchtext').replace("'", '&#039;')
         search_range = request.POST.get('range')
         if search_range == 'today':
             search_range_date = datetime.date.today()
