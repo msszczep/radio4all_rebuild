@@ -584,6 +584,9 @@ def edit_program(request, pk):
         p.permanent = 0
         p.save()
         topics = request.POST.getlist('program_topics[]')
+        curs = connection.cursor()
+        curs.execute('DELETE from topic_assignment where program_id = %s', (pk,))
+        curs.close()
         for e in topics:
             t = TopicAssignment()
             t.topic_id = e
