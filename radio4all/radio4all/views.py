@@ -119,7 +119,10 @@ def contributor_browse(request):
     return render(request, 'radio4all/contributor_browse.html')
 
 def handle_uploaded_file(email_dir, filename, f):
-    with open('/tank/radio4all/files/' + email_dir + '/' + filename, 'wb+') as destination:
+    path_to_use = '/tank/radio4all/files/' + email_dir
+    if not os.path.isdir(path_to_use):
+        os.makedirs(path_to_use)
+    with open(path_to_use + '/' + filename, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
