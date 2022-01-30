@@ -3,8 +3,37 @@
        
      {% block content %}
 
-<form name="add_start" accept-charset="UTF-8" class="add_edit" action="/program/add/" method="post" enctype = "multipart/form-data">
+<form name="add_start" accept-charset="UTF-8" class="add_edit" action="/program/add/" method="post" enctype = "multipart/form-data" onsubmit="return validateForm()">
 <script type="text/javascript">
+
+function validateForm() {
+    var plv = document.getElementsByName("program_license");
+    var plv_valid = false;
+
+    var adv = document.forms[0].elements["program_advisory"];
+    var adv_value = adv.options[adv.selectedIndex].value;
+    var adv_valid = true;
+
+    var i = 0;
+    while (!plv_valid && i < plv.length) {
+        if (plv[i].checked) plv_valid = true;
+        i++;
+    }
+
+    if (adv_value == 0) {
+        adv_valid = false;
+    }
+
+    if (!plv_valid && !adv_valid) {
+      alert("Form incomplete.  Please select a program license and program advisory.");
+    } else if (!plv_valid) {
+      alert("Form incomplete.  Please select a program license.");
+    } else if (!adv_valid) {
+      alert("Form incomplete.  Please select a program advisory.");
+    }
+    return plv_valid && adv_valid;
+}
+
 function adjust_program_segments(n) {
   var ft;
   var i;
