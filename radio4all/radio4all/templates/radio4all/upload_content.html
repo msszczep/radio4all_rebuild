@@ -153,6 +153,7 @@ holders of said material.
 </tr>
 <tr><td><br /><b>DO NOT GO BACK AFTER CLICKING THE BUTTON BELOW!<br />
 CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></td></tr>
+<tr><td><br /><font color="red">Mandatory fields are marked with a red star.</font></td></tr>
 <style>
 .row_b {
     background-color: #DCDCDC;
@@ -292,7 +293,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     <td><textarea name="program_credits" cols="60" rows="5"></textarea></td>
   </tr>
   <tr>
-    <td><label>License: </label></td>
+    <td><label>License: </label><font color="red">*</font></td>
     <td>
     {% for lic in license_list %}
     <div>
@@ -318,7 +319,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     <td><textarea name="program_notes" cols="60" rows="8"></textarea></td>
   </tr>
   <tr class="row_b">
-    <td><label>Broadcast Advisory: </label></td>
+    <td><label>Broadcast Advisory: </label><font color="red">*</font></td>
     <td>
     <select name="program_advisory">
       <option value="0">Unspecified</option>
