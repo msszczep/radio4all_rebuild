@@ -43,15 +43,18 @@ class ProgramView(DetailView):
         return context
 
 def view_program(request, pk):
+    files_to_use = Files.objects.filter(program_id = pk)
     try:
-        files_to_use = Files.objects.filter(program_id = pk)
         program_data = Programs.objects.get(program_id = pk)
+    except:
+        program_data = ''
+    if len(files_to_use) == 0 or program_data == '':
+        return HttpResponse('<h1>There is no program in the database with ID ' + str(pk) + '.  Please check and try again.</h1>')
+    else:
         return render(request, 'radio4all/program.html', {
             'files': files_to_use,
             'program': program_data,
         },)
-    finally:
-        return HttpResponse('<h1>There is no program in the database with ID ' + str(pk) + '.  Please check and try again.</h1>')
 
 class AboutPageView(ListView):
     model = Programs
