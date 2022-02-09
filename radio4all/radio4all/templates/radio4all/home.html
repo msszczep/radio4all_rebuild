@@ -8,8 +8,8 @@
                     {% for latest in latest_programs %}
                     <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program_id }}">
                        <a href="/program/{{ latest.program_id }}" class="result_info">
-                        <label class="result_series">{{ latest.program_title |safe }}</label>
-                            : {{ latest.subtitle |safe }}
+                        <label class="result_series">{{ latest.series |safe }}</label>
+                            : {{ latest.program_title |safe }}
                             <span>{{ latest.program_title |safe }}<br />
                                 <b>Date: </b>{{ latest.date_created }}<br />
                                 <b>Length: </b>{{ latest.length }}<br />
