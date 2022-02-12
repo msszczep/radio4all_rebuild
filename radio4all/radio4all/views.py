@@ -224,7 +224,7 @@ def upload_content(request):
             f2.version_id = v.version_id
             f2.segment = 2
             if request.POST.get('how') == 'upload':
-                f2.filename = str(request.FILES('filename2'))
+                f2.filename = str(request.FILES['filename2'])
             else:
                 f2.filename = request.POST.get('filenametext2')
             f2.title = request.POST.get('file_title2')
@@ -731,7 +731,7 @@ def add_version(request, program_id):
             f2.version_id = v.version_id
             f2.segment = 2
             if request.POST.get('how') == 'upload':
-                f2.filename = str(request.FILES('filename2'))
+                f2.filename = str(request.FILES['filename2'])
                 f2.format_id = format_map[os.path.splitext(str(request.FILES['filename2']))[-1].replace('.','')]
             else:
                 f2.filename = request.POST.get('filenametext2')
@@ -1058,7 +1058,7 @@ def add_files(request, program_id, version_id):
             f2.version_id = version_id
             f2.segment = int(request.POST.get('segment_number_to_use')) + 1
             if request.POST.get('how') == 'upload':
-                f2.filename = str(request.FILES('filename2'))
+                f2.filename = str(request.FILES['filename2'])
                 f2.format_id = format_map[os.path.splitext(str(request.FILES['filename2']))[-1].replace('.','')]
             else:
                 f2.filename = request.POST.get('filenametext2')
