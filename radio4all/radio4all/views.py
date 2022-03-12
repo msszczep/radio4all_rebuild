@@ -726,7 +726,8 @@ def add_version(request, program_id):
         f1_timedelta = datetime.timedelta(0, (3600 * int(f1_hrs)) + (60 * int(f1_minutes)) + int(f1_seconds))
         f1.how = request.POST.get('how')
         f1.no_delete = 0
-        handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
+        if request.POST.get('how') == 'upload':
+            handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
         f1.save()
         c1 = Locations()
         c1.file_id = f1.file_id
@@ -757,7 +758,8 @@ def add_version(request, program_id):
             f2_timedelta = datetime.timedelta(0, (3600 * int(f2_hrs)) + (60 * int(f2_minutes)) + int(f2_seconds))
             f2.how = request.POST.get('how')
             f2.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
             f2.save()
             c2 = Locations()
             c2.file_id = f2.file_id
@@ -788,7 +790,8 @@ def add_version(request, program_id):
             f3_timedelta = datetime.timedelta(0, (3600 * int(f3_hrs)) + (60 * int(f3_minutes)) + int(f3_seconds))
             f3.how = request.POST.get('how')
             f3.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
             f3.save()
             c3 = Locations()
             c3.file_id = f3.file_id
@@ -819,7 +822,8 @@ def add_version(request, program_id):
             f4_timedelta = datetime.timedelta(0, (3600 * int(f4_hrs)) + (60 * int(f4_minutes)) + int(f4_seconds))
             f4.how = request.POST.get('how')
             f4.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
             f4.save()
             c4 = Locations()
             c4.file_id = f4.file_id
@@ -849,8 +853,9 @@ def add_version(request, program_id):
             f5.length = f5_hrs + ':' + f5_minutes + ':' + f5_seconds
             f5_timedelta = datetime.timedelta(0, (3600 * int(f5_hrs)) + (60 * int(f5_minutes)) + int(f5_seconds))
             f5.how = request.POST.get('how')
-            f6.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
+            f5.no_delete = 0
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
             f5.save()
             c5 = Locations()
             c5.file_id = f5.file_id
@@ -881,7 +886,8 @@ def add_version(request, program_id):
             f6_timedelta = datetime.timedelta(0, (3600 * int(f6_hrs)) + (60 * int(f6_minutes)) + int(f6_seconds))
             f6.how = request.POST.get('how')
             f6.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
             f6.save()
             c6 = Locations()
             c6.file_id = f6.file_id
@@ -912,7 +918,8 @@ def add_version(request, program_id):
             f7_timedelta = datetime.timedelta(0, (3600 * int(f7_hrs)) + (60 * int(f7_minutes)) + int(f7_seconds))
             f7.how = request.POST.get('how')
             f7.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
             f7.save()
             c7 = Locations()
             c7.file_id = f7.file_id
@@ -943,7 +950,8 @@ def add_version(request, program_id):
             f8_timedelta = datetime.timedelta(0, (3600 * int(f8_hrs)) + (60 * int(f8_minutes)) + int(f8_seconds))
             f8.how = request.POST.get('how')
             f8.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
             f8.save()
             c8 = Locations()
             c8.file_id = f8.file_id
@@ -974,7 +982,8 @@ def add_version(request, program_id):
             f9_timedelta = datetime.timedelta(0, (3600 * int(f9_hrs)) + (60 * int(f9_minutes)) + int(f9_seconds))
             f9.how = request.POST.get('how')
             f9.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
             f9.save()
             c9 = Locations()
             c9.file_id = f9.file_id
@@ -1005,7 +1014,8 @@ def add_version(request, program_id):
             f10_timedelta = datetime.timedelta(0, (3600 * int(f10_hrs)) + (60 * int(f10_minutes)) + int(f10_seconds))
             f10.how = request.POST.get('how')
             f10.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
             f10.save()
             c10 = Locations()
             c10.file_id = f10.file_id
@@ -1053,7 +1063,8 @@ def add_files(request, program_id, version_id):
         f1_timedelta = datetime.timedelta(0, (3600 * int(f1_hrs)) + (60 * int(f1_minutes)) + int(f1_seconds))
         f1.how = request.POST.get('how')
         f1.no_delete = 0
-        handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
+        if request.POST.get('how') == 'upload':
+            handle_uploaded_file(request.user.email, str(request.FILES['filename1']), request.FILES['filename1'])
         f1.save()
         c1 = Locations()
         c1.file_id = f1.file_id
@@ -1084,7 +1095,8 @@ def add_files(request, program_id, version_id):
             f2_timedelta = datetime.timedelta(0, (3600 * int(f2_hrs)) + (60 * int(f2_minutes)) + int(f2_seconds))
             f2.how = request.POST.get('how')
             f2.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename2']), request.FILES['filename2'])
             f2.save()
             c2 = Locations()
             c2.file_id = f2.file_id
@@ -1115,7 +1127,8 @@ def add_files(request, program_id, version_id):
             f3_timedelta = datetime.timedelta(0, (3600 * int(f3_hrs)) + (60 * int(f3_minutes)) + int(f3_seconds))
             f3.how = request.POST.get('how')
             f3.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename3']), request.FILES['filename3'])
             f3.save()
             c3 = Locations()
             c3.file_id = f3.file_id
@@ -1146,7 +1159,8 @@ def add_files(request, program_id, version_id):
             f4_timedelta = datetime.timedelta(0, (3600 * int(f4_hrs)) + (60 * int(f4_minutes)) + int(f4_seconds))
             f4.how = request.POST.get('how')
             f4.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename4']), request.FILES['filename4'])
             f4.save()
             c4 = Locations()
             c4.file_id = f4.file_id
@@ -1176,8 +1190,9 @@ def add_files(request, program_id, version_id):
             f5.length = f5_hrs + ':' + f5_minutes + ':' + f5_seconds
             f5_timedelta = datetime.timedelta(0, (3600 * int(f5_hrs)) + (60 * int(f5_minutes)) + int(f5_seconds))
             f5.how = request.POST.get('how')
-            f6.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
+            f5.no_delete = 0
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename5']), request.FILES['filename5'])
             f5.save()
             c5 = Locations()
             c5.file_id = f5.file_id
@@ -1208,7 +1223,8 @@ def add_files(request, program_id, version_id):
             f6_timedelta = datetime.timedelta(0, (3600 * int(f6_hrs)) + (60 * int(f6_minutes)) + int(f6_seconds))
             f6.how = request.POST.get('how')
             f6.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename6']), request.FILES['filename6'])
             f6.save()
             c6 = Locations()
             c6.file_id = f6.file_id
@@ -1239,7 +1255,8 @@ def add_files(request, program_id, version_id):
             f7_timedelta = datetime.timedelta(0, (3600 * int(f7_hrs)) + (60 * int(f7_minutes)) + int(f7_seconds))
             f7.how = request.POST.get('how')
             f7.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename7']), request.FILES['filename7'])
             f7.save()
             c7 = Locations()
             c7.file_id = f7.file_id
@@ -1270,7 +1287,8 @@ def add_files(request, program_id, version_id):
             f8_timedelta = datetime.timedelta(0, (3600 * int(f8_hrs)) + (60 * int(f8_minutes)) + int(f8_seconds))
             f8.how = request.POST.get('how')
             f8.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename8']), request.FILES['filename8'])
             f8.save()
             c8 = Locations()
             c8.file_id = f8.file_id
@@ -1301,7 +1319,8 @@ def add_files(request, program_id, version_id):
             f9_timedelta = datetime.timedelta(0, (3600 * int(f9_hrs)) + (60 * int(f9_minutes)) + int(f9_seconds))
             f9.how = request.POST.get('how')
             f9.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename9']), request.FILES['filename9'])
             f9.save()
             c9 = Locations()
             c9.file_id = f9.file_id
@@ -1332,7 +1351,8 @@ def add_files(request, program_id, version_id):
             f10_timedelta = datetime.timedelta(0, (3600 * int(f10_hrs)) + (60 * int(f10_minutes)) + int(f10_seconds))
             f10.how = request.POST.get('how')
             f10.no_delete = 0
-            handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
+            if request.POST.get('how') == 'upload':
+                handle_uploaded_file(request.user.email, str(request.FILES['filename10']), request.FILES['filename10'])
             f10.save()
             c10 = Locations()
             c10.file_id = f10.file_id
