@@ -1864,7 +1864,7 @@ def podcast_program(request):
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
 def download(request, program, version,file):
-    path="e"
+    path=""
     try:
         target = Files.objects.get(program_id=program, version_id=version, file_id=file)
     except Files.DoesNotExist:
@@ -1872,9 +1872,9 @@ def download(request, program, version,file):
     try:
         location = Locations.objects.get(file=target)
     except Locations.DoesNotExist:
-        path="http://www.radio4all.net/files/"
+        path="https://www.radio4all.net/files/"
     if path != "e":
-        file_path = "http://www.radio4all.net/files/"+target.program.uid.email+"/"+target.filename
+        file_path = "https://www.radio4all.net/files/"+target.program.uid.email+"/"+target.filename
     else:
         file_path = location.file_location
     if target.downloads == None:
