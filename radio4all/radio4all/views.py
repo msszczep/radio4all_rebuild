@@ -1864,7 +1864,7 @@ def podcast_program(request):
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
 def download(request, program, version,file):
-    path=""
+    path="e"
     try:
         target = Files.objects.get(program_id=program, version_id=version, file_id=file)
     except Files.DoesNotExist:
