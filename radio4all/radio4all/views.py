@@ -1884,5 +1884,9 @@ def download(request, program, version,file):
     return redirect(file_path)
 
 def download_direct(request, acct, prg):
-    file_path = "https://www.radio4all.net:4430/files/"+acct+"/"+prg
+    file_path = "https://www.radio4all.net/files/"+acct+"/"+prg
     return redirect(file_path)
+
+def support(request):
+    return render(request, 'radio4all/support.html', {
+    },)
