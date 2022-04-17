@@ -49,13 +49,13 @@
     <td>&nbsp;<a href="/contributor/{{ program.uid.uid }}">{{ program.uid.full_name |safe }}</a>&nbsp;&nbsp;Contact Contributor</td>
   </tr>
   <tr>
-    <td colspan="2"><label>Summary:&nbsp;</label> {{ program.summary|safe}}</td>
+    <td colspan="2"><label>Summary:&nbsp;</label> {{ program.summary | linebreaksbr }}</td>
   </tr>
   <tr>
     <td class="row_b" colspan="2"><label>Credits:&nbsp;</label>{{ program.credits | safe }}</td>
   </tr>
   <tr>
-    <td colspan="2"><label>Notes:&nbsp;</label>{{ program.notes |safe }}</td>
+    <td colspan="2"><label>Notes:&nbsp;</label>{{ program.notes | linebreaksbr }}</td>
   </tr>
 <tr><td><br /></td></tr><tr><td colspan="2">
 
