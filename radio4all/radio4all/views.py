@@ -215,7 +215,10 @@ def upload_content(request):
         c1 = Locations()
         c1.file_id = f1.file_id
         c1.filename =  str(request.FILES['filename1'])
-        c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        if request.POST.get('how') == 'upload':
+            c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        else:
+            c1.file_location = str(request.FILES['filename1'])
         c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
@@ -252,7 +255,10 @@ def upload_content(request):
             c2 = Locations()
             c2.file_id = f2.file_id
             c2.filename =  str(request.FILES['filename2'])
-            c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            if request.POST.get('how') == 'upload':
+                c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            else:
+                c2.file_location = str(request.FILES['filename2'])
             c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
@@ -289,7 +295,10 @@ def upload_content(request):
             c3 = Locations()
             c3.file_id = f3.file_id
             c3.filename =  str(request.FILES['filename3'])
-            c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            if request.POST.get('how') == 'upload':
+                c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            else:
+                c3.file_location = str(request.FILES['filename3'])
             c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
@@ -326,7 +335,10 @@ def upload_content(request):
             c4 = Locations()
             c4.file_id = f4.file_id
             c4.filename =  str(request.FILES['filename4'])
-            c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            if request.POST.get('how') == 'upload':
+                c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            else:
+                c4.file_location = str(request.FILES['filename4'])
             c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
@@ -363,7 +375,10 @@ def upload_content(request):
             c5 = Locations()
             c5.file_id = f5.file_id
             c5.filename =  str(request.FILES['filename5'])
-            c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            if request.POST.get('how') == 'upload':
+                c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            else:
+                c5.file_location = str(request.FILES['filename5'])
             c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
@@ -400,7 +415,10 @@ def upload_content(request):
             c6 = Locations()
             c6.file_id = f6.file_id
             c6.filename =  str(request.FILES['filename6'])
-            c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            if request.POST.get('how') == 'upload':
+                c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            else:
+                c6.file_location = str(request.FILES['filename6'])
             c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
@@ -437,7 +455,10 @@ def upload_content(request):
             c7 = Locations()
             c7.file_id = f7.file_id
             c7.filename =  str(request.FILES['filename7'])
-            c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            if request.POST.get('how') == 'upload':
+                c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            else:
+                c7.file_location = str(request.FILES['filename7'])
             c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
@@ -474,7 +495,10 @@ def upload_content(request):
             c8 = Locations()
             c8.file_id = f8.file_id
             c8.filename =  str(request.FILES['filename8'])
-            c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            if request.POST.get('how') == 'upload':
+                c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            else:
+                c8.file_location = str(request.FILES['filename8'])
             c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
@@ -511,7 +535,10 @@ def upload_content(request):
             c9 = Locations()
             c9.file_id = f9.file_id
             c9.filename =  str(request.FILES['filename9'])
-            c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            if request.POST.get('how') == 'upload':
+                c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            else:
+                c9.file_location = str(request.FILES['filename9'])
             c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
@@ -548,7 +575,10 @@ def upload_content(request):
             c10 = Locations()
             c10.file_id = f10.file_id
             c10.filename =  str(request.FILES['filename10'])
-            c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            if request.POST.get('how') == 'upload':
+                c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            else:
+                c10.file_location = str(request.FILES['filename10'])
             c10.mirror = 0
             c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
@@ -732,7 +762,10 @@ def add_version(request, program_id):
         c1 = Locations()
         c1.file_id = f1.file_id
         c1.filename =  str(request.FILES['filename1'])
-        c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        if request.POST.get('how') == 'upload':
+            c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        else:
+            c1.file_location = str(request.FILES['filename1'])
         c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
@@ -764,7 +797,10 @@ def add_version(request, program_id):
             c2 = Locations()
             c2.file_id = f2.file_id
             c2.filename =  str(request.FILES['filename2'])
-            c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            if request.POST.get('how') == 'upload':
+                c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            else:
+                c2.file_location = str(request.FILES['filename2'])
             c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
@@ -796,7 +832,10 @@ def add_version(request, program_id):
             c3 = Locations()
             c3.file_id = f3.file_id
             c3.filename =  str(request.FILES['filename3'])
-            c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            if request.POST.get('how') == 'upload':
+                c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            else:
+                c3.file_location = str(request.FILES['filename3'])
             c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
@@ -828,7 +867,10 @@ def add_version(request, program_id):
             c4 = Locations()
             c4.file_id = f4.file_id
             c4.filename =  str(request.FILES['filename4'])
-            c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            if request.POST.get('how') == 'upload':
+                c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            else:
+                c4.file_location = str(request.FILES['filename4'])
             c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
@@ -860,7 +902,10 @@ def add_version(request, program_id):
             c5 = Locations()
             c5.file_id = f5.file_id
             c5.filename =  str(request.FILES['filename5'])
-            c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            if request.POST.get('how') == 'upload':
+                c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            else:
+                c5.file_location = str(request.FILES['filename5'])
             c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
@@ -892,7 +937,10 @@ def add_version(request, program_id):
             c6 = Locations()
             c6.file_id = f6.file_id
             c6.filename =  str(request.FILES['filename6'])
-            c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            if request.POST.get('how') == 'upload':
+                c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            else:
+                c6.file_location = str(request.FILES['filename6'])
             c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
@@ -924,7 +972,10 @@ def add_version(request, program_id):
             c7 = Locations()
             c7.file_id = f7.file_id
             c7.filename =  str(request.FILES['filename7'])
-            c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            if request.POST.get('how') == 'upload':
+                c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            else:
+                c7.file_location = str(request.FILES['filename7'])
             c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
@@ -956,7 +1007,10 @@ def add_version(request, program_id):
             c8 = Locations()
             c8.file_id = f8.file_id
             c8.filename =  str(request.FILES['filename8'])
-            c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            if request.POST.get('how') == 'upload':
+                c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            else:
+                c8.file_location = str(request.FILES['filename8'])
             c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
@@ -988,7 +1042,10 @@ def add_version(request, program_id):
             c9 = Locations()
             c9.file_id = f9.file_id
             c9.filename =  str(request.FILES['filename9'])
-            c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            if request.POST.get('how') == 'upload':
+                c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            else:
+                c9.file_location = str(request.FILES['filename9'])
             c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
@@ -1020,7 +1077,10 @@ def add_version(request, program_id):
             c10 = Locations()
             c10.file_id = f10.file_id
             c10.filename =  str(request.FILES['filename10'])
-            c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            if request.POST.get('how') == 'upload':
+                c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            else:
+                c10.file_location = str(request.FILES['filename10'])
             c10.mirror = 0
             c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
@@ -1069,7 +1129,10 @@ def add_files(request, program_id, version_id):
         c1 = Locations()
         c1.file_id = f1.file_id
         c1.filename =  str(request.FILES['filename1'])
-        c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        if request.POST.get('how') == 'upload':
+            c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
+        else:
+            c1.file_location = str(request.FILES['filename1'])
         c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
@@ -1101,7 +1164,10 @@ def add_files(request, program_id, version_id):
             c2 = Locations()
             c2.file_id = f2.file_id
             c2.filename =  str(request.FILES['filename2'])
-            c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            if request.POST.get('how') == 'upload':
+                c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
+            else:
+                c2.file_location = str(request.FILES['filename2'])
             c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
@@ -1133,7 +1199,10 @@ def add_files(request, program_id, version_id):
             c3 = Locations()
             c3.file_id = f3.file_id
             c3.filename =  str(request.FILES['filename3'])
-            c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            if request.POST.get('how') == 'upload':
+                c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
+            else:
+                c3.file_location = str(request.FILES['filename3'])
             c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
@@ -1165,7 +1234,10 @@ def add_files(request, program_id, version_id):
             c4 = Locations()
             c4.file_id = f4.file_id
             c4.filename =  str(request.FILES['filename4'])
-            c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            if request.POST.get('how') == 'upload':
+                c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
+            else:
+                c4.file_location = str(request.FILES['filename4'])
             c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
@@ -1197,7 +1269,10 @@ def add_files(request, program_id, version_id):
             c5 = Locations()
             c5.file_id = f5.file_id
             c5.filename =  str(request.FILES['filename5'])
-            c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            if request.POST.get('how') == 'upload':
+                c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
+            else:
+                c5.file_location = str(request.FILES['filename5'])
             c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
@@ -1229,7 +1304,10 @@ def add_files(request, program_id, version_id):
             c6 = Locations()
             c6.file_id = f6.file_id
             c6.filename =  str(request.FILES['filename6'])
-            c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            if request.POST.get('how') == 'upload':
+                c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
+            else:
+                c6.file_location = str(request.FILES['filename6'])
             c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
@@ -1261,7 +1339,10 @@ def add_files(request, program_id, version_id):
             c7 = Locations()
             c7.file_id = f7.file_id
             c7.filename =  str(request.FILES['filename7'])
-            c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            if request.POST.get('how') == 'upload':
+                c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
+            else:
+                c7.file_location = str(request.FILES['filename7'])
             c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
@@ -1293,7 +1374,10 @@ def add_files(request, program_id, version_id):
             c8 = Locations()
             c8.file_id = f8.file_id
             c8.filename =  str(request.FILES['filename8'])
-            c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            if request.POST.get('how') == 'upload':
+                c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
+            else:
+                c8.file_location = str(request.FILES['filename8'])
             c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
@@ -1325,7 +1409,10 @@ def add_files(request, program_id, version_id):
             c9 = Locations()
             c9.file_id = f9.file_id
             c9.filename =  str(request.FILES['filename9'])
-            c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            if request.POST.get('how') == 'upload':
+                c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
+            else:
+                c9.file_location = str(request.FILES['filename9'])
             c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
@@ -1357,7 +1444,10 @@ def add_files(request, program_id, version_id):
             c10 = Locations()
             c10.file_id = f10.file_id
             c10.filename =  str(request.FILES['filename10'])
-            c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            if request.POST.get('how') == 'upload':
+                c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
+            else:
+                c10.file_location = str(request.FILES['filename10'])
             c10.mirror = 0
             c10.save()
         return HttpResponseRedirect('/')
