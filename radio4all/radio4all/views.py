@@ -1721,7 +1721,7 @@ def filter_contributor(request, letter):
 
 def get_contributor(request, uid):
     try:
-        target = Programs.objects.filter(uid=uid).order_by('-date_created')
+        target = Programs.objects.filter(uid=uid, hidden=0).order_by('-date_created')
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
