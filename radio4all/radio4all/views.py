@@ -1926,7 +1926,7 @@ def podcast_view(request):
             desc_to_use = i.summary
             guid_to_use = 'http://www.radio4all.net/program/' + str(i.program_id) + '&' + str(s.file_id)
             date_to_use = i.date_created
-            author_to_use = Djusers.objects.get(uid=str(i.uid_id)).full_name + "(" + str(i.uid_id) + ")"
+            author_to_use = Djusers.objects.get(uid=str(i.uid_id)).full_name
             curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s', (i.program_id,))
             enclosures_to_use = []
             for c in curs.fetchall():
@@ -1949,7 +1949,7 @@ def podcast_program(request):
         desc_to_use = queryset.summary
         guid_to_use = 'http://www.radio4all.net/program/' + str(queryset.program_id) + '&' + str(s.file_id)
         date_to_use = queryset.date_created
-        author_to_use = Djusers.objects.get(uid=str(queryset.uid_id)).full_name + "(" + str(queryset.uid_id) + ")"
+        author_to_use = Djusers.objects.get(uid=str(queryset.uid_id)).full_name
         curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s AND t1.version_id = %s', (queryset.program_id, version_id,))
         enclosures_to_use = []
         for c in curs.fetchall():
