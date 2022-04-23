@@ -48,17 +48,12 @@ def view_program(request, pk):
         program_data = Programs.objects.get(program_id = pk)
     except:
         program_data = ''
-    try:
-        program_type = Types.objects.filter(type_id = program_data.type)[0].type
-    except:
-        program_type = ''
     if len(files_to_use) == 0 or program_data == '':
         return HttpResponse('<h1>There is no program in the database with ID ' + str(pk) + '.  Please check and try again.</h1>')
     else:
         return render(request, 'radio4all/program.html', {
             'files': files_to_use,
             'program': program_data,
-            'program_type': program_type,
         },)
 
 class AboutPageView(ListView):
