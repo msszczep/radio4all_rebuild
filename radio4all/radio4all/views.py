@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs, News, Faq, Types, License, Topics, TopicAssignment, Restrictions, Advisories, Lang, Formats, Versions, Djusers
+from .models import Files, Locations, Programs, News, Faq, Types, License, Users, Topics, TopicAssignment, Restrictions, Advisories, Lang, Formats, Versions, Djusers
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -147,7 +147,7 @@ def upload_content(request):
         now = datetime.datetime.now()
         p = Programs()
         p.program_title = request.POST.get('program_title')
-        p.uid = Djusers.objects.get(uid = request.user.uid)
+        p.uid = Users.objects.get(uid = request.user.uid)
         p.type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
@@ -615,7 +615,7 @@ def edit_program(request, pk):
         now = datetime.datetime.now()
         p = Programs.objects.get(program_id = pk)
         p.program_title = request.POST.get('program_title')
-        p.uid = Djusers.objects.get(uid = request.user.uid)
+        p.uid = Users.objects.get(uid = request.user.uid)
         p.type = request.POST.get('program_type')
         p.subtitle = request.POST.get('program_subtitle')
         series = request.POST.get('program_series')
@@ -1705,9 +1705,9 @@ def filter_series(request, letter):
 def filter_contributor(request, letter):
     try:
         if letter == "0-9":
-            contributors = Djusers.objects.filter(full_name__startswith='0') | Djusers.objects.filter(full_name__startswith='1') | Djusers.objects.filter(full_name__startswith='2') | Djusers.objects.filter(full_name__startswith='3') | Djusers.objects.filter(full_name__startswith='4') | Djusers.objects.filter(full_name__startswith='5') | Djusers.objects.filter(full_name__startswith='6') | Djusers.objects.filter(full_name__startswith='7') | Djusers.objects.filter(full_name__startswith='8') | Djusers.objects.filter(full_name__startswith='9')
+            contributors = Users.objects.filter(full_name__startswith='0') | Users.objects.filter(full_name__startswith='1') | Users.objects.filter(full_name__startswith='2') | Users.objects.filter(full_name__startswith='3') | Users.objects.filter(full_name__startswith='4') | Users.objects.filter(full_name__startswith='5') | Users.objects.filter(full_name__startswith='6') | Users.objects.filter(full_name__startswith='7') | Users.objects.filter(full_name__startswith='8') | Users.objects.filter(full_name__startswith='9')
         else:
-            contributors = Djusers.objects.filter(full_name__startswith=letter.capitalize()) | Djusers.objects.filter(full_name__startswith=letter)
+            contributors = Users.objects.filter(full_name__startswith=letter.capitalize()) | Users.objects.filter(full_name__startswith=letter)
         target = contributors.values('full_name', 'uid').distinct().order_by('full_name')
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
@@ -1727,14 +1727,14 @@ def get_contributor(request, uid):
         page_obj = paginator.get_page(page_number)
     except Programs.DoesNotExist:
         return HttpResponse('<h1>No Programs Here</h1>')
-    user_to_use = Djusers.objects.get(uid=uid)
+    user_to_use = Users.objects.get(uid=uid)
     return render(request, 'radio4all/programs_by_contributor_indiv.html', {
         'page_obj': page_obj,
         'user_to_use': user_to_use,
     },)
 
 def get_contributor_contact(request, uid):
-    target = Djusers.objects.get(uid=uid)
+    target = Users.objects.get(uid=uid)
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -1887,7 +1887,7 @@ def filter_search(request):
         if search_typeselect != 'null' and search_typeselect != None:
             search_results = search_results.filter(type__iexact=search_typeselect)
         if search_contributor == True:
-            contributors_to_use = Djusers.objects.filter(full_name__icontains=search_terms)
+            contributors_to_use = Users.objects.filter(full_name__icontains=search_terms)
             search_results = Programs.objects.filter(uid__in=contributors_to_use.values('uid'))
         if search_filename == True:
             filenames_to_use = Files.objects.filter(filename__icontains=search_terms)
@@ -1909,7 +1909,7 @@ def podcast_view(request):
     series_name = request.GET.get('series')
     if uid != None:
          queryset = Programs.objects.filter(uid=uid).order_by('-date_created')[:30]
-         user_to_use = Djusers.objects.get(uid=uid)
+         user_to_use = Users.objects.get(uid=uid)
          f = feedgenerator.Rss201rev2Feed(title="Contributor Podcast: " + user_to_use.full_name, link="http://www.radio4all.net/contributor/" + str(uid), description="Contributor Podcast: " + user_to_use.full_name, docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     elif uid == None and series_name != None:
          queryset = Programs.objects.filter(series=series_name).order_by('-date_created')[:30]
