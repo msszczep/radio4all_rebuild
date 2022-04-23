@@ -1931,7 +1931,7 @@ def podcast_view(request):
             enclosures_to_use = []
             for c in curs.fetchall():
                 enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
-                f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
+                f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use, pubdate=date_to_use)
     curs.close()
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
@@ -1954,7 +1954,7 @@ def podcast_program(request):
         enclosures_to_use = []
         for c in curs.fetchall():
             enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
-            f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use)
+            f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use, pubdate=date_to_use)
     curs.close()
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
 
