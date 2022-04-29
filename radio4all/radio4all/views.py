@@ -218,7 +218,7 @@ def upload_content(request):
             c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
             c1.filename = str(request.FILES['filename1'])
         else:
-            c1.file_location = str(request.FILES['filenametext1'])
+            c1.file_location = str(request.POST.get('filenametext1'))
             c1.filename = str(request.FILES['filename1']).split('/')[-1]
         c1.mirror = 0
         c1.save()
@@ -259,7 +259,7 @@ def upload_content(request):
                 c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
                 c2.filename = str(request.FILES['filename2'])
             else:
-                c2.file_location = str(request.FILES['filenametext2'])
+                c2.file_location = str(request.POST.get('filenametext2'))
                 c2.filename = str(request.FILES['filename2']).split('/')[-1]
             c2.mirror = 0
             c2.save()
@@ -300,7 +300,7 @@ def upload_content(request):
                 c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
                 c3.filename = str(request.FILES['filename3'])
             else:
-                c3.file_location = str(request.FILES['filenametext3'])
+                c3.file_location = str(request.POST.get('filenametext3'))
                 c3.filename = str(request.FILES['filename3']).split('/')[-1]
             c3.mirror = 0
             c3.save()
@@ -341,7 +341,7 @@ def upload_content(request):
                 c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
                 c4.filename = str(request.FILES['filename4'])
             else:
-                c4.file_location = str(request.FILES['filenametext4'])
+                c4.file_location = str(request.POST.get('filenametext4'))
                 c4.filename = str(request.FILES['filename4']).split('/')[-1]
             c4.mirror = 0
             c4.save()
@@ -382,7 +382,7 @@ def upload_content(request):
                 c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
                 c5.filename = str(request.FILES['filename5'])
             else:
-                c5.file_location = str(request.FILES['filenametext5'])
+                c5.file_location = str(request.POST.get('filenametext5'))
                 c5.filename = str(request.FILES['filename5']).split('/')[-1]
             c5.mirror = 0
             c5.save()
@@ -423,7 +423,7 @@ def upload_content(request):
                 c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
                 c6.filename = str(request.FILES['filename6'])
             else:
-                c6.file_location = str(request.FILES['filenametext6'])
+                c6.file_location = str(request.POST.get('filenametext6'))
                 c6.filename = str(request.FILES['filename6']).split('/')[-1]
             c6.mirror = 0
             c6.save()
@@ -464,7 +464,7 @@ def upload_content(request):
                 c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
                 c7.filename = str(request.FILES['filename7'])
             else:
-                c7.file_location = str(request.FILES['filenametext7'])
+                c7.file_location = str(request.POST.get('filenametext7'))
                 c7.filename = str(request.FILES['filename2']).split('/')[-1]
             c7.mirror = 0
             c7.save()
@@ -505,7 +505,7 @@ def upload_content(request):
                 c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
                 c8.filename = str(request.FILES['filename8'])
             else:
-                c8.file_location = str(request.FILES['filenametext8'])
+                c8.file_location = str(request.POST.get('filenametext8'))
                 c8.filename = str(request.FILES['filename8']).split('/')[-1]
             c8.mirror = 0
             c8.save()
@@ -546,7 +546,7 @@ def upload_content(request):
                 c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
                 c9.filename = str(request.FILES['filename9'])
             else:
-                c9.file_location = str(request.FILES['filenametext9'])
+                c9.file_location = str(request.POST.get('filenametext9'))
                 c9.filename = str(request.FILES['filename9']).split('/')[-1]
             c9.mirror = 0
             c9.save()
@@ -587,7 +587,7 @@ def upload_content(request):
                 c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
                 c10.filename = str(request.FILES['filename10'])
             else:
-                c10.file_location = str(request.FILES['filenametext10'])
+                c10.file_location = str(request.POST.get('filenametext10'))
                 c10.filename = str(request.FILES['filename10']).split('/')[-1]
             c10.mirror = 0
             c10.save()
@@ -775,7 +775,7 @@ def add_version(request, program_id):
             c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
             c1.filename = str(request.FILES['filename1'])
         else:
-            c1.file_location = str(request.FILES['filenametext1'])
+            c1.file_location = str(request.POST.get('filenametext1'))
             c1.filename = str(request.FILES['filename1']).split('/')[-1]
         c1.mirror = 0
         c1.save()
@@ -811,7 +811,7 @@ def add_version(request, program_id):
                 c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
                 c2.filename = str(request.FILES['filename2'])
             else:
-                c2.file_location = str(request.FILES['filenametext2'])
+                c2.file_location = str(request.POST.get('filenametext2'))
                 c2.filename = str(request.FILES['filename2']).split('/')[-1]
             c2.mirror = 0
             c2.save()
@@ -847,7 +847,7 @@ def add_version(request, program_id):
                 c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
                 c3.filename = str(request.FILES['filename3'])
             else:
-                c3.file_location = str(request.FILES['filenametext3'])
+                c3.file_location = str(request.POST.get('filenametext3'))
                 c3.filename = str(request.FILES['filename3']).split('/')[-1]
             c3.mirror = 0
             c3.save()
@@ -883,7 +883,7 @@ def add_version(request, program_id):
                 c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
                 c4.filename = str(request.FILES['filename4'])
             else:
-                c4.file_location = str(request.FILES['filenametext4'])
+                c4.file_location = str(request.POST.get('filenametext4'))
                 c4.filename = str(request.FILES['filename4']).split('/')[-1]
             c4.mirror = 0
             c4.save()
@@ -919,7 +919,7 @@ def add_version(request, program_id):
                 c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
                 c5.filename = str(request.FILES['filename5'])
             else:
-                c5.file_location = str(request.FILES['filenametext5'])
+                c5.file_location = str(request.POST.get('filenametext5'))
                 c5.filename = str(request.FILES['filename5']).split('/')[-1]
             c5.mirror = 0
             c5.save()
@@ -955,7 +955,7 @@ def add_version(request, program_id):
                 c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
                 c6.filename = str(request.FILES['filename6'])
             else:
-                c6.file_location = str(request.FILES['filenametext6'])
+                c6.file_location = str(request.POST.get('filenametext6'))
                 c6.filename = str(request.FILES['filename6']).split('/')[-1]
             c6.mirror = 0
             c6.save()
@@ -991,7 +991,7 @@ def add_version(request, program_id):
                 c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
                 c7.filename = str(request.FILES['filename7'])
             else:
-                c7.file_location = str(request.FILES['filenametext7'])
+                c7.file_location = str(request.POST.get('filenametext7'))
                 c7.filename = str(request.FILES['filename7']).split('/')[-1]
             c7.mirror = 0
             c7.save()
@@ -1027,7 +1027,7 @@ def add_version(request, program_id):
                 c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
                 c8.filename = str(request.FILES['filename8'])
             else:
-                c8.file_location = str(request.FILES['filenametext8'])
+                c8.file_location = str(request.POST.get('filenametext8'))
                 c8.filename = str(request.FILES['filename8']).split('/')[-1]
             c8.mirror = 0
             c8.save()
@@ -1063,7 +1063,7 @@ def add_version(request, program_id):
                 c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
                 c9.filename = str(request.FILES['filename9'])
             else:
-                c9.file_location = str(request.FILES['filenametext9'])
+                c9.file_location = str(request.POST.get('filenametext9'))
                 c9.filename = str(request.FILES['filename9']).split('/')[-1]
             c9.mirror = 0
             c9.save()
@@ -1099,7 +1099,7 @@ def add_version(request, program_id):
                 c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
                 c10.filename = str(request.FILES['filename10'])
             else:
-                c10.file_location = str(request.FILES['filenametext10'])
+                c10.file_location = str(request.POST.get('filenametext10'))
                 c10.filename = str(request.FILES['filename10']).split('/')[-1]
             c10.mirror = 0
             c10.save()
@@ -1152,7 +1152,7 @@ def add_files(request, program_id, version_id):
             c1.file_location = make_file_location(request.user.email, str(request.FILES['filename1']))
             c1.filename = str(request.FILES['filename1'])
         else:
-            c1.file_location = str(request.FILES['filenametext1'])
+            c1.file_location = str(request.POST.get('filenametext1'))
             c1.filename = str(request.FILES['filename1']).split('/')[-1]
         c1.mirror = 0
         c1.save()
@@ -1188,7 +1188,7 @@ def add_files(request, program_id, version_id):
                 c2.file_location = make_file_location(request.user.email, str(request.FILES['filename2']))
                 c2.filename = str(request.FILES['filename2'])
             else:
-                c2.file_location = str(request.FILES['filenametext2'])
+                c2.file_location = str(request.POST.get('filenametext2'))
                 c2.filename = str(request.FILES['filename2']).split('/')[-1]
             c2.mirror = 0
             c2.save()
@@ -1224,7 +1224,7 @@ def add_files(request, program_id, version_id):
                 c3.file_location = make_file_location(request.user.email, str(request.FILES['filename3']))
                 c3.filename = str(request.FILES['filename3'])
             else:
-                c3.file_location = str(request.FILES['filenametext3'])
+                c3.file_location = str(request.POST.get('filenametext3'))
                 c3.filename = str(request.FILES['filename3']).split('/')[-1]
             c3.mirror = 0
             c3.save()
@@ -1260,7 +1260,7 @@ def add_files(request, program_id, version_id):
                 c4.file_location = make_file_location(request.user.email, str(request.FILES['filename4']))
                 c4.filename = str(request.FILES['filename4'])
             else:
-                c4.file_location = str(request.FILES['filenametext4'])
+                c4.file_location = str(request.POST.get('filenametext4'))
                 c4.filename = str(request.FILES['filename4']).split('/')[-1]
             c4.mirror = 0
             c4.save()
@@ -1296,7 +1296,7 @@ def add_files(request, program_id, version_id):
                 c5.file_location = make_file_location(request.user.email, str(request.FILES['filename5']))
                 c5.filename = str(request.FILES['filename5'])
             else:
-                c5.file_location = str(request.FILES['filenametext5'])
+                c5.file_location = str(request.POST.get('filenametext5'))
                 c5.filename = str(request.FILES['filename5']).split('/')[-1]
             c5.mirror = 0
             c5.save()
@@ -1332,7 +1332,7 @@ def add_files(request, program_id, version_id):
                 c6.file_location = make_file_location(request.user.email, str(request.FILES['filename6']))
                 c6.filename = str(request.FILES['filename6'])
             else:
-                c6.file_location = str(request.FILES['filenametext6'])
+                c6.file_location = str(request.POST.get('filenametext6'))
                 c6.filename = str(request.FILES['filename6']).split('/')[-1]
             c6.mirror = 0
             c6.save()
@@ -1368,7 +1368,7 @@ def add_files(request, program_id, version_id):
                 c7.file_location = make_file_location(request.user.email, str(request.FILES['filename7']))
                 c7.filename = str(request.FILES['filename7'])
             else:
-                c7.file_location = str(request.FILES['filenametext7'])
+                c7.file_location = str(request.POST.get('filenametext7'))
                 c7.filename = str(request.FILES['filename7']).split('/')[-1]
             c7.mirror = 0
             c7.save()
@@ -1404,7 +1404,7 @@ def add_files(request, program_id, version_id):
                 c8.file_location = make_file_location(request.user.email, str(request.FILES['filename8']))
                 c8.filename = str(request.FILES['filename8'])
             else:
-                c8.file_location = str(request.FILES['filenametext8'])
+                c8.file_location = str(request.POST.get('filenametext8'))
                 c8.filename = str(request.FILES['filename8']).split('/')[-1]
             c8.mirror = 0
             c8.save()
@@ -1440,7 +1440,7 @@ def add_files(request, program_id, version_id):
                 c9.file_location = make_file_location(request.user.email, str(request.FILES['filename9']))
                 c9.filename = str(request.FILES['filename9'])
             else:
-                c9.file_location = str(request.FILES['filenametext9'])
+                c9.file_location = str(request.POST.get('filenametext9'))
                 c9.filename = str(request.FILES['filename9']).split('/')[-1]
             c9.mirror = 0
             c9.save()
@@ -1476,7 +1476,7 @@ def add_files(request, program_id, version_id):
                 c10.file_location = make_file_location(request.user.email, str(request.FILES['filename10']))
                 c10.filename = str(request.FILES['filename10'])
             else:
-                c10.file_location = str(request.FILES['filenametext10'])
+                c10.file_location = str(request.POST.get('filenametext10'))
                 c10.filename = str(request.FILES['filename10']).split('/')[-1]
             c10.mirror = 0
             c10.save()
