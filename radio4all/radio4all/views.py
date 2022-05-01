@@ -219,7 +219,7 @@ def upload_content(request):
             c1.filename = str(request.FILES['filename1'])
         else:
             c1.file_location = str(request.POST.get('filenametext1'))
-            c1.filename = str(request.FILES['filename1']).split('/')[-1]
+            c1.filename = str(request.POST.get('filenametext1')).split('/')[-1]
         c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
@@ -260,7 +260,7 @@ def upload_content(request):
                 c2.filename = str(request.FILES['filename2'])
             else:
                 c2.file_location = str(request.POST.get('filenametext2'))
-                c2.filename = str(request.FILES['filename2']).split('/')[-1]
+                c2.filename = str(request.POST.get['filenametext2']).split('/')[-1]
             c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
@@ -301,7 +301,7 @@ def upload_content(request):
                 c3.filename = str(request.FILES['filename3'])
             else:
                 c3.file_location = str(request.POST.get('filenametext3'))
-                c3.filename = str(request.FILES['filename3']).split('/')[-1]
+                c3.filename = str(request.POST.get('filenametext3')).split('/')[-1]
             c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
@@ -342,7 +342,7 @@ def upload_content(request):
                 c4.filename = str(request.FILES['filename4'])
             else:
                 c4.file_location = str(request.POST.get('filenametext4'))
-                c4.filename = str(request.FILES['filename4']).split('/')[-1]
+                c4.filename = str(request.POST.get('filenametext4')).split('/')[-1]
             c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
@@ -383,7 +383,7 @@ def upload_content(request):
                 c5.filename = str(request.FILES['filename5'])
             else:
                 c5.file_location = str(request.POST.get('filenametext5'))
-                c5.filename = str(request.FILES['filename5']).split('/')[-1]
+                c5.filename = str(request.POST.get('filenametext5')).split('/')[-1]
             c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
@@ -424,7 +424,7 @@ def upload_content(request):
                 c6.filename = str(request.FILES['filename6'])
             else:
                 c6.file_location = str(request.POST.get('filenametext6'))
-                c6.filename = str(request.FILES['filename6']).split('/')[-1]
+                c6.filename = str(request.POST.get('filenametext6')).split('/')[-1]
             c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
@@ -465,7 +465,7 @@ def upload_content(request):
                 c7.filename = str(request.FILES['filename7'])
             else:
                 c7.file_location = str(request.POST.get('filenametext7'))
-                c7.filename = str(request.FILES['filename2']).split('/')[-1]
+                c7.filename = str(request.POST.get('filenametext7')).split('/')[-1]
             c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
@@ -506,7 +506,7 @@ def upload_content(request):
                 c8.filename = str(request.FILES['filename8'])
             else:
                 c8.file_location = str(request.POST.get('filenametext8'))
-                c8.filename = str(request.FILES['filename8']).split('/')[-1]
+                c8.filename = str(request.POST.get('filenametext8')).split('/')[-1]
             c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
@@ -547,7 +547,7 @@ def upload_content(request):
                 c9.filename = str(request.FILES['filename9'])
             else:
                 c9.file_location = str(request.POST.get('filenametext9'))
-                c9.filename = str(request.FILES['filename9']).split('/')[-1]
+                c9.filename = str(request.POST.get('filenametext9')).split('/')[-1]
             c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
@@ -588,7 +588,7 @@ def upload_content(request):
                 c10.filename = str(request.FILES['filename10'])
             else:
                 c10.file_location = str(request.POST.get('filenametext10'))
-                c10.filename = str(request.FILES['filename10']).split('/')[-1]
+                c10.filename = str(request.POST.get('filenametext10')).split('/')[-1]
             c10.mirror = 0
             c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
@@ -776,7 +776,7 @@ def add_version(request, program_id):
             c1.filename = str(request.FILES['filename1'])
         else:
             c1.file_location = str(request.POST.get('filenametext1'))
-            c1.filename = str(request.FILES['filename1']).split('/')[-1]
+            c1.filename = str(request.POST.get('filenametext1')).split('/')[-1]
         c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
@@ -812,7 +812,7 @@ def add_version(request, program_id):
                 c2.filename = str(request.FILES['filename2'])
             else:
                 c2.file_location = str(request.POST.get('filenametext2'))
-                c2.filename = str(request.FILES['filename2']).split('/')[-1]
+                c2.filename = str(request.POST.get('filenametext2')).split('/')[-1]
             c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
@@ -848,7 +848,7 @@ def add_version(request, program_id):
                 c3.filename = str(request.FILES['filename3'])
             else:
                 c3.file_location = str(request.POST.get('filenametext3'))
-                c3.filename = str(request.FILES['filename3']).split('/')[-1]
+                c3.filename = str(request.post.get('filenametext3')).split('/')[-1]
             c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
@@ -884,7 +884,7 @@ def add_version(request, program_id):
                 c4.filename = str(request.FILES['filename4'])
             else:
                 c4.file_location = str(request.POST.get('filenametext4'))
-                c4.filename = str(request.FILES['filename4']).split('/')[-1]
+                c4.filename = str(request.POST.get('filenametext4')).split('/')[-1]
             c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
@@ -920,7 +920,7 @@ def add_version(request, program_id):
                 c5.filename = str(request.FILES['filename5'])
             else:
                 c5.file_location = str(request.POST.get('filenametext5'))
-                c5.filename = str(request.FILES['filename5']).split('/')[-1]
+                c5.filename = str(request.POST.get('filenametext5')).split('/')[-1]
             c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
@@ -956,7 +956,7 @@ def add_version(request, program_id):
                 c6.filename = str(request.FILES['filename6'])
             else:
                 c6.file_location = str(request.POST.get('filenametext6'))
-                c6.filename = str(request.FILES['filename6']).split('/')[-1]
+                c6.filename = str(request.POST.get('filenametext6')).split('/')[-1]
             c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
@@ -992,7 +992,7 @@ def add_version(request, program_id):
                 c7.filename = str(request.FILES['filename7'])
             else:
                 c7.file_location = str(request.POST.get('filenametext7'))
-                c7.filename = str(request.FILES['filename7']).split('/')[-1]
+                c7.filename = str(request.POST.get('filenametext7')).split('/')[-1]
             c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
@@ -1028,7 +1028,7 @@ def add_version(request, program_id):
                 c8.filename = str(request.FILES['filename8'])
             else:
                 c8.file_location = str(request.POST.get('filenametext8'))
-                c8.filename = str(request.FILES['filename8']).split('/')[-1]
+                c8.filename = str(request.POST.get('filenametext8')).split('/')[-1]
             c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
@@ -1064,7 +1064,7 @@ def add_version(request, program_id):
                 c9.filename = str(request.FILES['filename9'])
             else:
                 c9.file_location = str(request.POST.get('filenametext9'))
-                c9.filename = str(request.FILES['filename9']).split('/')[-1]
+                c9.filename = str(request.POST.get('filenametext9')).split('/')[-1]
             c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
@@ -1100,7 +1100,7 @@ def add_version(request, program_id):
                 c10.filename = str(request.FILES['filename10'])
             else:
                 c10.file_location = str(request.POST.get('filenametext10'))
-                c10.filename = str(request.FILES['filename10']).split('/')[-1]
+                c10.filename = str(request.POST.get('filenametext10')).split('/')[-1]
             c10.mirror = 0
             c10.save()
         v.length = str(f1_timedelta + f2_timedelta + f3_timedelta + f4_timedelta + f5_timedelta + f6_timedelta + f7_timedelta + f8_timedelta + f9_timedelta + f10_timedelta)
@@ -1153,7 +1153,7 @@ def add_files(request, program_id, version_id):
             c1.filename = str(request.FILES['filename1'])
         else:
             c1.file_location = str(request.POST.get('filenametext1'))
-            c1.filename = str(request.FILES['filename1']).split('/')[-1]
+            c1.filename = str(request.POST.get('filenametext1')).split('/')[-1]
         c1.mirror = 0
         c1.save()
         f2_timedelta = datetime.timedelta(0)
@@ -1189,7 +1189,7 @@ def add_files(request, program_id, version_id):
                 c2.filename = str(request.FILES['filename2'])
             else:
                 c2.file_location = str(request.POST.get('filenametext2'))
-                c2.filename = str(request.FILES['filename2']).split('/')[-1]
+                c2.filename = str(request.POST.get('filenametext2')).split('/')[-1]
             c2.mirror = 0
             c2.save()
         f3_timedelta = datetime.timedelta(0)
@@ -1225,7 +1225,7 @@ def add_files(request, program_id, version_id):
                 c3.filename = str(request.FILES['filename3'])
             else:
                 c3.file_location = str(request.POST.get('filenametext3'))
-                c3.filename = str(request.FILES['filename3']).split('/')[-1]
+                c3.filename = str(request.POST.get('filenametext3')).split('/')[-1]
             c3.mirror = 0
             c3.save()
         f4_timedelta = datetime.timedelta(0)
@@ -1261,7 +1261,7 @@ def add_files(request, program_id, version_id):
                 c4.filename = str(request.FILES['filename4'])
             else:
                 c4.file_location = str(request.POST.get('filenametext4'))
-                c4.filename = str(request.FILES['filename4']).split('/')[-1]
+                c4.filename = str(request.POST.get('filenametext4')).split('/')[-1]
             c4.mirror = 0
             c4.save()
         f5_timedelta = datetime.timedelta(0)
@@ -1297,7 +1297,7 @@ def add_files(request, program_id, version_id):
                 c5.filename = str(request.FILES['filename5'])
             else:
                 c5.file_location = str(request.POST.get('filenametext5'))
-                c5.filename = str(request.FILES['filename5']).split('/')[-1]
+                c5.filename = str(request.POST.get('filenametext5')).split('/')[-1]
             c5.mirror = 0
             c5.save()
         f6_timedelta = datetime.timedelta(0)
@@ -1333,7 +1333,7 @@ def add_files(request, program_id, version_id):
                 c6.filename = str(request.FILES['filename6'])
             else:
                 c6.file_location = str(request.POST.get('filenametext6'))
-                c6.filename = str(request.FILES['filename6']).split('/')[-1]
+                c6.filename = str(request.POST.get('filenametext6')).split('/')[-1]
             c6.mirror = 0
             c6.save()
         f7_timedelta = datetime.timedelta(0)
@@ -1369,7 +1369,7 @@ def add_files(request, program_id, version_id):
                 c7.filename = str(request.FILES['filename7'])
             else:
                 c7.file_location = str(request.POST.get('filenametext7'))
-                c7.filename = str(request.FILES['filename7']).split('/')[-1]
+                c7.filename = str(request.POST.get('filenametext7')).split('/')[-1]
             c7.mirror = 0
             c7.save()
         f8_timedelta = datetime.timedelta(0)
@@ -1405,7 +1405,7 @@ def add_files(request, program_id, version_id):
                 c8.filename = str(request.FILES['filename8'])
             else:
                 c8.file_location = str(request.POST.get('filenametext8'))
-                c8.filename = str(request.FILES['filename8']).split('/')[-1]
+                c8.filename = str(request.POST.get('filenametext8')).split('/')[-1]
             c8.mirror = 0
             c8.save()
         f9_timedelta = datetime.timedelta(0)
@@ -1441,7 +1441,7 @@ def add_files(request, program_id, version_id):
                 c9.filename = str(request.FILES['filename9'])
             else:
                 c9.file_location = str(request.POST.get('filenametext9'))
-                c9.filename = str(request.FILES['filename9']).split('/')[-1]
+                c9.filename = str(request.POST.get('filenametext9')).split('/')[-1]
             c9.mirror = 0
             c9.save()
         f10_timedelta = datetime.timedelta(0)
@@ -1477,7 +1477,7 @@ def add_files(request, program_id, version_id):
                 c10.filename = str(request.FILES['filename10'])
             else:
                 c10.file_location = str(request.POST.get('filenametext10'))
-                c10.filename = str(request.FILES['filename10']).split('/')[-1]
+                c10.filename = str(request.POST.get('filenametext10')).split('/')[-1]
             c10.mirror = 0
             c10.save()
         return HttpResponseRedirect('/')
