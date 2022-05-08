@@ -2001,7 +2001,7 @@ def download(request, program, version,file):
         target.downloads = 0
     target.downloads=target.downloads+1
     target.save()
-    return redirect(file_path)
+    return redirect(file_path.replace('#', '%23'))
 
 def download_direct(request, acct, prg):
     file_path = "https://www.radio4all.net/files/"+acct+"/"+prg
