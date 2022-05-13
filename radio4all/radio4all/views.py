@@ -1929,6 +1929,9 @@ def filter_search(request):
         'search_typeselect': search_typeselect,
     },)
 
+def sanitize_control_characters(text):
+    return re.sub(r'[\x00-\x08\x0B-\x0C\x0E-\x1F]', " ", text)
+
 def podcast_view(request):
     uid = request.GET.get('uid')
     series_name = request.GET.get('series')
@@ -1948,14 +1951,14 @@ def podcast_view(request):
         for s in fileset_tmp:
             title_to_use = i.series + ' - ' + i.program_title
             link_to_use = 'http://www.radio4all.net/program/' + str(i.program_id)
-            desc_to_use = i.summary
+            desc_to_use = sanitize_control_characters(i.summary)
             guid_to_use = 'http://www.radio4all.net/program/' + str(i.program_id) + '&' + str(s.file_id)
             date_to_use = i.date_created
             author_to_use = Djusers.objects.get(uid=str(i.uid_id)).full_name
             curs.execute('SELECT t1.file_size, t2.file_location, t3.mime_type FROM files AS t1, locations AS t2, formats AS t3 WHERE t1.file_id = t2.file_id AND t1.format_id = t3.format_id AND t1.program_id = %s', (i.program_id,))
             enclosures_to_use = []
             for c in curs.fetchall():
-                enclosures_to_use = [feedgenerator.Enclosure(c[1], c[0], c[2])]
+                enclosures_to_use = [feedgenerator.Enclosure(sanitize_control_characters(c[1]).replace('#', '%23'), c[0], c[2])]
                 f.add_item(title=title_to_use, link=link_to_use, description=desc_to_use, author_name=author_to_use, enclosures=enclosures_to_use, pubdate=date_to_use)
     curs.close()
     return HttpResponse(f.writeString('UTF-8').encode('ascii', 'xmlcharrefreplace').decode('utf-8'), content_type='application/xml')
