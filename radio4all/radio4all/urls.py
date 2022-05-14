@@ -23,7 +23,7 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse, \
     filter_topic, podcast_view, podcast_program, filter_advisory, get_contributor_contact, filter_search, \
     upload_content, edit_program, edit_version, add_version, show_script, add_files, delete_version, delete_program, \
-    edit_segment, delete_segment, view_program, filter_popular_firstpage, download_direct, support
+    edit_segment, delete_segment, view_program, filter_popular_firstpage, download_direct, support, view_news_entry
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -39,6 +39,7 @@ urlpatterns = [
     path('about/', AboutPageView.as_view(), name='about'),
     path('contact/', ContactPageView.as_view(), name='contact'),
     path('news/', NewsPageView.as_view(), name='news'),
+    path('news/<int:pk>', view_news_entry, name='news-entry'),
     path('program/<int:pk>', view_program, name='program-detail'),
     path('program/my/', DashboardView.as_view(), name='my-programs'),
     path('program/add/', upload_content),

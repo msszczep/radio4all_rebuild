@@ -2013,3 +2013,11 @@ def download_direct(request, acct, prg):
 def support(request):
     return render(request, 'radio4all/support.html', {
     },)
+
+def view_news_entry(request, pk):
+    n = News.objects.get(id = pk)
+    return render(request, 'radio4all/news_entry.html', {
+        'pub_date': str(n.pub_date),
+        'title': n.title,
+        'body': n.body,
+    },)

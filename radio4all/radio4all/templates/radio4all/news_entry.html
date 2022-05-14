@@ -1,0 +1,18 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id="content_title">{{pub_date}}: {{title}}</div>
+<br />
+<div id="text_cell">
+{% autoescape off %}
+{{body}}
+{% endautoescape %}
+<br /><br />
+<a href="/news/">&lt; Back</a>
+</div>
+
+&nbsp;
+
+{% endblock %}
