@@ -23,7 +23,8 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     contributor_browse, filter_contributor, get_contributor, filter_legacy_license, filter_length, topic_browse, \
     filter_topic, podcast_view, podcast_program, filter_advisory, get_contributor_contact, filter_search, \
     upload_content, edit_program, edit_version, add_version, show_script, add_files, delete_version, delete_program, \
-    edit_segment, delete_segment, view_program, filter_popular_firstpage, download_direct, support, view_news_entry
+    edit_segment, delete_segment, view_program, filter_popular_firstpage, download_direct, support, view_news_entry, \
+    view_faq_entry
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -39,6 +40,7 @@ urlpatterns = [
     path('about/', AboutPageView.as_view(), name='about'),
     path('contact/', ContactPageView.as_view(), name='contact'),
     path('news/', NewsPageView.as_view(), name='news'),
+    path('news', NewsPageView.as_view(), name='news'),
     path('news/<int:pk>', view_news_entry, name='news-entry'),
     path('program/<int:pk>', view_program, name='program-detail'),
     path('program/my/', DashboardView.as_view(), name='my-programs'),
@@ -53,6 +55,8 @@ urlpatterns = [
     path('script/<int:program_id>/<int:version_id>', show_script),
     path('add/segment/<int:program_id>/<int:version_id>', add_files),
     path('faq/', FaqPageView.as_view(), name='faq'),
+    path('faq', FaqPageView.as_view(), name='faq'),
+    path('faq/<int:pk>', view_faq_entry, name='faq-entry'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('download/<int:program>/<int:version>/<int:file>/', download),

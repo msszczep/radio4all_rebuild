@@ -2021,3 +2021,10 @@ def view_news_entry(request, pk):
         'title': n.title,
         'body': n.body,
     },)
+
+def view_faq_entry(request, pk):
+     w = Faq.objects.get(id = pk)
+     return render(request, 'radio4all/faq_entry.html', {
+         'q': w.q,
+         'a': w.a,
+     },)
