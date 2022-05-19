@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic import DetailView
 import os
 import datetime
+import re
 from .forms import ContactForm
 from django.core.mail import send_mail
 from django.conf import settings
