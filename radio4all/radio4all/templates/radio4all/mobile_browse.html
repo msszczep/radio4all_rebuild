@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>A-Infos Radio Project - Latest Programs</title>
+<link rel="icon" href="/images/icons/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="/css/m.css" />
+</head>
+<body>
+<table id="header"><tr><td><a href="/"><img src="/images/rp-mobile-logo.png" align="left" border="0" title="A-Infos Radio Project" alt="A-Infos Radio Project"/></a></td><td>&nbsp; <h3 id="headertxt">
+<a id="toplink" href="http://radio4all.net/m">radio4all.net/m</a></h3></td></tr></table>
+<hr />
+<div id="content">
+	<h3>Latest Programs</h3>
+        <div><a href="/podcast.xml" title="Radio Project Front Page Podcast"><img style="width: 62px; height: 16px;" src="/images/podcast.gif" alt="Radio Project Front Page Podcast" align="absmiddle" border="0" width="62" height="16"/></a></div>
+        <div>&nbsp;</div>
+<div id="result">
+{% for p in programs %}
+  <p class="item"> <a href="/m/program/{{p.program_id}}">{{p.program_title}}</a><br />
+    <div class="datecreated">{{p.date_created}}</div>
+    {{p.summary}} 
+  </p><br clear="all" /><hr />
+{% endfor %}
+  <div id="browsecontrol">Nav to come...</div>
+  <div>&nbsp;</div>
+  <hr />
+  <div id="search">
+      <form id="searchform" method="post" action="/search/" accept-charset="UTF-8">
+          <table><tr>
+          <td><input type="text" size="20" maxlength="100" name="search"/></td><td><input type="submit" name="submit" value="search"/></td>
+          </tr></table>
+      </form>
+  </div>
+</div>
+</div>
+</body>
+</html>

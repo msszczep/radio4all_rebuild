@@ -24,7 +24,7 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     filter_topic, podcast_view, podcast_program, filter_advisory, get_contributor_contact, filter_search, \
     upload_content, edit_program, edit_version, add_version, show_script, add_files, delete_version, delete_program, \
     edit_segment, delete_segment, view_program, filter_popular_firstpage, download_direct, support, view_news_entry, \
-    view_faq_entry
+    view_faq_entry, mobile_browse
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -82,6 +82,7 @@ urlpatterns = [
     path('filter/popular/<int:pagenum>', filter_popular),
     path('search/', filter_search),
     path('support', support),
+    path('m/', mobile_browse),
     path('podcast.xml', podcast_view),
     path('podcast/podcast.xml', podcast_program),
     path('files/<str:acct>/<str:prg>', download_direct),

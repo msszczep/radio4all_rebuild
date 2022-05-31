@@ -2029,3 +2029,9 @@ def view_faq_entry(request, pk):
          'q': w.q,
          'a': w.a,
      },)
+
+def mobile_browse(request):
+    p = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(versions__version=1)[:30]
+    return render(request, 'radio4all/mobile_browse.html', {
+        'programs': p,
+    },)
