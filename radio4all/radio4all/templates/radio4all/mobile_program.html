@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>A-Infos Radio Project - {{p.program_title}}</title>
+<link rel="icon" href="/static/images/icons/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="/css/m.css" />
+</head>
+<body>
+<table id="header"><tr><td><a href="/"><img src="/static/images/rp-mobile-logo.png" align="left" border="0" title="A-Infos Radio Project" alt="A-Infos Radio Project"/></a></td><td>&nbsp; <h3 id="headertxt"><a id="toplink" href="https://radio4all.net/m">radio4all.net/m</a></h3></td></tr></table>
+<hr />
+<div id="content">
+	<p><strong>{{p.program_title}}</strong></p>
+        <div><span class="field_label">Subtitle: </span>{{p.subtitle}}</div>
+        <div><span class="field_label">Program Type: </span>{{p.type}}</div>
+        <div><span class="field_label">Speakers: </span>{{p.speaker}}</div>
+        <div><span class="field_label">Contributor: ??</span><</div>
+{% for v in versions %}
+        <hr />
+        <div><span class="field_label">Version: </span>{{v.version}} &nbsp; {{v.version_title}}</div>
+        <div><span class="field_label">Version Description: </span>{{v.version_description}}</div>
+        <div><span class="field_label">Version Length: </span>{{v.length}}</div>
+        <div><span class="field_label">Date Recorded: </span>{{v.date_recorded}}</div>
+        <div>&nbsp;</div>
+        {% for f in ftu %}
+           {% if f.version_id == v.version_id %}
+             <div><a href="/download/{{f.program_id}}/{{f.version_id}}/{{f.file_id}}/">{{f.segment}}:&nbsp;{{f.length}}&nbsp;-&nbsp;{{f.file_size}}&nbsp;download</a></div>
+           {% endif %}
+        {% endfor %}
+{% endfor %}
+</div>
+</body>
+</html>
+

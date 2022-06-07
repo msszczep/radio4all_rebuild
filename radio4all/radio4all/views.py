@@ -2035,3 +2035,13 @@ def mobile_browse(request):
     return render(request, 'radio4all/mobile_browse.html', {
         'programs': p,
     },)
+
+def mobile_program(request, pk):
+    p = Programs.objects.get(program_id=pk)
+    versions = Versions.objects.filter(program_id=pk)
+    ftu = Files.objects.filter(program_id=pk)
+    return render(request, 'radio4all/mobile_program.html', {
+        'p': p,
+        'versions': versions,
+        'ftu': ftu,
+    },)
