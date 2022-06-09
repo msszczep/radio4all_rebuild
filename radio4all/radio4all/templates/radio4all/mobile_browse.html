@@ -26,8 +26,9 @@
   <hr />
   <div id="search">
       <form id="searchform" method="post" action="/search/" accept-charset="UTF-8">
+          {% csrf_token %}
           <table><tr>
-          <td><input type="text" size="20" maxlength="100" name="search"/></td><td><input type="submit" name="submit" value="search"/></td>
+          <td><input type="text" size="20" maxlength="100" name="searchtext"/></td><td><input type="submit" name="submit" value="search"/></td>
           </tr></table>
       </form>
   </div>
