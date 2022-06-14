@@ -2031,9 +2031,16 @@ def view_faq_entry(request, pk):
      },)
 
 def mobile_browse(request):
-    p = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(versions__version=1)[:30]
+    page_number = request.GET.get('page')
+    if page_number == None:
+        page_number = 1
+    prev_number = (int(page_number) - 1) * 30
+    next_number = int(page_number) * 30
+    p = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(versions__version=1)[prev_number:next_number]
     return render(request, 'radio4all/mobile_browse.html', {
         'programs': p,
+        'next_page': int(page_number) + 1,
+        'prev_page': int(page_number) - 1,
     },)
 
 def mobile_program(request, pk):

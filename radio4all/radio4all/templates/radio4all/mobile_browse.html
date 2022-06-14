@@ -21,7 +21,12 @@
     {{p.summary}} 
   </p><br clear="all" /><hr />
 {% endfor %}
-  <div id="browsecontrol">Nav to come...</div>
+  <div id="browsecontrol">
+  {% if prev_page != 0 %}
+    <a href="/m/?page={{prev_page}}">previous</a> &nbsp;
+  {% endif %}
+  <a href="/m/?page={{next_page}}">next</a> &nbsp;
+  </div>
   <div>&nbsp;</div>
   <hr />
   <div id="search">
