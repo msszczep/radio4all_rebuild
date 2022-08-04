@@ -1941,7 +1941,7 @@ def podcast_view(request):
          user_to_use = Users.objects.get(uid=uid)
          f = feedgenerator.Rss201rev2Feed(title="Contributor Podcast: " + user_to_use.full_name, link="http://www.radio4all.net/contributor/" + str(uid), description="Contributor Podcast: " + user_to_use.full_name, docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     elif uid == None and series_name != None:
-         queryset = Programs.objects.filter(series=series_name).order_by('-date_created')[:30]
+         queryset = Programs.objects.filter(series=series_name.replace("'", '&#039;')).order_by('-date_created')[:30]
          f = feedgenerator.Rss201rev2Feed(title="Series Podcast: " + series_name, link="http://www.radio4all.net/series/" + str(series_name), description="Radio Project Series: " + str(series_name), docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     else:
          queryset = Programs.objects.all().order_by('-date_created')[:30]
