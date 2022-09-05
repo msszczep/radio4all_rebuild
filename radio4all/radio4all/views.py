@@ -47,6 +47,7 @@ def view_program(request, pk):
     files_to_use = Files.objects.filter(program_id = pk)
     try:
         program_data = Programs.objects.get(program_id = pk)
+        program_data.credits = re.sub("&#[0-9]{1,};", "", program_data.credits)
     except:
         program_data = ''
     if len(files_to_use) == 0 or program_data == '':
