@@ -603,7 +603,10 @@ def upload_content(request):
         advisories_to_use = Advisories.objects.all()
         languages_to_use = Lang.objects.all().order_by('lang')
         topics_to_use = Topics.objects.all().order_by('topic')
-        uid = request.user.uid
+        if request.user.email == 'anonymous@radio4all.net':
+            uid = 16
+        else:
+            uid = request.user.uid
         series_to_use = set([i.series for i in Programs.objects.filter(uid=uid)])
         formats_to_use = Formats.objects.all().order_by('format_name')
         return render(request, 'radio4all/upload_content.html', {
