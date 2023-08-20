@@ -181,6 +181,7 @@ class Programs(models.Model):
     hidden = models.IntegerField()
     permanent = models.IntegerField()
     date_created = models.DateTimeField()
+    date_published = models.DateTimeField()
     password = models.CharField(max_length=15, blank=True, null=True)
 
     class Meta:
