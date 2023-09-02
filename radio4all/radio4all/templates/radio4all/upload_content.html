@@ -339,6 +339,13 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     <td><label>Keywords (comma sperated): </label></td>
     <td><input name="program_keywords" type="text" size="60" maxlength="255" /></td>
   </tr>
+  <tr class="row_b">
+    <td><label>Date to publish<br />(yyyy-mm-dd): </label></td>
+    <td colspan=2><input type="text" name="" size="10" maxlength="10" id="program_date_published" /> &nbsp;&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+    This is a forthcoming feature to adjust the date of publication.  Change this date if you want to publish this file at some point in the future.  The default is the current date/time of posting.<BR><BR>
+   <b>Note: This feature is still in development and not fully working as yet.</b>
+    </span></a></td>
+  </tr>
 
 <style>
 #file_upload { clear: both; }
@@ -2754,7 +2761,9 @@ for (i = 0; i < 10; i++) {
 (function () {
     var d = new Date().toISOString().substring(0, 10);
     var vd = document.getElementById('version_date');
+    var dp = document.getElementById('program_date_published');
     vd.value = d;
+    dp.value = d;
 })();
 </script>
 </form>
