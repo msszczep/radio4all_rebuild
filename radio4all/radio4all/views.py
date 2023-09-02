@@ -647,7 +647,7 @@ def edit_program(request, pk):
         p.keywords = request.POST.get('program_keywords')
         p.password = request.POST.get('program_password')
         p.permanent = 0
-        # p.date_published = request.POST.get('program_date_published')
+        p.date_published = request.POST.get('program_date_published')
         p.save()
         topics = request.POST.getlist('program_topics[]')
         curs = connection.cursor()
