@@ -37,7 +37,7 @@
         {% endfor %}
       </select>
     <input name="program_add_series" type="text" size="60" maxlength="255" />
-    &nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
+    &nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/static/images/icons/help-icon.png" /><span>
     If you have a recurring program (example: "<i>The Weekly News Report</i>") you should put
     the name of your regular recurring program here in the Series field. The <i>Program Title</i> field
     above should be used for the title of the specific episode/installment you are uploading. If you are
@@ -183,7 +183,7 @@
       {% for a in advisories_list %}
         <option value={{a.ad_id}} {% if program_data.advisory_id == a.ad_id %}selected="selected"{% endif %}>{{a.ad_abbrev}}</option>
       {% endfor %}
-    </select>&nbsp;&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
+    </select>&nbsp;&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/static/images/icons/help-icon.png" /><span>
     <b>Unknown</b> - program has not been screened for content.<br />
     <b>No Advisories</b> - program content screened and verified.<br />
     <b>Strong Language</b> - Warning: Program may contain strong or potentially offensive language,
