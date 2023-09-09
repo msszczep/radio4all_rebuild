@@ -198,7 +198,7 @@
   </tr>
   <tr>
     <td><label>Date to publish<br />(yyyy-mm-dd): </label></td>
-    <td colspan=2><input type="text" name="program_date_published" size="10" maxlength="10" id="program_date_published" value="{{program_data.date_recorded}}" /></td>
+    <td colspan=2><input type="text" name="program_date_published" size="10" maxlength="10" id="program_date_published" value="{{program_data.date_published|date:'Y-m-d'}}" /></td>
   </tr>
 
 <style>
@@ -281,5 +281,6 @@ for (i = 0; i < 10; i++) {
 </script>
 </form>
      {% endblock %}
+
 
 
