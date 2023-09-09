@@ -48,6 +48,10 @@
     <td class="label_cell"><label>Contributor:</label></td>
     <td>&nbsp;<a href="/contributor/{{ program.uid.uid }}">{{ program.uid.full_name |safe }}</a>&nbsp;&nbsp;Contact Contributor</td>
   </tr>
+ <tr class="row_b">
+    <td class="label_cell"><label>Date Published:</label></td>
+    <td>{{ program.date_published }}</td>
+  </tr>
   <tr>
     <td colspan="2"><label>Summary:&nbsp;</label> {{ program.summary | linebreaksbr }}</td>
   </tr>
