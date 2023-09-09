@@ -73,7 +73,7 @@ function show_upload_links() {
       <option value="9">9</option>
       <option value="10">10</option>
     </select>
-&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png"><span>
+&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png"><span>
   If you have a long program or a program in stereo, or at high bitrates, you
   may want to split up the program in segments and upload it as several smaller
   files. If you have more than 10 files to upload, simply upload the first 10
@@ -89,7 +89,7 @@ function show_upload_links() {
 {% if request.user.email == "anonymous@radio4all.net" %}
 <label>Create a Password for this Program: </label>
 <input type="password" name="program_password" value="" size=25 maxlength=25 />&nbsp;
-<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png"><span>
+<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png"><span>
 Anonymous users must create a password for each program they add.
 If you don\'t enter a password, you will not be able to edit the program later.
 </span></a>
@@ -135,7 +135,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table1">
       <th colspan="2">Segment 1</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename1" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename1" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -150,7 +150,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -164,7 +164,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title1" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title1" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -183,7 +183,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes1">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -365,7 +365,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table2">
       <th colspan="2">Segment 2</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename2" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename2" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -380,7 +380,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -394,7 +394,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title2" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title2" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -413,7 +413,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes2">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -595,7 +595,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table3">
       <th colspan="2">Segment 3</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename3" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename3" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -610,7 +610,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -624,7 +624,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title3" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title3" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -643,7 +643,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes3">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -825,7 +825,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table4">
       <th colspan="2">Segment 4</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename4" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename4" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -840,7 +840,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -854,7 +854,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title4" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title4" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -873,7 +873,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes4">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -1055,7 +1055,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table5">
       <th colspan="2">Segment 5</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename5" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename5" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -1070,7 +1070,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -1084,7 +1084,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title5" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title5" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -1103,7 +1103,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes5">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -1285,7 +1285,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table6">
       <th colspan="2">Segment 6</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename6" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename6" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -1300,7 +1300,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -1314,7 +1314,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title6" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title6" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -1333,7 +1333,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes6">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -1515,7 +1515,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table7">
       <th colspan="2">Segment 7</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename7" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename7" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -1530,7 +1530,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -1544,7 +1544,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title7" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title7" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -1563,7 +1563,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes7">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -1745,7 +1745,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table8">
       <th colspan="2">Segment 8</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="$filename" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -1760,7 +1760,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -1774,7 +1774,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title8" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title8" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -1793,7 +1793,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes8">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -1975,7 +1975,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table9">
       <th colspan="2">Segment 9</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename9" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename9" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -1990,7 +1990,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -2004,7 +2004,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title9" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title9" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -2023,7 +2023,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes9">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
@@ -2205,7 +2205,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
   <table class="file_table" id="file_table10">
       <th colspan="2">Segment 10</th>
     <tr class="file_browse_upload">
-      <td colspan="2"><input name="filename10" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td colspan="2"><input name="filename10" type="file" size="40" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     ONLY The following audio formats are permitted for upload: <br />
     {% for h in help_list %}
       <b>{{h.format_name}}</b><br/>
@@ -2220,7 +2220,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
                              value='Enter file URL...'
                              onblur="if(this.value=='') this.value='Enter file URL...';"
                              onfocus="if(this.value=='Enter file URL...') this.value='';"
-                             />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+                             />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
     Enter the full URL of the file you wish to link to.<br /><br />
     ONLY The following audio formats are permitted: <br />
     {% for h in help_list %}
@@ -2234,7 +2234,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
     </tr>
     <tr>
       <td class="label_cell"><label>Label:</label></td>
-      <td><input name="file_title10" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      <td><input name="file_title10" type="text" size="30" maxlength="255" />&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter a descriptive label for this particular segment. (OPTIONAL)
     </span></a></td>
     </tr>
@@ -2253,7 +2253,7 @@ CONTINUE TO THE END AND MAKE CHANGES/CORRECTIONS AFTER YOU HAVE FINISHED!</b></t
       <select name="file_size_bytes10">
       <option value="KB">KB</option>
       <option value="MB" selected>MB</option>
-      </select>&nbsp;<a href="#" class="help_info"><img src="http://www.radio4all.net/images/icons/help-icon.png" /><span>
+      </select>&nbsp;<a href="#" class="help_info"><img src="https://www.radio4all.net/images/icons/help-icon.png" /><span>
       Enter the file size in Megabytes (MB) or Kilobytes (KB).<br />Decimal points are permitted.
     </a></span>
       </td>
