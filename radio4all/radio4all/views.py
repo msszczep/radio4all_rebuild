@@ -14,14 +14,16 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, Http404, BadHeaderError, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.db import connection
-from django.utils import feedgenerator
+from django.utils import feedgenerator, timezone
 from math import ceil
+import pytz
 
 class HomePageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
-    queryset = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(versions__version=1)  # Default: Model.objects.all()
+    now = timezone.now()
+    queryset = Programs.objects.all().order_by('-date_published').filter(hidden=0).filter(versions__version=1).filter(date_published__lte=now)  # Default: Model.objects.all()
     template_name = "radio4all/home.html"
 
 class DashboardView(LoginRequiredMixin,ListView):
@@ -30,9 +32,10 @@ class DashboardView(LoginRequiredMixin,ListView):
     paginate_by = 30
 #    queryset =
     template_name = "radio4all/dashboard.html"
+    now = timezone.now()
 
     def get_queryset(self):
-        return Programs.objects.filter(uid=self.request.user.uid).order_by('-date_created')  # Default: Model.objects.all()
+        return Programs.objects.filter(uid=self.request.user.uid).filter(date_published__lte=now).order_by('-date_published')  # Default: Model.objects.all()
 
 class ProgramView(DetailView):
     model = Files
@@ -62,7 +65,7 @@ class AboutPageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
-    queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
+    queryset = Programs.objects.all().order_by('-date_published').filter(date_published__lte=now)  # Default: Model.objects.all()
     template_name = "radio4all/about.html"
 
 class FaqPageView(ListView):
@@ -83,14 +86,14 @@ class ContactPageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
-    queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
+    queryset = Programs.objects.all().order_by('-date_published').filter(date_published__lte=now)  # Default: Model.objects.all()
     template_name = "radio4all/contact.html"
 
 class ProgramsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Programs.objects.all().order_by('date_created')
+    queryset = Programs.objects.all().order_by('date_published').filter(date_published__lte=now)
     serializer_class = ProgramsSerializer
 
 class FilesViewSet(viewsets.ModelViewSet):
@@ -1665,7 +1668,7 @@ def filter_topic(request, topic_id):
     try:
         topic = Topics.objects.get(topic_id=topic_id).topic
         curs = connection.cursor()
-        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3, topic_assignment AS t4) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t4.topic_id = %s AND t1.program_id = t4.program_id AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (topic_id,))
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3, topic_assignment AS t4) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t4.topic_id = %s AND t1.program_id = t4.program_id AND t2.version = '1' AND t3.uid = t1.uid) WHERE t1.date_published <= NOW() ORDER BY program_id DESC", (topic_id,))
         filter_topic_data = []
         for c in curs.fetchall():
             filter_topic_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
@@ -1788,7 +1791,8 @@ def get_contributor_contact(request, uid):
 
 def get_series(request, series_name):
     try:
-        target = Programs.objects.filter(series=series_name.replace("'", '&#039;')).order_by('-date_created')
+        now = timezone.now()
+        target = Programs.objects.filter(series=series_name.replace("'", '&#039;')).order_by('-date_published').filter(date_published__lte=now)
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -1806,7 +1810,7 @@ def filter_license(request, abbrev):
         return HttpResponse('<h1>No License Here</h1>')
     try:
         curs = connection.cursor()
-        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.license = %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (license.pk,))
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.license = %s AND t2.version = '1' AND t3.uid = t1.uid) WHERE t1.date_published <= NOW() ORDER BY program_id DESC", (license.pk,))
         filter_license_data = []
         for c in curs.fetchall():
             filter_license_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
@@ -1826,7 +1830,7 @@ def filter_legacy_license(request, legacy_license):
     restriction_to_use = restrictions[legacy_license]
     try:
         curs = connection.cursor()
-        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.restriction = %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (restriction_to_use,))
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.subtitle, t1.date_created, t2.length, t1.speaker FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.restriction = %s AND t2.version = '1' AND t3.uid = t1.uid) WHERE t1.date_published <= NOW() ORDER BY program_id DESC", (restriction_to_use,))
         filter_license_data = []
         for c in curs.fetchall():
             filter_license_data.append({'program_id': c[0], 'program_title': c[1], 'subtitle': c[2], 'date_created': c[3], 'length': c[4], 'speaker': c[5]})
@@ -1846,7 +1850,7 @@ def filter_advisory(request, advisory_id):
     advisory_to_use = advisory_strings[advisory_id]
     try:
         curs = connection.cursor()
-        curs.execute("SELECT t1.program_id, t1.program_title, t1.series, t1.date_created, t2.length, t3.full_name FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.advisory = %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (advisory_id,))
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.series, t1.date_created, t2.length, t3.full_name FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t1.advisory = %s AND t2.version = '1' AND t3.uid = t1.uid) WHERE t1.date_published <= NOW() ORDER BY program_id DESC", (advisory_id,))
         filter_advisory_data = []
         for c in curs.fetchall():
             filter_advisory_data.append({'program_id': c[0], 'program_title': c[1], 'series': c[2], 'date_created': c[3], 'length': c[4], 'full_name': c[5]})
@@ -1868,7 +1872,7 @@ def filter_length(request, length_to_use):
         start_time = length_to_use.split(',')[0]
         end_time = length_to_use.split(',')[1]
         curs = connection.cursor()
-        curs.execute("SELECT t1.program_id, t1.program_title, t1.series, t1.date_created, t2.length, t3.full_name FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t2.length BETWEEN %s AND %s AND t2.version = '1' AND t3.uid = t1.uid) ORDER BY program_id DESC", (start_time, end_time,))
+        curs.execute("SELECT t1.program_id, t1.program_title, t1.series, t1.date_created, t2.length, t3.full_name FROM programs as t1 INNER JOIN (versions as t2, users AS t3) ON (t1.program_id = t2.program_id AND t1.hidden = '0' AND t2.length BETWEEN %s AND %s AND t2.version = '1' AND t3.uid = t1.uid) WHERE t1.date_published <= NOW() ORDER BY program_id DESC", (start_time, end_time,))
         filter_length_data = []
         for c in curs.fetchall():
             filter_length_data.append({'program_id': c[0], 'program_title': c[1], 'series': c[2], 'date_created': c[3], 'length': c[4], 'contributor': c[5]})
@@ -1890,7 +1894,8 @@ def filter_type(request, pk):
     except Types.DoesNotExist:
         return HttpResponse('<h1>No Type Here</h1>')
     try:
-        target = Programs.objects.filter(type=typer.type, hidden=0).order_by('-date_created')
+        now = timezone.now()
+        target = Programs.objects.filter(type=typer.type, hidden=0).order_by('-date_created').filter(date_published__lte=now)
         paginator = Paginator(target, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -1924,7 +1929,7 @@ def filter_search(request):
         if search_filename == True:
             filenames_to_use = Files.objects.filter(filename__icontains=search_terms)
             search_results = Programs.objects.filter(program_id__in=filenames_to_use.values('program_id'))
-        paginator = Paginator(search_results.filter(date_created__gte=search_range_date).order_by('-date_created'), 30)
+        paginator = Paginator(search_results.filter(date_published__gte=search_range_date).filter(date_published__lte=now).order_by('-date_created'), 30)
         page_number = request.POST.get('browsecontrol')
         page_obj = paginator.get_page(page_number)
     except:
@@ -1942,15 +1947,16 @@ def sanitize_control_characters(text):
 def podcast_view(request):
     uid = request.GET.get('uid')
     series_name = request.GET.get('series')
+    now = timezone.now()
     if uid != None:
-         queryset = Programs.objects.filter(uid=uid).order_by('-date_created')[:30]
+         queryset = Programs.objects.filter(uid=uid).filter(date_published__lte=now).order_by('-date_published')[:30]
          user_to_use = Users.objects.get(uid=uid)
          f = feedgenerator.Rss201rev2Feed(title="Contributor Podcast: " + user_to_use.full_name, link="http://www.radio4all.net/contributor/" + str(uid), description="Contributor Podcast: " + user_to_use.full_name, docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     elif uid == None and series_name != None:
-         queryset = Programs.objects.filter(series=series_name.replace("'", '&#039;')).order_by('-date_created')[:30]
+         queryset = Programs.objects.filter(series=series_name.replace("'", '&#039;')).filter(date_published__lte=now).order_by('-date_published')[:30]
          f = feedgenerator.Rss201rev2Feed(title="Series Podcast: " + series_name, link="http://www.radio4all.net/series/" + str(series_name), description="Radio Project Series: " + str(series_name), docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     else:
-         queryset = Programs.objects.all().order_by('-date_created')[:30]
+         queryset = Programs.objects.all().filter(date_published__lte=now).order_by('-date_created')[:30]
          f = feedgenerator.Rss201rev2Feed(title="Radio Project Front Page Podcast", link="http://www.radio4all.net", description="Radio Project Front Page Podcast",pubdate="Sat, 17 Oct 2020 23:00:37 PDT", docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     curs = connection.cursor()
     for i in queryset:
@@ -1974,7 +1980,7 @@ def podcast_program(request):
     program_id = request.GET.get('program_id')
     version_id = request.GET.get('version_id')
     version = request.GET.get('version')
-    queryset = Programs.objects.get(program_id=program_id)
+    queryset = Programs.objects.get(program_id=program_id).filter(date_published__lte=now)
     f = feedgenerator.Rss201rev2Feed(title="Program Podcast: " + str(queryset.program_title), link="http://www.radio4all.net/program/" + str(program_id), description="Podcast for Program: " + str(queryset.program_title), docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     curs = connection.cursor()
     fileset_tmp = Files.objects.filter(program_id = program_id, version_id = version_id)
@@ -2042,7 +2048,8 @@ def mobile_browse(request):
         page_number = 1
     prev_number = (int(page_number) - 1) * 30
     next_number = int(page_number) * 30
-    p = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(versions__version=1)[prev_number:next_number]
+    now = timezone.now()
+    p = Programs.objects.all().order_by('-date_created').filter(hidden=0).filter(date_published__lte=now).filter(versions__version=1)[prev_number:next_number]
     return render(request, 'radio4all/mobile_browse.html', {
         'programs': p,
         'next_page': int(page_number) + 1,
@@ -2050,7 +2057,8 @@ def mobile_browse(request):
     },)
 
 def mobile_program(request, pk):
-    p = Programs.objects.get(program_id=pk)
+    now = timezone.now()
+    p = Programs.objects.get(program_id=pk).filter(date_published__lte=now)
     versions = Versions.objects.filter(program_id=pk)
     ftu = Files.objects.filter(program_id=pk)
     return render(request, 'radio4all/mobile_program.html', {
