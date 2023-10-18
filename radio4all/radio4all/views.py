@@ -35,7 +35,7 @@ class DashboardView(LoginRequiredMixin,ListView):
     now = timezone.now()
 
     def get_queryset(self):
-        return Programs.objects.filter(uid=self.request.user.uid).filter(date_published__lte=now).order_by('-date_published')  # Default: Model.objects.all()
+        return Programs.objects.filter(uid=self.request.user.uid).order_by('-date_created')  # Default: Model.objects.all()
 
 class ProgramView(DetailView):
     model = Files
@@ -65,6 +65,7 @@ class AboutPageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
+    now = timezone.now()
     queryset = Programs.objects.all().order_by('-date_published').filter(date_published__lte=now)  # Default: Model.objects.all()
     template_name = "radio4all/about.html"
 
@@ -86,6 +87,7 @@ class ContactPageView(ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
+    now = timezone.now()
     queryset = Programs.objects.all().order_by('-date_published').filter(date_published__lte=now)  # Default: Model.objects.all()
     template_name = "radio4all/contact.html"
 
@@ -93,6 +95,7 @@ class ProgramsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
+    now = timezone.now()
     queryset = Programs.objects.all().order_by('date_published').filter(date_published__lte=now)
     serializer_class = ProgramsSerializer
 
@@ -1929,6 +1932,7 @@ def filter_search(request):
         if search_filename == True:
             filenames_to_use = Files.objects.filter(filename__icontains=search_terms)
             search_results = Programs.objects.filter(program_id__in=filenames_to_use.values('program_id'))
+        now = timezone.now()
         paginator = Paginator(search_results.filter(date_published__gte=search_range_date).filter(date_published__lte=now).order_by('-date_created'), 30)
         page_number = request.POST.get('browsecontrol')
         page_obj = paginator.get_page(page_number)
@@ -1980,7 +1984,7 @@ def podcast_program(request):
     program_id = request.GET.get('program_id')
     version_id = request.GET.get('version_id')
     version = request.GET.get('version')
-    queryset = Programs.objects.get(program_id=program_id).filter(date_published__lte=now)
+    queryset = Programs.objects.get(program_id=program_id)
     f = feedgenerator.Rss201rev2Feed(title="Program Podcast: " + str(queryset.program_title), link="http://www.radio4all.net/program/" + str(program_id), description="Podcast for Program: " + str(queryset.program_title), docs="http://blogs.law.harvard.edu/tech/rss", generator="A-Infos Radio Project http://www.radio4all.net/", managingEditor="rp@radio4all.net (Editor)",  webmaster="www@radio4all.net (Webmaster)", ttl="240")
     curs = connection.cursor()
     fileset_tmp = Files.objects.filter(program_id = program_id, version_id = version_id)
