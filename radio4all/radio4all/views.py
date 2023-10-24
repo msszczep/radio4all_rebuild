@@ -48,6 +48,7 @@ class ProgramView(DetailView):
 
 def view_program(request, pk):
     files_to_use = Files.objects.filter(program_id = pk)
+    now = timezone.now()
     try:
         program_data = Programs.objects.get(program_id = pk)
         program_data.credits = re.sub("&#[0-9]{1,};", "", program_data.credits)
@@ -55,6 +56,8 @@ def view_program(request, pk):
         program_data = ''
     if len(files_to_use) == 0 or program_data == '':
         return HttpResponse('<h1>There is no program in the database with ID ' + str(pk) + '.  Please check and try again.</h1>')
+    elif program_data.date_published > now:
+        return HttpResponse('<h1>No such program.</h1>')
     else:
         return render(request, 'radio4all/program.html', {
             'files': files_to_use,
