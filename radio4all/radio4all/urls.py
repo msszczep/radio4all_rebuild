@@ -82,6 +82,7 @@ urlpatterns = [
     path('filter/popular/<int:pagenum>', filter_popular),
     path('search/', filter_search),
     path('support', support),
+    path('support/', support),
     path('m/', mobile_browse),
     path('m/program/<int:pk>', mobile_program),
     path('podcast.xml', podcast_view),
