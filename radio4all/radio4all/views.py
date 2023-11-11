@@ -23,14 +23,13 @@ class HomePageView(ListView):
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
     now = timezone.now()
-    queryset = Programs.objects.all().filter(hidden=0).filter(versions__version=1).filter(date_published__lte=now).order_by('-date_published') # Default: Model.objects.all()
+    queryset = Programs.objects.all().filter(date_published__lte=now).filter(hidden=0).filter(versions__version=1).order_by('-date_published')  # Default: Model.object
     template_name = "radio4all/home.html"
 
 class DashboardView(LoginRequiredMixin,ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
-#    queryset =
     template_name = "radio4all/dashboard.html"
     now = timezone.now()
 
