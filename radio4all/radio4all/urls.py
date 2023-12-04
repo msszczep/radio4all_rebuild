@@ -24,7 +24,7 @@ from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView,
     filter_topic, podcast_view, podcast_program, filter_advisory, get_contributor_contact, filter_search, \
     upload_content, edit_program, edit_version, add_version, show_script, add_files, delete_version, delete_program, \
     edit_segment, delete_segment, view_program, filter_popular_firstpage, download_direct, support, view_news_entry, \
-    view_faq_entry, mobile_browse, mobile_program
+    view_faq_entry, mobile_browse, mobile_program, newhome
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -36,7 +36,8 @@ router.register(r'programs', ProgramsViewSet)
 # Additionally, we include login URLs for the browsable API.
 
 urlpatterns = [
-    path('',HomePageView.as_view(), name='home'),
+    path('', newhome, name='home'),
+    path('newhome', HomePageView.as_view(), name='newhome'),
     path('about/', AboutPageView.as_view(), name='about'),
     path('contact/', ContactPageView.as_view(), name='contact'),
     path('news/', NewsPageView.as_view(), name='news'),

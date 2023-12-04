@@ -26,6 +26,19 @@ class HomePageView(ListView):
     # queryset = Programs.objects.all().filter(date_published__lte=datetime.datetime.now()).filter(hidden=0).filter(versions__version=1).order_by('-date_published')  # Default: Model.objects.all()
     template_name = "radio4all/home.html"
 
+def newhome(request):
+    try:
+        now = datetime.datetime.now()
+        target = Programs.objects.all().filter(hidden=0).filter(versions__version=1).filter(date_published__lte=now).order_by('-date_published')
+        paginator = Paginator(target, 30)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    except Programs.DoesNotExist:
+        return HttpResponse('<h1>No Programs Here</h1>')
+    return render(request, 'radio4all/newhome.html', {
+        'page_obj': page_obj,
+    },)
+
 class DashboardView(LoginRequiredMixin,ListView):
     model = Programs
     context_object_name = 'latest_programs'  # Default: object_list
