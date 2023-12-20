@@ -67,7 +67,7 @@ def view_program(request, pk):
         program_data = ''
     if len(files_to_use) == 0 or program_data == '':
         return HttpResponse('<h1>There is no program in the database with ID ' + str(pk) + '.  Please check and try again.</h1>')
-    elif program_data.date_published > now:
+    elif program_data.date_published > now and program_data.uid_id != request.user.uid:
         return HttpResponse('<h1>No such program.</h1>')
     else:
         return render(request, 'radio4all/program.html', {
