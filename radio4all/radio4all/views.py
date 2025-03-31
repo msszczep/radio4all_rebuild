@@ -2045,6 +2045,10 @@ def support(request):
     return render(request, 'radio4all/support.html', {
     },)
 
+def account_redirect(request):
+    return render(request, 'radio4all/account_redirect.html', {
+    },)
+
 def view_news_entry(request, pk):
     n = News.objects.get(id = pk)
     return render(request, 'radio4all/news_entry.html', {
