@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
+from django.conf.urls import include
 from rest_framework import routers
 from .views import FilesViewSet, LocationViewSet, ProgramsViewSet, HomePageView, AboutPageView, ContactPageView,\
     NewsPageView, FaqPageView, ProgramView, DashboardView, download, filter_type, \
@@ -90,8 +90,8 @@ urlpatterns = [
     path('podcast.xml', podcast_view),
     path('podcast/podcast.xml', podcast_program),
     path('files/<str:acct>/<str:prg>', download_direct),
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path(r'^api/', include(router.urls)),
+    path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 from django.conf import settings
