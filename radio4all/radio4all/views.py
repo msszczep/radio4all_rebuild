@@ -2080,7 +2080,7 @@ def mobile_browse(request):
 
 def mobile_program(request, pk):
     now = timezone.now()
-    p = Programs.objects.get(program_id=pk).filter(date_published__lte=now)
+    p = Programs.objects.get(program_id=pk)
     versions = Versions.objects.filter(program_id=pk)
     ftu = Files.objects.filter(program_id=pk)
     return render(request, 'radio4all/mobile_program.html', {
