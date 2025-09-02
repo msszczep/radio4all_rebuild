@@ -3,11 +3,45 @@
             <li class="tvic"><a href="/filter/popular">by Popularity</a></li>
             <li class="tvic"><a href="/filter/type/">by Type</a>
               <ul>
-                    {% for category in categories %}
-              <li class="tvil">
-                  <a href="/filter/type/{{ category.type_id }}">{{ category.type }}</a>
-              </li>
-                {% endfor %}
+                <li class="tvil">
+                    <a href="/filter/type/13">Action/Event</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/8">Actuality (Uncut Material)</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/9">Announcement</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/7">Commentary</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/1">Daily Program</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/4">Documentary</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/5">Interview</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/11">Music</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/6">News Report</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/10">Regular Show</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/3">Speech</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/12">Unspecified</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/type/2">Weekly Program</a>
+                </li>
               </ul>
               <div class="tvca"></div>
             </li>
@@ -52,11 +86,18 @@
             </li>
             <li class="tvic"><a href="/filter/advisory/">by Advisory</a>
               <ul>
-                  {% for ad in advisories %}
-              <li class="tvil">
-                  <a href="/filter/advisory/{{ advisory.ad_id }}">{{ ad.ad_abbrev }}</a>
-              </li>
-                {% endfor %}
+                <li class="tvil">
+                    <a href="/filter/advisory/">Unknown</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/advisory/">No Advisories</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/advisory/">Contains Potentially Offensive Language</a>
+                </li>
+                <li class="tvil">
+                    <a href="/filter/advisory/">For Safe-Harbor (late-night broadcast) Only</a>
+                </li>
               </ul>
               <div class="tvca"></div>
             </li>
@@ -70,12 +111,42 @@
                   <li><a href="/filter/license/legacy/sn" title="Ad Hoc License: See notes.">See Notes</a></li>
                 </ul>
                 </li>
-                  {%  for license in licenses %}
                   <li class="tvil">
-                  <a href="/filter/license/{{ license.cc_abbrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/static/images/icons/{{ license.cc_abbrev }}.png" /></a>&nbsp;
-                <a href="{{ license.cc_url }}" title="View License: {{ license.cc_name }}" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: {{ license.cc_name }}" /></a>
+                  <a href="/filter/license/by" title="Creative Commons Attribution (by)"><img src="/static/images/icons/by.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="View License: Attribution (by)" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Attribution (by)" /></a>
                 </li>
-                {% endfor %}
+                  <li class="tvil">
+                  <a href="/filter/license/by-sa" title="Creative Commons Attribution Share Alike (by-sa)"><img src="/static/images/icons/by-sa.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="View License: Attribution Share Alike (by-sa)" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Attribution Share Alike (by-sa)" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/by-nd" title="Creative Commons Attribution No Derivatives (by-nd)"><img src="/static/images/icons/by-nd.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/by-nd/3.0/" title="View License: Attribution No Derivatives (by-nd)" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Attribution No Derivatives (by-nd)" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/by-nc" title="Creative Commons Attribution Non-commercial (by-nc)"><img src="/static/images/icons/by-nc.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/by-nc/3.0/" title="View License: Attribution Non-commercial (by-nc)" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Attribution Non-commercial (by-nc)" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/by-nc-sa" title="Creative Commons Attribution Non-commercial Share Alike (by-nc-sa)"><img src="/static/images/icons/by-nc-sa.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="View License: Attribution Non-commercial Share Alike (by-nc-sa)" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Attribution Non-commercial Share Alike (by-nc-sa)" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/by-nc-nd" title="Creative Commons Attribution Non-commercial No Derivatives (by-nc-nd)"><img src="/static/images/icons/by-nc-nd.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" title="View License: Attribution Non-commercial No Derivatives (by-nc-nd)" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Attribution Non-commercial No Derivatives (by-nc-nd)" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/pd" title="Creative Commons Public Domain"><img src="/static/images/icons/pd.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/publicdomain/" title="View License: Public Domain" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Public Domain" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/sampling-plus" title="Creative Commons Sampling Plus"><img src="/static/images/icons/sampling-plus.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/sampling+/1.0/" title="View License: Sampling Plus" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Sampling Plus" /></a>
+                </li>
+                  <li class="tvil">
+                  <a href="/filter/license/nc-sampling-plus" title="Creative Commons Non-commmercial Sampling Plus"><img src="/static/images/icons/nc-sampling-plus.png" /></a>&nbsp;
+                <a href="http://creativecommons.org/licenses/nc-sampling+/1.0/" title="View License: Non-commmercial Sampling Plus" target="_blank"><img src="/static/images/icons/info-icon.png" alt="View license: Non-commmercial Sampling Plus" /></a>
+                </li>
               </ul>
             </li>
           </ul>
