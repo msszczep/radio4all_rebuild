@@ -2081,6 +2081,8 @@ def mobile_browse(request):
 def mobile_program(request, pk):
     now = timezone.now()
     p = Programs.objects.get(program_id=pk)
+    if p.date_published < now
+        return HttpResponse('<h1>No Programs Here</h1>')
     versions = Versions.objects.filter(program_id=pk)
     ftu = Files.objects.filter(program_id=pk)
     return render(request, 'radio4all/mobile_program.html', {
